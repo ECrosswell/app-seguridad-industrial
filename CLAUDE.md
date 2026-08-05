@@ -250,6 +250,19 @@ C:\flutter_sdk\flutter\bin\flutter.bat build apk --release
 C:\flutter_sdk\flutter\bin\flutter.bat build web -t lib/main_web.dart --release
 ```
 
+## Despliegue web (Vercel)
+
+`publicar_web.bat` compila y publica. Dos archivos de la raíz son **indispensables**; si falta cualquiera, el sitio responde 404 completo:
+
+| Archivo | Por qué |
+|---|---|
+| `.vercelignore` | Sin él, el CLI de Vercel usa el `.gitignore` de Flutter, que excluye `/build/`. Resultado: `build/web` nunca se sube y el despliegue queda vacío. **Ya pasó una vez.** |
+| `vercel.json` | `framework`, `buildCommand` e `installCommand` en `null` (el bundle ya viene compilado; sin eso Vercel intenta detectar y construir). El `rewrite` a `/index.html` es lo que permite recargar en rutas como `/panel/visitantes` |
+
+En `.vercelignore` el orden importa: primero `build/**` y después `!build/web/**`. Con `build/` a secas (excluyendo el directorio entero) no se puede readmitir lo de adentro.
+
+`vercel.json` **no admite claves desconocidas** — no se le pueden meter comentarios en forma de `"// nota"`, los rechaza la validación.
+
 ## Base de datos
 
 Migraciones numeradas en `supabase/migrations/`. **Sin colisiones de número** — es una regla, no una casualidad: Plaza Encuentro tiene varias (`019_consignas_admin.sql` vs `019_fix_attendance_rls.sql`) y vuelven ambiguo el orden de aplicación.
