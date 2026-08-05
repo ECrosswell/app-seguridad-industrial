@@ -1,0 +1,23 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "consola-web",
+      "runtimeExecutable": "C:\\flutter_sdk\\flutter\\bin\\flutter.bat",
+      "runtimeArgs": [
+        "run",
+        "-d",
+        "web-server",
+        "-t",
+        "lib/main_web.dart",
+        "--web-port",
+        "8080",
+        "--web-hostname",
+        "127.0.0.1",
+        "--dart-define=SUPABASE_URL=https://imcwrzldbssnmxtmoidl.supabase.co",
+        "--dart-define=SUPABASE_ANON_KEY=sb_publishable_QnE-6xNZfbA6spwvoyiV6w__wXdRQVH"
+      ],
+      "port": 8080
+    }
+  ]
+}
