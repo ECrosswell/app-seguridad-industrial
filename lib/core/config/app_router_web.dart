@@ -43,13 +43,14 @@ final routerWebProvider = Provider<GoRouter>((ref) {
         if (auth.debeCambiarPassword) {
           return ruta == Rutas.cambiarPassword ? null : Rutas.cambiarPassword;
         }
-        if (ruta == Rutas.login || ruta == Rutas.cambiarPassword) {
+        if (ruta == Rutas.login) {
           return Rutas.panel;
         }
         // La administración de sitios y usuarios es sólo del admin. Sin este
         // corte, un cliente que escriba la URL a mano entraría (el RLS lo
         // frenaría al escribir, pero no debe ni ver la pantalla).
-        final soloAdmin = ruta == Rutas.panelSitios || ruta == Rutas.panelUsuarios;
+        final soloAdmin =
+            ruta == Rutas.panelSitios || ruta == Rutas.panelUsuarios;
         if (soloAdmin && auth.perfil.rol != RolUsuario.admin) {
           return Rutas.panel;
         }
@@ -61,55 +62,79 @@ final routerWebProvider = Provider<GoRouter>((ref) {
       GoRoute(path: Rutas.login, builder: (_, _) => const LoginScreen()),
       GoRoute(
         path: Rutas.cambiarPassword,
-        builder: (_, _) => const CambiarPasswordScreen(forzada: true),
+        builder: (_, _) {
+          final auth = ref.read(authControllerProvider);
+          return CambiarPasswordScreen(
+            forzada: auth is AuthAutenticado && auth.debeCambiarPassword,
+            destinoAlGuardar: Rutas.panel,
+          );
+        },
       ),
       ShellRoute(
         builder: (context, state, hijo) => PanelShell(child: hijo),
         routes: [
           GoRoute(
             path: Rutas.panel,
-            pageBuilder: (_, e) =>
-                NoTransitionPage(key: e.pageKey, child: const PanelInicioScreen()),
+            pageBuilder: (_, e) => NoTransitionPage(
+              key: e.pageKey,
+              child: const PanelInicioScreen(),
+            ),
           ),
           GoRoute(
             path: Rutas.panelPersonal,
             pageBuilder: (_, e) => NoTransitionPage(
-                key: e.pageKey, child: const PanelPersonalScreen()),
+              key: e.pageKey,
+              child: const PanelPersonalScreen(),
+            ),
           ),
           GoRoute(
             path: Rutas.panelVisitantes,
             pageBuilder: (_, e) => NoTransitionPage(
-                key: e.pageKey, child: const PanelVisitantesScreen()),
+              key: e.pageKey,
+              child: const PanelVisitantesScreen(),
+            ),
           ),
           GoRoute(
             path: Rutas.panelBitacora,
             pageBuilder: (_, e) => NoTransitionPage(
-                key: e.pageKey, child: const PanelBitacoraScreen()),
+              key: e.pageKey,
+              child: const PanelBitacoraScreen(),
+            ),
           ),
           GoRoute(
             path: Rutas.panelEquipo,
-            pageBuilder: (_, e) =>
-                NoTransitionPage(key: e.pageKey, child: const PanelEquipoScreen()),
+            pageBuilder: (_, e) => NoTransitionPage(
+              key: e.pageKey,
+              child: const PanelEquipoScreen(),
+            ),
           ),
           GoRoute(
             path: Rutas.panelSolicitudes,
             pageBuilder: (_, e) => NoTransitionPage(
-                key: e.pageKey, child: const PanelSolicitudesScreen()),
+              key: e.pageKey,
+              child: const PanelSolicitudesScreen(),
+            ),
           ),
           GoRoute(
             path: Rutas.panelReportes,
             pageBuilder: (_, e) => NoTransitionPage(
-                key: e.pageKey, child: const PanelReportesScreen()),
+              key: e.pageKey,
+              child: const PanelReportesScreen(),
+            ),
           ),
           GoRoute(
             path: Rutas.panelSitios,
-            pageBuilder: (_, e) =>
-                NoTransitionPage(key: e.pageKey, child: const PanelSitiosScreen()),
+            pageBuilder: (_, e) => NoTransitionPage(
+              key: e.pageKey,
+              child: const PanelSitiosScreen(),
+            ),
           ),
           GoRoute(
             path: Rutas.panelUsuarios,
             pageBuilder: (_, e) => NoTransitionPage(
-                key: e.pageKey, child: const PanelUsuariosScreen()),
+              key: e.pageKey,
+              child: const PanelUsuariosScreen(),
+            ),
           ),
         ],
       ),
@@ -136,10 +161,9 @@ final routerWebProvider = Provider<GoRouter>((ref) {
 
 class _NotificadorAuthWeb extends ChangeNotifier {
   _NotificadorAuthWeb(this._ref) {
-    _quitar = _ref.listen<EstadoAuth>(
-      authControllerProvider,
-      (_, _) => notifyListeners(),
-    ).close;
+    _quitar = _ref
+        .listen<EstadoAuth>(authControllerProvider, (_, _) => notifyListeners())
+        .close;
   }
 
   final Ref _ref;

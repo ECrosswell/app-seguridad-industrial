@@ -54,18 +54,15 @@ final routerProvider = Provider<GoRouter>((ref) {
       return null;
     },
     routes: [
-      GoRoute(
-        path: Rutas.login,
-        builder: (_, _) => const LoginScreen(),
-      ),
+      GoRoute(path: Rutas.login, builder: (_, _) => const LoginScreen()),
       GoRoute(
         path: Rutas.cambiarPassword,
-        builder: (_, _) => const CambiarPasswordScreen(forzada: true),
+        builder: (_, _) => const CambiarPasswordScreen(
+          forzada: true,
+          destinoAlGuardar: Rutas.inicio,
+        ),
       ),
-      GoRoute(
-        path: Rutas.perfil,
-        builder: (_, _) => const PerfilScreen(),
-      ),
+      GoRoute(path: Rutas.perfil, builder: (_, _) => const PerfilScreen()),
       GoRoute(
         path: Rutas.notificaciones,
         builder: (_, _) => const NotificacionesScreen(),
@@ -90,23 +87,31 @@ final routerProvider = Provider<GoRouter>((ref) {
         routes: [
           GoRoute(
             path: Rutas.inicio,
-            pageBuilder: (_, estado) =>
-                NoTransitionPage(key: estado.pageKey, child: const InicioScreen()),
+            pageBuilder: (_, estado) => NoTransitionPage(
+              key: estado.pageKey,
+              child: const InicioScreen(),
+            ),
           ),
           GoRoute(
             path: Rutas.asistencia,
             pageBuilder: (_, estado) => NoTransitionPage(
-                key: estado.pageKey, child: const AsistenciaScreen()),
+              key: estado.pageKey,
+              child: const AsistenciaScreen(),
+            ),
           ),
           GoRoute(
             path: Rutas.accesos,
-            pageBuilder: (_, estado) =>
-                NoTransitionPage(key: estado.pageKey, child: const AccesosScreen()),
+            pageBuilder: (_, estado) => NoTransitionPage(
+              key: estado.pageKey,
+              child: const AccesosScreen(),
+            ),
           ),
           GoRoute(
             path: Rutas.bitacora,
             pageBuilder: (_, estado) => NoTransitionPage(
-                key: estado.pageKey, child: const BitacoraScreen()),
+              key: estado.pageKey,
+              child: const BitacoraScreen(),
+            ),
           ),
         ],
       ),
@@ -136,10 +141,9 @@ final routerProvider = Provider<GoRouter>((ref) {
 /// autenticación en notificaciones que disparan la reevaluación de rutas.
 class _NotificadorAuth extends ChangeNotifier {
   _NotificadorAuth(this._ref) {
-    _quitar = _ref.listen<EstadoAuth>(
-      authControllerProvider,
-      (_, _) => notifyListeners(),
-    ).close;
+    _quitar = _ref
+        .listen<EstadoAuth>(authControllerProvider, (_, _) => notifyListeners())
+        .close;
   }
 
   final Ref _ref;

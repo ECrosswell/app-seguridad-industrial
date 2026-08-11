@@ -5,19 +5,14 @@ import 'package:intl/intl.dart';
 import '../../../core/constants/enums.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../data/models/perfil.dart';
+import '../../../data/models/sitio.dart';
 import '../providers/panel_provider.dart';
+import 'panel_usuario_dialogs.dart';
 
-/// Alta, baja y reingreso de personal.
+/// Alta, baja, reingreso y credenciales de personal.
 ///
-/// **Las cuentas se crean desde el panel de Supabase (Authentication → Add
-/// user)**, no desde aquí: crear un usuario requiere la `service_role key`, que
-/// nunca debe vivir en una app cliente — quien la extrajera del bundle tendría
-/// acceso total a la base saltándose todo el RLS.
-///
-/// Al crear el usuario allá hay que capturar en «User Metadata»:
-/// `nombre_completo`, `rol` y `telefono_whatsapp`. El trigger `handle_new_user`
-/// crea el perfil solo y lo marca para cambio de contraseña en el primer
-/// ingreso.
+/// Las operaciones de Auth se envían a una Edge Function que valida al
+/// administrador. La app nunca recibe la llave `service_role`.
 class PanelUsuariosScreen extends ConsumerStatefulWidget {
   const PanelUsuariosScreen({super.key});
 
@@ -37,8 +32,32 @@ class _PanelUsuariosScreenState extends ConsumerState<PanelUsuariosScreen> {
     return ListView(
       padding: const EdgeInsets.all(20),
       children: [
-        const Text('Usuarios',
-            style: TextStyle(fontSize: 26, fontWeight: FontWeight.w700)),
+        LayoutBuilder(
+          builder: (context, constraints) {
+            final titulo = const Text(
+              'Usuarios',
+              style: TextStyle(fontSize: 26, fontWeight: FontWeight.w700),
+            );
+            final boton = FilledButton.icon(
+              onPressed: _darDeAlta,
+              icon: const Icon(Icons.person_add_alt_1),
+              label: const Text('Dar de alta usuario'),
+            );
+
+            if (constraints.maxWidth < 560) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [titulo, const SizedBox(height: 12), boton],
+              );
+            }
+            return Row(
+              children: [
+                Expanded(child: titulo),
+                boton,
+              ],
+            );
+          },
+        ),
         const SizedBox(height: 16),
 
         Card(
@@ -52,12 +71,10 @@ class _PanelUsuariosScreenState extends ConsumerState<PanelUsuariosScreen> {
                 SizedBox(width: 12),
                 Expanded(
                   child: Text(
-                    'Las cuentas nuevas se crean desde el panel de Supabase '
-                    '(Authentication → Add user), capturando en User Metadata: '
-                    'nombre_completo, rol y telefono_whatsapp. El perfil se crea '
-                    'solo y pide cambiar la contraseña al primer ingreso.\n\n'
-                    'No se hace desde aquí porque crear usuarios exige una llave '
-                    'de servicio que no puede vivir en una app cliente.',
+                    'Las altas y los restablecimientos se autorizan de forma '
+                    'segura en el servidor. La contraseña que capture el '
+                    'administrador es temporal: la persona deberá cambiarla en '
+                    'su siguiente acceso.',
                     style: TextStyle(fontSize: 12.5, height: 1.4),
                   ),
                 ),
@@ -93,9 +110,11 @@ class _PanelUsuariosScreenState extends ConsumerState<PanelUsuariosScreen> {
 
         usuarios.when(
           loading: () => const Center(
-              child: Padding(
-                  padding: EdgeInsets.all(40),
-                  child: CircularProgressIndicator())),
+            child: Padding(
+              padding: EdgeInsets.all(40),
+              child: CircularProgressIndicator(),
+            ),
+          ),
           error: (e, _) => Text('Error: $e'),
           data: (lista) {
             var filtrada = lista;
@@ -125,6 +144,45 @@ class _PanelUsuariosScreenState extends ConsumerState<PanelUsuariosScreen> {
       ],
     );
   }
+
+  Future<void> _darDeAlta() async {
+    List<Sitio> sitiosActivos;
+    try {
+      final sitios = await ref.read(sitiosPanelProvider.future);
+      sitiosActivos = sitios.where((sitio) => sitio.activo).toList();
+    } catch (_) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('No se pudieron consultar los sitios.')),
+      );
+      return;
+    }
+
+    if (!mounted) return;
+    if (sitiosActivos.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Primero registra al menos un sitio activo.'),
+          backgroundColor: AppTheme.ambarSeguridad,
+        ),
+      );
+      return;
+    }
+
+    final creado = await mostrarDialogoAltaUsuario(
+      context,
+      sitios: sitiosActivos,
+    );
+    if (!mounted || !creado) return;
+
+    ref.invalidate(usuariosPanelProvider);
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Usuario dado de alta correctamente'),
+        backgroundColor: AppTheme.verdeOperativo,
+      ),
+    );
+  }
 }
 
 class _TarjetaUsuario extends ConsumerWidget {
@@ -148,11 +206,13 @@ class _TarjetaUsuario extends ConsumerWidget {
               backgroundColor: deBaja
                   ? AppTheme.grisNeutro.withValues(alpha: 0.2)
                   : AppTheme.azulAcero.withValues(alpha: 0.15),
-              child: Text(p.iniciales,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    color: deBaja ? AppTheme.grisNeutro : AppTheme.azulAcero,
-                  )),
+              child: Text(
+                p.iniciales,
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  color: deBaja ? AppTheme.grisNeutro : AppTheme.azulAcero,
+                ),
+              ),
             ),
             const SizedBox(width: 14),
             Expanded(
@@ -163,11 +223,15 @@ class _TarjetaUsuario extends ConsumerWidget {
                     children: [
                       Flexible(
                         child: Text(
-                          p.nombreCompleto.isEmpty ? p.correo : p.nombreCompleto,
+                          p.nombreCompleto.isEmpty
+                              ? p.correo
+                              : p.nombreCompleto,
                           style: TextStyle(
                             fontWeight: FontWeight.w700,
                             fontSize: 15,
-                            decoration: deBaja ? TextDecoration.lineThrough : null,
+                            decoration: deBaja
+                                ? TextDecoration.lineThrough
+                                : null,
                             color: deBaja ? AppTheme.grisNeutro : null,
                           ),
                         ),
@@ -175,14 +239,20 @@ class _TarjetaUsuario extends ConsumerWidget {
                       const SizedBox(width: 8),
                       Container(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 3),
+                          horizontal: 8,
+                          vertical: 3,
+                        ),
                         decoration: BoxDecoration(
                           color: AppTheme.azulAcero.withValues(alpha: 0.11),
                           borderRadius: BorderRadius.circular(6),
                         ),
-                        child: Text(p.rol.etiqueta,
-                            style: const TextStyle(
-                                fontSize: 11, fontWeight: FontWeight.w600)),
+                        child: Text(
+                          p.rol.etiqueta,
+                          style: const TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -197,18 +267,28 @@ class _TarjetaUsuario extends ConsumerWidget {
                         'Baja ${DateFormat('d MMM yyyy', 'es_MX').format(p.fechaBaja!)}',
                     ].join(' · '),
                     style: const TextStyle(
-                        fontSize: 12.5, color: AppTheme.grisNeutro),
+                      fontSize: 12.5,
+                      color: AppTheme.grisNeutro,
+                    ),
                   ),
                   if (deBaja && p.motivoBaja.isNotEmpty)
-                    Text('Motivo: ${p.motivoBaja}',
-                        style: const TextStyle(
-                            fontSize: 12, color: AppTheme.rojoAlerta)),
+                    Text(
+                      'Motivo: ${p.motivoBaja}',
+                      style: const TextStyle(
+                        fontSize: 12,
+                        color: AppTheme.rojoAlerta,
+                      ),
+                    ),
                   if (p.debeCambiarPassword)
                     const Padding(
                       padding: EdgeInsets.only(top: 4),
-                      child: Text('Contraseña temporal sin cambiar',
-                          style: TextStyle(
-                              fontSize: 11.5, color: AppTheme.ambarSeguridad)),
+                      child: Text(
+                        'Contraseña temporal sin cambiar',
+                        style: TextStyle(
+                          fontSize: 11.5,
+                          color: AppTheme.ambarSeguridad,
+                        ),
+                      ),
                     ),
                 ],
               ),
@@ -216,16 +296,30 @@ class _TarjetaUsuario extends ConsumerWidget {
             PopupMenuButton<String>(
               itemBuilder: (_) => [
                 if (!deBaja)
-                  const PopupMenuItem(value: 'baja', child: Text('Dar de baja')),
+                  const PopupMenuItem(
+                    value: 'baja',
+                    child: Text('Dar de baja'),
+                  ),
                 if (deBaja)
                   const PopupMenuItem(
-                      value: 'reingreso', child: Text('Reingresar')),
-                const PopupMenuItem(value: 'sitio', child: Text('Asignar sitio')),
+                    value: 'reingreso',
+                    child: Text('Reingresar'),
+                  ),
+                const PopupMenuItem(
+                  value: 'sitio',
+                  child: Text('Asignar sitio'),
+                ),
+                if (!deBaja && p.rol != RolUsuario.admin)
+                  const PopupMenuItem(
+                    value: 'password',
+                    child: Text('Restablecer contraseña'),
+                  ),
               ],
               onSelected: (v) => switch (v) {
                 'baja' => _darDeBaja(context, ref),
                 'reingreso' => _reingresar(context, ref),
                 'sitio' => _asignarSitio(context, ref),
+                'password' => _restablecerPassword(context, ref),
                 _ => null,
               },
             ),
@@ -260,8 +354,9 @@ class _TarjetaUsuario extends ConsumerWidget {
         ),
         actions: [
           TextButton(
-              onPressed: () => Navigator.of(ctx).pop(false),
-              child: const Text('Cancelar')),
+            onPressed: () => Navigator.of(ctx).pop(false),
+            child: const Text('Cancelar'),
+          ),
           FilledButton(
             style: FilledButton.styleFrom(backgroundColor: AppTheme.rojoAlerta),
             onPressed: () => Navigator.of(ctx).pop(true),
@@ -272,7 +367,9 @@ class _TarjetaUsuario extends ConsumerWidget {
     );
 
     if (confirmar == true) {
-      await ref.read(panelRepositoryProvider).cambiarEstadoLaboral(
+      await ref
+          .read(panelRepositoryProvider)
+          .cambiarEstadoLaboral(
             usuarioId: perfil.id,
             estado: 'baja',
             motivo: motivo.text.trim(),
@@ -283,10 +380,9 @@ class _TarjetaUsuario extends ConsumerWidget {
   }
 
   Future<void> _reingresar(BuildContext context, WidgetRef ref) async {
-    await ref.read(panelRepositoryProvider).cambiarEstadoLaboral(
-          usuarioId: perfil.id,
-          estado: 'reingreso',
-        );
+    await ref
+        .read(panelRepositoryProvider)
+        .cambiarEstadoLaboral(usuarioId: perfil.id, estado: 'reingreso');
     if (context.mounted) ref.invalidate(usuariosPanelProvider);
   }
 
@@ -321,5 +417,21 @@ class _TarjetaUsuario extends ConsumerWidget {
         );
       }
     }
+  }
+
+  Future<void> _restablecerPassword(BuildContext context, WidgetRef ref) async {
+    final actualizado = await mostrarDialogoRestablecerPassword(
+      context,
+      perfil: perfil,
+    );
+    if (!context.mounted || !actualizado) return;
+
+    ref.invalidate(usuariosPanelProvider);
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Contraseña temporal actualizada'),
+        backgroundColor: AppTheme.verdeOperativo,
+      ),
+    );
   }
 }

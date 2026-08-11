@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/theme/app_theme.dart';
+import '../../panel/domain/usuario_admin_validators.dart';
 import '../providers/auth_provider.dart';
 
 /// Cambio de contraseña.
@@ -12,9 +14,14 @@ import '../providers/auth_provider.dart';
 ///     botón de regreso ni de cerrar sesión que valga.
 ///   · **Voluntaria** desde el perfil, cuando el usuario quiere cambiarla.
 class CambiarPasswordScreen extends ConsumerStatefulWidget {
-  const CambiarPasswordScreen({super.key, this.forzada = false});
+  const CambiarPasswordScreen({
+    super.key,
+    this.forzada = false,
+    this.destinoAlGuardar,
+  });
 
   final bool forzada;
+  final String? destinoAlGuardar;
 
   @override
   ConsumerState<CambiarPasswordScreen> createState() =>
@@ -45,8 +52,9 @@ class _CambiarPasswordScreenState extends ConsumerState<CambiarPasswordScreen> {
       _error = null;
     });
 
-    final error =
-        await ref.read(authControllerProvider.notifier).cambiarPassword(_nueva.text);
+    final error = await ref
+        .read(authControllerProvider.notifier)
+        .cambiarPassword(_nueva.text);
 
     if (!mounted) return;
 
@@ -60,16 +68,21 @@ class _CambiarPasswordScreenState extends ConsumerState<CambiarPasswordScreen> {
 
     setState(() => _procesando = false);
 
-    if (widget.forzada) {
-      // El enrutador redirige solo al ver que ya no debe cambiarla.
+    if (!mounted) return;
+
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(const SnackBar(content: Text('Contraseña actualizada')));
+
+    if (widget.forzada && widget.destinoAlGuardar != null) {
+      context.go(widget.destinoAlGuardar!);
       return;
     }
 
-    if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Contraseña actualizada')),
-      );
+    if (Navigator.of(context).canPop()) {
       Navigator.of(context).pop();
+    } else if (widget.destinoAlGuardar != null) {
+      context.go(widget.destinoAlGuardar!);
     }
   }
 
@@ -80,9 +93,9 @@ class _CambiarPasswordScreenState extends ConsumerState<CambiarPasswordScreen> {
       canPop: !widget.forzada,
       child: Scaffold(
         appBar: AppBar(
-          title: Text(widget.forzada
-              ? 'Crea tu contraseña'
-              : 'Cambiar contraseña'),
+          title: Text(
+            widget.forzada ? 'Crea tu contraseña' : 'Cambiar contraseña',
+          ),
           automaticallyImplyLeading: !widget.forzada,
         ),
         body: SafeArea(
@@ -100,14 +113,18 @@ class _CambiarPasswordScreenState extends ConsumerState<CambiarPasswordScreen> {
                         Container(
                           padding: const EdgeInsets.all(16),
                           decoration: BoxDecoration(
-                            color: AppTheme.ambarSeguridad.withValues(alpha: 0.12),
+                            color: AppTheme.ambarSeguridad.withValues(
+                              alpha: 0.12,
+                            ),
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: const Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Icon(Icons.info_outline,
-                                  color: AppTheme.ambarSeguridad),
+                              Icon(
+                                Icons.info_outline,
+                                color: AppTheme.ambarSeguridad,
+                              ),
                               SizedBox(width: 12),
                               Expanded(
                                 child: Text(
@@ -130,22 +147,16 @@ class _CambiarPasswordScreenState extends ConsumerState<CambiarPasswordScreen> {
                           labelText: 'Nueva contraseña',
                           prefixIcon: const Icon(Icons.lock_outline),
                           suffixIcon: IconButton(
-                            icon: Icon(_ocultar
-                                ? Icons.visibility_outlined
-                                : Icons.visibility_off_outlined),
-                            onPressed: () => setState(() => _ocultar = !_ocultar),
+                            icon: Icon(
+                              _ocultar
+                                  ? Icons.visibility_outlined
+                                  : Icons.visibility_off_outlined,
+                            ),
+                            onPressed: () =>
+                                setState(() => _ocultar = !_ocultar),
                           ),
                         ),
-                        validator: (v) {
-                          final valor = v ?? '';
-                          if (valor.length < 8) {
-                            return 'Usa al menos 8 caracteres';
-                          }
-                          if (!valor.contains(RegExp(r'[0-9]'))) {
-                            return 'Incluye al menos un número';
-                          }
-                          return null;
-                        },
+                        validator: UsuarioAdminValidators.passwordTemporal,
                       ),
                       const SizedBox(height: 16),
 
@@ -159,7 +170,7 @@ class _CambiarPasswordScreenState extends ConsumerState<CambiarPasswordScreen> {
                           prefixIcon: Icon(Icons.lock_reset_outlined),
                         ),
                         validator: (v) =>
-                            v != _nueva.text ? 'Las contraseñas no coinciden' : null,
+                            UsuarioAdminValidators.confirmacion(v, _nueva.text),
                       ),
 
                       if (_error != null) ...[

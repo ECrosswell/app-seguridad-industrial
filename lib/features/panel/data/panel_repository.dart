@@ -1,6 +1,17 @@
+import 'package:supabase_flutter/supabase_flutter.dart' show FunctionException;
+
 import '../../../core/services/supabase_service.dart';
 import '../../../data/models/perfil.dart';
 import '../../../data/models/sitio.dart';
+
+class UsuarioAdminException implements Exception {
+  const UsuarioAdminException(this.mensaje);
+
+  final String mensaje;
+
+  @override
+  String toString() => mensaje;
+}
 
 /// Rango de fechas para los filtros de consulta y reportes.
 class RangoFechas {
@@ -73,8 +84,10 @@ class PanelRepository {
   }) async {
     var consulta = SupabaseService.cliente
         .from('asistencias')
-        .select('*, profiles!asistencias_usuario_id_fkey(nombre_completo), '
-            'sitios(nombre)')
+        .select(
+          '*, profiles!asistencias_usuario_id_fkey(nombre_completo), '
+          'sitios(nombre)',
+        )
         .isFilter('deleted_at', null)
         .gte('turno_fecha', rango.desdeFecha)
         .lte('turno_fecha', rango.hastaFecha);
@@ -92,8 +105,10 @@ class PanelRepository {
   }) async {
     var consulta = SupabaseService.cliente
         .from('turnos')
-        .select('*, profiles!turnos_usuario_id_fkey(nombre_completo, telefono_whatsapp), '
-            'sitios(nombre)')
+        .select(
+          '*, profiles!turnos_usuario_id_fkey(nombre_completo, telefono_whatsapp), '
+          'sitios(nombre)',
+        )
         .gte('turno_fecha', rango.desdeFecha)
         .lte('turno_fecha', rango.hastaFecha);
 
@@ -109,8 +124,10 @@ class PanelRepository {
   }) async {
     var consulta = SupabaseService.cliente
         .from('registros_acceso')
-        .select('*, personal_cliente(nombre_completo, area), '
-            'profiles!registros_acceso_registrado_por_fkey(nombre_completo)')
+        .select(
+          '*, personal_cliente(nombre_completo, area), '
+          'profiles!registros_acceso_registrado_por_fkey(nombre_completo)',
+        )
         .isFilter('deleted_at', null)
         .gte('hora_entrada', rango.desdeIso)
         .lte('hora_entrada', rango.hastaIso);
@@ -128,8 +145,10 @@ class PanelRepository {
   }) async {
     var consulta = SupabaseService.cliente
         .from('bitacora_eventos')
-        .select('*, profiles!bitacora_eventos_registrado_por_fkey(nombre_completo), '
-            'personal_cliente(nombre_completo), bitacora_fotos(foto_url)')
+        .select(
+          '*, profiles!bitacora_eventos_registrado_por_fkey(nombre_completo), '
+          'personal_cliente(nombre_completo), bitacora_fotos(foto_url)',
+        )
         .isFilter('deleted_at', null)
         .gte('ocurrido_at', rango.desdeIso)
         .lte('ocurrido_at', rango.hastaIso);
@@ -143,7 +162,9 @@ class PanelRepository {
 
   /// Estado actual del equipo de cada caseta.
   Future<List<Map<String, dynamic>>> estadoEquipo({String? sitioId}) async {
-    var consulta = SupabaseService.cliente.from('v_estado_equipo_sitio').select();
+    var consulta = SupabaseService.cliente
+        .from('v_estado_equipo_sitio')
+        .select();
     if (sitioId != null) consulta = consulta.eq('sitio_id', sitioId);
     return (await consulta).cast<Map<String, dynamic>>();
   }
@@ -154,8 +175,10 @@ class PanelRepository {
   }) async {
     var consulta = SupabaseService.cliente
         .from('recepciones_turno')
-        .select('*, profiles!recepciones_turno_recibe_id_fkey(nombre_completo), '
-            'sitios(nombre), recepcion_turno_items(*, catalogo_equipo(nombre))')
+        .select(
+          '*, profiles!recepciones_turno_recibe_id_fkey(nombre_completo), '
+          'sitios(nombre), recepcion_turno_items(*, catalogo_equipo(nombre))',
+        )
         .isFilter('deleted_at', null)
         .eq('tiene_novedades', true);
 
@@ -166,12 +189,15 @@ class PanelRepository {
   }
 
   Future<void> marcarRecepcionAtendida(String id, String nota) async {
-    await SupabaseService.cliente.from('recepciones_turno').update({
-      'atendido': true,
-      'atendido_por': SupabaseService.usuarioId,
-      'atendido_at': DateTime.now().toUtc().toIso8601String(),
-      'nota_atencion': nota,
-    }).eq('id', id);
+    await SupabaseService.cliente
+        .from('recepciones_turno')
+        .update({
+          'atendido': true,
+          'atendido_por': SupabaseService.usuarioId,
+          'atendido_at': DateTime.now().toUtc().toIso8601String(),
+          'nota_atencion': nota,
+        })
+        .eq('id', id);
   }
 
   // ─── Turnos ───────────────────────────────────────────────────────────────
@@ -183,13 +209,16 @@ class PanelRepository {
     required String turnoId,
     required String motivo,
   }) async {
-    await SupabaseService.cliente.from('turnos').update({
-      'estado': 'cerrado_por_admin',
-      'fin_at': DateTime.now().toUtc().toIso8601String(),
-      'cerrado_por': SupabaseService.usuarioId,
-      'cerrado_at': DateTime.now().toUtc().toIso8601String(),
-      'motivo_cierre': motivo,
-    }).eq('id', turnoId);
+    await SupabaseService.cliente
+        .from('turnos')
+        .update({
+          'estado': 'cerrado_por_admin',
+          'fin_at': DateTime.now().toUtc().toIso8601String(),
+          'cerrado_por': SupabaseService.usuarioId,
+          'cerrado_at': DateTime.now().toUtc().toIso8601String(),
+          'motivo_cierre': motivo,
+        })
+        .eq('id', turnoId);
   }
 
   /// Asistencias que no validaron ubicación y esperan revisión.
@@ -198,7 +227,9 @@ class PanelRepository {
   }) async {
     var consulta = SupabaseService.cliente
         .from('asistencias')
-        .select('*, profiles!asistencias_usuario_id_fkey(nombre_completo), sitios(nombre)')
+        .select(
+          '*, profiles!asistencias_usuario_id_fkey(nombre_completo), sitios(nombre)',
+        )
         .isFilter('deleted_at', null)
         .eq('estado_validacion', 'pendiente_revision');
 
@@ -213,12 +244,15 @@ class PanelRepository {
     required bool aprobar,
     String notas = '',
   }) async {
-    await SupabaseService.cliente.from('asistencias').update({
-      'estado_validacion': aprobar ? 'validado' : 'rechazado',
-      'revisado_por': SupabaseService.usuarioId,
-      'revisado_at': DateTime.now().toUtc().toIso8601String(),
-      'notas_revision': notas,
-    }).eq('id', asistenciaId);
+    await SupabaseService.cliente
+        .from('asistencias')
+        .update({
+          'estado_validacion': aprobar ? 'validado' : 'rechazado',
+          'revisado_por': SupabaseService.usuarioId,
+          'revisado_at': DateTime.now().toUtc().toIso8601String(),
+          'notas_revision': notas,
+        })
+        .eq('id', asistenciaId);
   }
 
   // ─── Solicitudes del cliente ──────────────────────────────────────────────
@@ -262,20 +296,26 @@ class PanelRepository {
     required String respuesta,
     required String estado,
   }) async {
-    await SupabaseService.cliente.from('solicitudes').update({
-      'respuesta': respuesta,
-      'estado': estado,
-      'respondida_por': SupabaseService.usuarioId,
-      'respondida_at': DateTime.now().toUtc().toIso8601String(),
-      if (estado == 'cerrada')
-        'cerrada_at': DateTime.now().toUtc().toIso8601String(),
-    }).eq('id', id);
+    await SupabaseService.cliente
+        .from('solicitudes')
+        .update({
+          'respuesta': respuesta,
+          'estado': estado,
+          'respondida_por': SupabaseService.usuarioId,
+          'respondida_at': DateTime.now().toUtc().toIso8601String(),
+          if (estado == 'cerrada')
+            'cerrada_at': DateTime.now().toUtc().toIso8601String(),
+        })
+        .eq('id', id);
   }
 
   // ─── Administración ───────────────────────────────────────────────────────
 
   Future<List<Sitio>> sitios() async {
-    final filas = await SupabaseService.cliente.from('sitios').select().order('nombre');
+    final filas = await SupabaseService.cliente
+        .from('sitios')
+        .select()
+        .order('nombre');
     return filas.map(Sitio.desdeJson).toList();
   }
 
@@ -298,6 +338,95 @@ class PanelRepository {
     return filas.map(Perfil.desdeJson).toList();
   }
 
+  /// Crea la cuenta mediante una Edge Function autenticada. La llave
+  /// administrativa permanece en Supabase y nunca viaja en el cliente.
+  Future<String> crearUsuario({
+    required String nombreCompleto,
+    required String correo,
+    required String telefonoWhatsapp,
+    required String rol,
+    required String sitioId,
+    required String passwordTemporal,
+  }) async {
+    final respuesta = await _invocarAdministracionUsuarios({
+      'accion': 'crear',
+      'nombre_completo': nombreCompleto.trim(),
+      'correo': correo.trim().toLowerCase(),
+      'telefono_whatsapp': telefonoWhatsapp,
+      'rol': rol,
+      'sitio_id': sitioId,
+      'password_temporal': passwordTemporal,
+    });
+
+    final usuarioId = respuesta['usuario_id'] as String?;
+    if (usuarioId == null || usuarioId.isEmpty) {
+      throw const UsuarioAdminException(
+        'La cuenta se creó sin un identificador válido. Actualiza la lista.',
+      );
+    }
+    return usuarioId;
+  }
+
+  /// Asigna una contraseña temporal a otra cuenta. La función vuelve a marcar
+  /// el perfil para que el usuario defina una privada en su siguiente acceso.
+  Future<void> restablecerPasswordUsuario({
+    required String usuarioId,
+    required String passwordTemporal,
+  }) async {
+    await _invocarAdministracionUsuarios({
+      'accion': 'restablecer_password',
+      'usuario_id': usuarioId,
+      'password_temporal': passwordTemporal,
+    });
+  }
+
+  Future<Map<String, dynamic>> _invocarAdministracionUsuarios(
+    Map<String, dynamic> cuerpo,
+  ) async {
+    final sesion = SupabaseService.auth.currentSession;
+    if (sesion == null) {
+      throw const UsuarioAdminException(
+        'Tu sesión terminó. Inicia sesión nuevamente.',
+      );
+    }
+
+    try {
+      final respuesta = await SupabaseService.cliente.functions.invoke(
+        'administrar-usuarios',
+        body: cuerpo,
+        headers: {'Authorization': 'Bearer ${sesion.accessToken}'},
+      );
+      final datos = respuesta.data;
+      if (datos is Map) return Map<String, dynamic>.from(datos);
+      throw const UsuarioAdminException(
+        'La respuesta del servidor no es válida.',
+      );
+    } on FunctionException catch (e) {
+      throw UsuarioAdminException(_mensajeFuncion(e));
+    } on UsuarioAdminException {
+      rethrow;
+    } catch (_) {
+      throw const UsuarioAdminException(
+        'No se pudo conectar con la administración de usuarios.',
+      );
+    }
+  }
+
+  String _mensajeFuncion(FunctionException error) {
+    final detalle = error.details;
+    if (detalle is Map) {
+      final mensaje = detalle['error'];
+      if (mensaje is String && mensaje.trim().isNotEmpty) return mensaje;
+    }
+    return switch (error.status) {
+      401 => 'Tu sesión terminó. Inicia sesión nuevamente.',
+      403 => 'No tienes permiso para administrar usuarios.',
+      404 => 'El usuario ya no existe.',
+      409 => 'La operación entra en conflicto con el estado actual.',
+      _ => 'No se pudo completar la operación.',
+    };
+  }
+
   /// Da de baja o reingresa a un elemento. **No** se borra la cuenta de auth:
   /// borrarla desharía la referencia de todos sus registros históricos.
   Future<void> cambiarEstadoLaboral({
@@ -305,19 +434,22 @@ class PanelRepository {
     required String estado,
     String motivo = '',
   }) async {
-    await SupabaseService.cliente.from('profiles').update({
-      'estado_laboral': estado,
-      'activo': estado != 'baja',
-      if (estado == 'baja') ...{
-        'fecha_baja': DateTime.now().toIso8601String().split('T').first,
-        'motivo_baja': motivo,
-      },
-      if (estado == 'reingreso') ...{
-        'fecha_alta': DateTime.now().toIso8601String().split('T').first,
-        'fecha_baja': null,
-        'motivo_baja': '',
-      },
-    }).eq('id', usuarioId);
+    await SupabaseService.cliente
+        .from('profiles')
+        .update({
+          'estado_laboral': estado,
+          'activo': estado != 'baja',
+          if (estado == 'baja') ...{
+            'fecha_baja': DateTime.now().toIso8601String().split('T').first,
+            'motivo_baja': motivo,
+          },
+          if (estado == 'reingreso') ...{
+            'fecha_alta': DateTime.now().toIso8601String().split('T').first,
+            'fecha_baja': null,
+            'motivo_baja': '',
+          },
+        })
+        .eq('id', usuarioId);
   }
 
   Future<void> asignarSitio({

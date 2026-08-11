@@ -27,7 +27,9 @@ Verificado en la base con datos de prueba (ya borrados): el bootstrap de perfil 
 
 ### Cuenta inicial
 
-`erickcrosswell@gmail.com` con rol `admin` y contraseña temporal `Temporal2026!`. La app fuerza el cambio en el primer ingreso.
+La cuenta administradora se provisiona fuera del repositorio. No documentar
+correos, contraseñas temporales ni credenciales de producción en archivos
+versionados.
 
 ## Notificaciones — dos canales complementarios
 
