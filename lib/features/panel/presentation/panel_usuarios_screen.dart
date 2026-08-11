@@ -39,6 +39,7 @@ class _PanelUsuariosScreenState extends ConsumerState<PanelUsuariosScreen> {
               style: TextStyle(fontSize: 26, fontWeight: FontWeight.w700),
             );
             final boton = FilledButton.icon(
+              style: FilledButton.styleFrom(minimumSize: const Size(0, 48)),
               onPressed: _darDeAlta,
               icon: const Icon(Icons.person_add_alt_1),
               label: const Text('Dar de alta usuario'),
@@ -53,7 +54,7 @@ class _PanelUsuariosScreenState extends ConsumerState<PanelUsuariosScreen> {
             return Row(
               children: [
                 Expanded(child: titulo),
-                boton,
+                SizedBox(width: 220, child: boton),
               ],
             );
           },
