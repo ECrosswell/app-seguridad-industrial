@@ -36,7 +36,8 @@ mixin SyncColumns on Table {
   TextColumn get remoteId => text().nullable()();
 
   /// pendiente | sincronizando | sincronizado | fallido
-  TextColumn get syncStatus => text().withDefault(const Constant('pendiente'))();
+  TextColumn get syncStatus =>
+      text().withDefault(const Constant('pendiente'))();
 
   TextColumn get syncError => text().withDefault(const Constant(''))();
 
@@ -47,10 +48,8 @@ mixin SyncColumns on Table {
 
   TextColumn get deviceId => text().withDefault(const Constant(''))();
 
-  DateTimeColumn get createdAtLocal =>
-      dateTime().clientDefault(DateTime.now)();
-  DateTimeColumn get updatedAtLocal =>
-      dateTime().clientDefault(DateTime.now)();
+  DateTimeColumn get createdAtLocal => dateTime().clientDefault(DateTime.now)();
+  DateTimeColumn get updatedAtLocal => dateTime().clientDefault(DateTime.now)();
   DateTimeColumn get syncedAt => dateTime().nullable()();
 
   @override
@@ -98,8 +97,7 @@ class LocalRegistrosAcceso extends Table with SyncColumns {
   TextColumn get visitanteLocalId => text().nullable()();
 
   TextColumn get nombreCompleto => text()();
-  TextColumn get empresaProcedencia =>
-      text().withDefault(const Constant(''))();
+  TextColumn get empresaProcedencia => text().withDefault(const Constant(''))();
   TextColumn get telefono => text().withDefault(const Constant(''))();
 
   TextColumn get personaVisitadaId => text().nullable()();
@@ -114,8 +112,7 @@ class LocalRegistrosAcceso extends Table with SyncColumns {
   TextColumn get vehiculoModelo => text().withDefault(const Constant(''))();
   TextColumn get vehiculoColor => text().withDefault(const Constant(''))();
 
-  TextColumn get identificacionTipo =>
-      text().withDefault(const Constant(''))();
+  TextColumn get identificacionTipo => text().withDefault(const Constant(''))();
   TextColumn get identificacionRutaLocal => text().nullable()();
   TextColumn get identificacionUrl => text().nullable()();
 
@@ -161,8 +158,7 @@ class LocalBitacoraEventos extends Table with SyncColumns {
   TextColumn get destino => text().withDefault(const Constant(''))();
 
   TextColumn get autorizadoPorId => text().nullable()();
-  TextColumn get autorizadoPorTexto =>
-      text().withDefault(const Constant(''))();
+  TextColumn get autorizadoPorTexto => text().withDefault(const Constant(''))();
 
   TextColumn get prioridad => text().withDefault(const Constant('normal'))();
   BoolColumn get requiereSeguimiento =>
@@ -200,6 +196,67 @@ class LocalRecepcionItems extends Table with SyncColumns {
   TextColumn get observaciones => text().withDefault(const Constant(''))();
   TextColumn get fotoRutaLocal => text().nullable()();
   TextColumn get fotoUrl => text().nullable()();
+}
+
+/// Una ejecución completa de una ruta de rondín. Se crea y se termina en el
+/// teléfono aunque no haya señal; el servidor asigna el veredicto al recibir
+/// todas sus lecturas.
+class LocalRondines extends Table with SyncColumns {
+  TextColumn get usuarioId => text()();
+  TextColumn get sitioId => text()();
+  TextColumn get rutaId => text()();
+  TextColumn get turnoId => text().nullable()();
+  DateTimeColumn get turnoFecha => dateTime()();
+  DateTimeColumn get iniciadoAtDispositivo => dateTime()();
+  IntColumn get iniciadoMonotonicMs => integer()();
+  DateTimeColumn get finalizadoAtDispositivo => dateTime().nullable()();
+  TextColumn get estadoLocal =>
+      text().withDefault(const Constant('en_curso'))();
+  TextColumn get estadoValidacionServidor => text().nullable()();
+  IntColumn get puntajeRiesgoServidor => integer().nullable()();
+  TextColumn get codigosRiesgoServidorJson => text().nullable()();
+}
+
+/// Evidencia inmutable recogida al leer un punto. La app conserva tanto el
+/// reloj de pared como el reloj monotónico de Android para detectar cambios de
+/// hora mientras el teléfono trabaja desconectado.
+class LocalRondinLecturas extends Table with SyncColumns {
+  TextColumn get rondinLocalId => text()();
+  TextColumn get puntoId => text()();
+  IntColumn get secuencia => integer()();
+  DateTimeColumn get capturadoAtDispositivo => dateTime()();
+  IntColumn get monotonicMs => integer()();
+  IntColumn get bootCount => integer().withDefault(const Constant(0))();
+  RealColumn get lat => real().nullable()();
+  RealColumn get lng => real().nullable()();
+  RealColumn get gpsAccuracyM => real().nullable()();
+  IntColumn get gpsAgeMs => integer().nullable()();
+  BoolColumn get ubicacionSimulada =>
+      boolean().withDefault(const Constant(false))();
+  TextColumn get wifiBssid => text().nullable()();
+  TextColumn get wifiSsid => text().nullable()();
+  IntColumn get tokenVersion => integer()();
+
+  /// Payload RAW capturado por cámara. Es necesario para que el servidor
+  /// autentique el token; se vacía atómicamente después de sincronizar.
+  TextColumn get qrPayloadRaw => text().withDefault(const Constant(''))();
+  TextColumn get qrPayloadHash => text()();
+  BoolColumn get livenessPassed =>
+      boolean().withDefault(const Constant(false))();
+  BoolColumn get horaAutomatica =>
+      boolean().withDefault(const Constant(true))();
+  BoolColumn get opcionesDesarrollador =>
+      boolean().withDefault(const Constant(false))();
+  BoolColumn get adbActivo => boolean().withDefault(const Constant(false))();
+  TextColumn get hashAnterior => text().nullable()();
+  TextColumn get hashEvento => text()();
+  TextColumn get validacionLocal =>
+      text().withDefault(const Constant('capturado_offline'))();
+  TextColumn get codigosRiesgoLocalJson =>
+      text().withDefault(const Constant('[]'))();
+  TextColumn get estadoValidacionServidor => text().nullable()();
+  IntColumn get puntajeRiesgoServidor => integer().nullable()();
+  TextColumn get codigosRiesgoServidorJson => text().nullable()();
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -278,7 +335,8 @@ class LocalProfiles extends Table {
   TextColumn get rol => text()();
   TextColumn get puesto => text().withDefault(const Constant(''))();
   TextColumn get fotoPerfilUrl => text().nullable()();
-  TextColumn get estadoLaboral => text().withDefault(const Constant('activo'))();
+  TextColumn get estadoLaboral =>
+      text().withDefault(const Constant('activo'))();
   BoolColumn get activo => boolean().withDefault(const Constant(true))();
 
   @override
@@ -316,6 +374,60 @@ class LocalTurnos extends Table {
   Set<Column> get primaryKey => {id};
 }
 
+/// Catálogo de puntos descargado tras una conexión válida.
+///
+/// Deliberadamente no contiene el token ni su hash. Offline sólo permite
+/// comprobar formato, punto y versión; la autenticidad la decide el servidor al
+/// recibir el payload RAW capturado.
+class LocalPuntosRondin extends Table {
+  TextColumn get id => text()();
+  TextColumn get sitioId => text()();
+  TextColumn get seccionId => text().nullable()();
+  TextColumn get seccionNombre => text().withDefault(const Constant(''))();
+  TextColumn get nombre => text()();
+  TextColumn get descripcion => text().withDefault(const Constant(''))();
+  IntColumn get tokenVersion => integer().withDefault(const Constant(1))();
+  RealColumn get lat => real().nullable()();
+  RealColumn get lng => real().nullable()();
+  IntColumn get radioMetros => integer().withDefault(const Constant(35))();
+  TextColumn get bssidRequerido => text().nullable()();
+  BoolColumn get requiereLiveness =>
+      boolean().withDefault(const Constant(false))();
+  BoolColumn get activo => boolean().withDefault(const Constant(true))();
+  DateTimeColumn get updatedAtRemote => dateTime().nullable()();
+
+  @override
+  Set<Column> get primaryKey => {id};
+}
+
+class LocalRutasRondin extends Table {
+  TextColumn get id => text()();
+  TextColumn get sitioId => text()();
+  TextColumn get nombre => text()();
+  BoolColumn get ordenAleatorio =>
+      boolean().withDefault(const Constant(false))();
+  IntColumn get minutosMinimos => integer().withDefault(const Constant(0))();
+  IntColumn get minutosMaximos => integer().withDefault(const Constant(180))();
+  BoolColumn get activo => boolean().withDefault(const Constant(true))();
+
+  @override
+  Set<Column> get primaryKey => {id};
+}
+
+class LocalRutaRondinPuntos extends Table {
+  TextColumn get rutaId => text()();
+  TextColumn get puntoId => text()();
+  IntColumn get orden => integer()();
+  BoolColumn get obligatorio => boolean().withDefault(const Constant(true))();
+  IntColumn get segundosMinimosDesdeAnterior =>
+      integer().withDefault(const Constant(0))();
+  IntColumn get segundosMaximosDesdeAnterior =>
+      integer().withDefault(const Constant(3600))();
+
+  @override
+  Set<Column> get primaryKey => {rutaId, puntoId};
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 
 @DriftDatabase(
@@ -327,6 +439,8 @@ class LocalTurnos extends Table {
     LocalBitacoraFotos,
     LocalRecepcionesTurno,
     LocalRecepcionItems,
+    LocalRondines,
+    LocalRondinLecturas,
     LocalSitios,
     LocalWifiAps,
     LocalCatalogoEquipo,
@@ -334,6 +448,9 @@ class LocalTurnos extends Table {
     LocalProfiles,
     LocalAvisosPrivacidad,
     LocalTurnos,
+    LocalPuntosRondin,
+    LocalRutasRondin,
+    LocalRutaRondinPuntos,
   ],
 )
 class AppDatabase extends _$AppDatabase {
@@ -342,16 +459,33 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase.paraPruebas(super.e);
 
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => 3;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
-        onCreate: (m) => m.createAll(),
-        beforeOpen: (details) async {
-          // Sin esto SQLite ignora las llaves foráneas declaradas.
-          await customStatement('PRAGMA foreign_keys = ON');
-        },
-      );
+    onCreate: (m) => m.createAll(),
+    onUpgrade: (m, from, to) async {
+      if (from < 2) {
+        await m.createTable(localRondines);
+        await m.createTable(localRondinLecturas);
+        await m.createTable(localPuntosRondin);
+        await m.createTable(localRutasRondin);
+        await m.createTable(localRutaRondinPuntos);
+      } else if (from < 3) {
+        await m.addColumn(
+          localRondinLecturas,
+          localRondinLecturas.qrPayloadRaw,
+        );
+        // Recrea la tabla copiando sólo las columnas actuales, por lo que
+        // elimina token_hash sin depender de ALTER TABLE DROP COLUMN.
+        await m.alterTable(TableMigration(localPuntosRondin));
+      }
+    },
+    beforeOpen: (details) async {
+      // Sin esto SQLite ignora las llaves foráneas declaradas.
+      await customStatement('PRAGMA foreign_keys = ON');
+    },
+  );
 
   /// Borra todo lo local. Se usa al cerrar sesión: el siguiente elemento que
   /// use el equipo no debe ver los datos del anterior.
@@ -375,6 +509,8 @@ class AppDatabase extends _$AppDatabase {
       _contarPendientes(localBitacoraFotos),
       _contarPendientes(localRecepcionesTurno),
       _contarPendientes(localRecepcionItems),
+      _contarPendientes(localRondines),
+      _contarPendientes(localRondinLecturas),
     ];
     final resultados = await Future.wait(consultas);
     var total = 0;

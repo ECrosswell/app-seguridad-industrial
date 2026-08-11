@@ -58,9 +58,10 @@ class PanelShell extends ConsumerWidget {
               child: Text(
                 perfil.iniciales,
                 style: const TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.white),
+                  fontSize: 12,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white,
+                ),
               ),
             ),
             itemBuilder: (_) => [
@@ -69,16 +70,25 @@ class PanelShell extends ConsumerWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(perfil.nombreCompleto,
-                        style: const TextStyle(fontWeight: FontWeight.w700)),
-                    Text(perfil.rol.etiqueta,
-                        style: const TextStyle(
-                            fontSize: 12, color: AppTheme.grisNeutro)),
+                    Text(
+                      perfil.nombreCompleto,
+                      style: const TextStyle(fontWeight: FontWeight.w700),
+                    ),
+                    Text(
+                      perfil.rol.etiqueta,
+                      style: const TextStyle(
+                        fontSize: 12,
+                        color: AppTheme.grisNeutro,
+                      ),
+                    ),
                   ],
                 ),
               ),
               const PopupMenuDivider(),
-              const PopupMenuItem(value: 'password', child: Text('Cambiar contraseña')),
+              const PopupMenuItem(
+                value: 'password',
+                child: Text('Cambiar contraseña'),
+              ),
               const PopupMenuItem(value: 'salir', child: Text('Cerrar sesión')),
             ],
             onSelected: (v) {
@@ -117,6 +127,7 @@ class PanelShell extends ConsumerWidget {
           if (esEscritorio)
             NavigationRail(
               selectedIndex: indice < 0 ? 0 : indice,
+              scrollable: true,
               onDestinationSelected: (i) => context.go(destinos[i].ruta),
               labelType: NavigationRailLabelType.all,
               destinations: [
@@ -153,19 +164,56 @@ class PanelShell extends ConsumerWidget {
   static List<_Destino> _destinosPara(RolUsuario rol) {
     final comunes = <_Destino>[
       (ruta: Rutas.panel, icono: Icons.dashboard_outlined, etiqueta: 'Tablero'),
-      (ruta: Rutas.panelPersonal, icono: Icons.badge_outlined, etiqueta: 'Personal'),
-      (ruta: Rutas.panelVisitantes, icono: Icons.people_outline, etiqueta: 'Visitantes'),
-      (ruta: Rutas.panelBitacora, icono: Icons.menu_book_outlined, etiqueta: 'Bitácora'),
-      (ruta: Rutas.panelEquipo, icono: Icons.inventory_2_outlined, etiqueta: 'Equipo'),
-      (ruta: Rutas.panelSolicitudes, icono: Icons.support_agent_outlined, etiqueta: 'Solicitudes'),
-      (ruta: Rutas.panelReportes, icono: Icons.download_outlined, etiqueta: 'Reportes'),
+      (
+        ruta: Rutas.panelPersonal,
+        icono: Icons.badge_outlined,
+        etiqueta: 'Personal',
+      ),
+      (
+        ruta: Rutas.panelVisitantes,
+        icono: Icons.people_outline,
+        etiqueta: 'Visitantes',
+      ),
+      (
+        ruta: Rutas.panelBitacora,
+        icono: Icons.menu_book_outlined,
+        etiqueta: 'Bitácora',
+      ),
+      (
+        ruta: Rutas.panelEquipo,
+        icono: Icons.inventory_2_outlined,
+        etiqueta: 'Equipo',
+      ),
+      (
+        ruta: Rutas.panelSolicitudes,
+        icono: Icons.support_agent_outlined,
+        etiqueta: 'Solicitudes',
+      ),
+      (
+        ruta: Rutas.panelReportes,
+        icono: Icons.download_outlined,
+        etiqueta: 'Reportes',
+      ),
     ];
 
     if (rol == RolUsuario.admin) {
       return [
         ...comunes,
-        (ruta: Rutas.panelSitios, icono: Icons.factory_outlined, etiqueta: 'Sitios'),
-        (ruta: Rutas.panelUsuarios, icono: Icons.manage_accounts_outlined, etiqueta: 'Usuarios'),
+        (
+          ruta: Rutas.panelRondines,
+          icono: Icons.qr_code_scanner,
+          etiqueta: 'Rondines',
+        ),
+        (
+          ruta: Rutas.panelSitios,
+          icono: Icons.factory_outlined,
+          etiqueta: 'Sitios',
+        ),
+        (
+          ruta: Rutas.panelUsuarios,
+          icono: Icons.manage_accounts_outlined,
+          etiqueta: 'Usuarios',
+        ),
       ];
     }
     return comunes;
@@ -193,8 +241,10 @@ class _SelectorSitio extends ConsumerWidget {
         dropdownColor: AppTheme.azulAcero,
         style: const TextStyle(color: Colors.white, fontSize: 14),
         iconEnabledColor: Colors.white70,
-        hint: const Text('Todos los sitios',
-            style: TextStyle(color: Colors.white70, fontSize: 14)),
+        hint: const Text(
+          'Todos los sitios',
+          style: TextStyle(color: Colors.white70, fontSize: 14),
+        ),
         items: [
           const DropdownMenuItem(value: null, child: Text('Todos los sitios')),
           for (final s in sitios)

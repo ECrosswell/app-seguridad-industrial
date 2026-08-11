@@ -15,6 +15,8 @@ import '../../features/inicio/presentation/shell_operativo.dart';
 import '../../features/notificaciones/presentation/notificaciones_screen.dart';
 import '../../features/perfil/presentation/perfil_screen.dart';
 import '../../features/recepcion_turno/presentation/recepcion_turno_screen.dart';
+import '../../features/rondines/presentation/escanear_punto_screen.dart';
+import '../../features/rondines/presentation/rondines_screen.dart';
 import 'app_routes.dart';
 
 /// Enrutador de la app Android (elemento y supervisor).
@@ -78,6 +80,13 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: Rutas.bitacoraNueva,
         builder: (_, _) => const BitacoraFormScreen(),
+      ),
+      GoRoute(path: Rutas.rondines, builder: (_, _) => const RondinesScreen()),
+      GoRoute(
+        path: Rutas.rondinEscaner,
+        builder: (_, estado) => EscanearPuntoScreen(
+          rondinLocalId: estado.pathParameters['rondinLocalId']!,
+        ),
       ),
 
       // Pestañas principales. ShellRoute mantiene la barra inferior fija y

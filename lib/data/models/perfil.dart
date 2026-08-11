@@ -46,7 +46,9 @@ class Perfil {
       rol: RolUsuario.desdeValor(json['rol'] as String?),
       puesto: json['puesto'] as String? ?? '',
       fotoPerfilUrl: json['foto_perfil_url'] as String?,
-      estadoLaboral: EstadoLaboral.desdeValor(json['estado_laboral'] as String?),
+      estadoLaboral: EstadoLaboral.desdeValor(
+        json['estado_laboral'] as String?,
+      ),
       debeCambiarPassword: json['debe_cambiar_password'] as bool? ?? false,
       activo: json['activo'] as bool? ?? true,
       fechaAlta: _fecha(json['fecha_alta']),
@@ -56,16 +58,20 @@ class Perfil {
   }
 
   Map<String, dynamic> aJson() => {
-        'id': id,
-        'nombre_completo': nombreCompleto,
-        'correo': correo,
-        'telefono_whatsapp': telefonoWhatsapp,
-        'rol': rol.valor,
-        'puesto': puesto,
-        'foto_perfil_url': fotoPerfilUrl,
-        'estado_laboral': estadoLaboral.valor,
-        'activo': activo,
-      };
+    'id': id,
+    'nombre_completo': nombreCompleto,
+    'correo': correo,
+    'telefono_whatsapp': telefonoWhatsapp,
+    'rol': rol.valor,
+    'puesto': puesto,
+    'foto_perfil_url': fotoPerfilUrl,
+    'estado_laboral': estadoLaboral.valor,
+    'debe_cambiar_password': debeCambiarPassword,
+    'activo': activo,
+    'fecha_alta': fechaAlta?.toIso8601String(),
+    'fecha_baja': fechaBaja?.toIso8601String(),
+    'motivo_baja': motivoBaja,
+  };
 
   /// Iniciales para el avatar cuando no hay foto.
   String get iniciales {

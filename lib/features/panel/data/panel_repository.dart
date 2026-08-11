@@ -3,9 +3,19 @@ import 'package:supabase_flutter/supabase_flutter.dart' show FunctionException;
 import '../../../core/services/supabase_service.dart';
 import '../../../data/models/perfil.dart';
 import '../../../data/models/sitio.dart';
+import 'rondin_admin_models.dart';
 
 class UsuarioAdminException implements Exception {
   const UsuarioAdminException(this.mensaje);
+
+  final String mensaje;
+
+  @override
+  String toString() => mensaje;
+}
+
+class RondinAdminException implements Exception {
+  const RondinAdminException(this.mensaje);
 
   final String mensaje;
 
@@ -529,6 +539,240 @@ class PanelRepository {
       await SupabaseService.cliente
           .from('sitio_wifi_aps')
           .insert(datos..remove('id'));
+    }
+  }
+
+  // ─── Rondines QR ─────────────────────────────────────────────────────
+
+  Future<List<SeccionRondin>> seccionesRondin({String? sitioId}) async {
+    var consulta = SupabaseService.cliente.from('secciones_sitio').select();
+    if (sitioId != null) consulta = consulta.eq('sitio_id', sitioId);
+
+    final filas = await consulta.order('nombre');
+    return filas.map(SeccionRondin.desdeJson).toList();
+  }
+
+  /// Toda escritura pasa por la Edge Function para revalidar al admin y dejar
+  /// auditoría; el cliente autenticado no tiene INSERT/UPDATE directo.
+  Future<SeccionRondin> guardarSeccionRondin(Map<String, dynamic> datos) async {
+    final cuerpo = Map<String, dynamic>.from(datos);
+    final id = cuerpo.remove('id') as String?;
+    final respuesta = await _invocarAdministracionRondines({
+      'accion': id == null ? 'crear_seccion' : 'actualizar_seccion',
+      'seccion_id': ?id,
+      ...cuerpo,
+    });
+    final seccion = respuesta['seccion'];
+    if (seccion is! Map) {
+      throw const RondinAdminException(
+        'La respuesta del servidor no contiene la sección guardada.',
+      );
+    }
+    return SeccionRondin.desdeJson(Map<String, dynamic>.from(seccion));
+  }
+
+  Future<List<PuntoRondin>> puntosRondin({String? sitioId}) async {
+    var consulta = SupabaseService.cliente
+        .from('puntos_rondin')
+        .select(
+          'id, sitio_id, seccion_id, nombre, descripcion, lat, lng, '
+          'radio_metros, wifi_ap_id, requiere_liveness, activo, qr_version, '
+          'created_at, updated_at, sitios(nombre), secciones_sitio(nombre), '
+          'sitio_wifi_aps(bssid, ssid, nombre_zona), '
+          'ruta_rondin_puntos(orden, segundos_minimos_desde_anterior, '
+          'rutas_rondin(activo, nombre))',
+        );
+    if (sitioId != null) consulta = consulta.eq('sitio_id', sitioId);
+
+    final filas = await consulta.order('nombre');
+    final puntos = filas.map(PuntoRondin.desdeJson).toList();
+    puntos.sort((a, b) {
+      final porSitio = a.sitioNombre.compareTo(b.sitioNombre);
+      if (porSitio != 0) return porSitio;
+      final porOrden = a.orden.compareTo(b.orden);
+      return porOrden != 0 ? porOrden : a.nombre.compareTo(b.nombre);
+    });
+    return puntos;
+  }
+
+  Future<List<ResultadoRondin>> resultadosRondin({
+    required RangoFechas rango,
+    String? sitioId,
+  }) async {
+    var consulta = SupabaseService.cliente
+        .from('rondines')
+        .select(
+          '*, profiles(nombre_completo), sitios(nombre), rutas_rondin(nombre), '
+          'rondin_lecturas(*, puntos_rondin(nombre, '
+          'secciones_sitio(nombre))), '
+          'rondin_revisiones(*, profiles(nombre_completo))',
+        );
+    if (sitioId != null) consulta = consulta.eq('sitio_id', sitioId);
+
+    final filas = await consulta
+        .gte('iniciado_at_dispositivo', rango.desdeIso)
+        .lte('iniciado_at_dispositivo', rango.hastaIso)
+        .order(
+          'created_at',
+          referencedTable: 'rondin_revisiones',
+          ascending: false,
+        )
+        .order('id', referencedTable: 'rondin_revisiones', ascending: false)
+        .limit(1, referencedTable: 'rondin_revisiones')
+        .order('iniciado_at_dispositivo', ascending: false)
+        .limit(300);
+    return filas.map(ResultadoRondin.desdeJson).toList();
+  }
+
+  Future<RevisionRondin> revisarRondin({
+    required String rondinId,
+    required String decision,
+    required String motivo,
+  }) async {
+    if (decision != 'aprobado' && decision != 'rechazado') {
+      throw const RondinAdminException('La decisión no es válida.');
+    }
+    final motivoLimpio = motivo.trim();
+    if (decision == 'rechazado' && motivoLimpio.isEmpty) {
+      throw const RondinAdminException(
+        'Explica el motivo para rechazar el rondín.',
+      );
+    }
+
+    final respuesta = await _invocarAdministracionRondines({
+      'accion': 'revisar_rondin',
+      'rondin_id': rondinId,
+      'decision': decision,
+      'motivo': motivoLimpio,
+    });
+    final revision = respuesta['revision'];
+    if (revision is! Map) {
+      throw const RondinAdminException(
+        'El servidor no devolvió la revisión registrada.',
+      );
+    }
+    return RevisionRondin.desdeJson(Map<String, dynamic>.from(revision));
+  }
+
+  Future<RespuestaPuntoRondin> guardarPuntoRondin({
+    String? puntoId,
+    required String sitioId,
+    required String seccionId,
+    required String nombre,
+    required String descripcion,
+    required double? lat,
+    required double? lng,
+    required int radioMetros,
+    required String? wifiApId,
+    required bool requiereLiveness,
+    required bool activo,
+    required int orden,
+    required int segundosMinimosDesdeAnterior,
+  }) async {
+    final respuesta = await _invocarAdministracionRondines({
+      'accion': puntoId == null ? 'crear_punto' : 'actualizar_punto',
+      'punto_id': ?puntoId,
+      'sitio_id': sitioId,
+      'seccion_id': seccionId,
+      'nombre': nombre.trim(),
+      'descripcion': descripcion.trim(),
+      'lat': lat,
+      'lng': lng,
+      'radio_metros': radioMetros,
+      'wifi_ap_id': wifiApId,
+      'requiere_liveness': requiereLiveness,
+      'activo': activo,
+      'orden': orden,
+      'segundos_minimos_desde_anterior': segundosMinimosDesdeAnterior,
+    });
+    return _respuestaPunto(respuesta);
+  }
+
+  Future<CodigoQrPuntoRondin> obtenerCodigoPunto(String puntoId) async {
+    final respuesta = await _invocarAdministracionRondines({
+      'accion': 'obtener_codigo',
+      'punto_id': puntoId,
+    });
+    final resultado = _respuestaPunto(respuesta);
+    final payload = resultado.qrPayload;
+    if (payload == null || payload.isEmpty) {
+      throw const RondinAdminException(
+        'El servidor no devolvió un código QR válido.',
+      );
+    }
+    return CodigoQrPuntoRondin(punto: resultado.punto, payload: payload);
+  }
+
+  Future<CodigoQrPuntoRondin> rotarCodigoPunto(String puntoId) async {
+    final respuesta = await _invocarAdministracionRondines({
+      'accion': 'rotar_codigo',
+      'punto_id': puntoId,
+    });
+    final resultado = _respuestaPunto(respuesta);
+    final payload = resultado.qrPayload;
+    if (payload == null || payload.isEmpty) {
+      throw const RondinAdminException(
+        'El servidor rotó el punto pero no devolvió el nuevo código.',
+      );
+    }
+    return CodigoQrPuntoRondin(punto: resultado.punto, payload: payload);
+  }
+
+  RespuestaPuntoRondin _respuestaPunto(Map<String, dynamic> respuesta) {
+    final puntoJson = respuesta['punto'];
+    if (puntoJson is! Map) {
+      throw const RondinAdminException(
+        'La respuesta del servidor no contiene el punto solicitado.',
+      );
+    }
+    return RespuestaPuntoRondin(
+      punto: PuntoRondin.desdeJson(Map<String, dynamic>.from(puntoJson)),
+      qrPayload: respuesta['qr_payload'] as String?,
+    );
+  }
+
+  Future<Map<String, dynamic>> _invocarAdministracionRondines(
+    Map<String, dynamic> cuerpo,
+  ) async {
+    final sesion = SupabaseService.auth.currentSession;
+    if (sesion == null) {
+      throw const RondinAdminException(
+        'Tu sesión terminó. Inicia sesión nuevamente.',
+      );
+    }
+
+    try {
+      final respuesta = await SupabaseService.cliente.functions.invoke(
+        'administrar-puntos-rondin',
+        body: cuerpo,
+        headers: {'Authorization': 'Bearer ${sesion.accessToken}'},
+      );
+      final datos = respuesta.data;
+      if (datos is Map) return Map<String, dynamic>.from(datos);
+      throw const RondinAdminException(
+        'La respuesta del servidor no es válida.',
+      );
+    } on FunctionException catch (error) {
+      final detalle = error.details;
+      if (detalle is Map) {
+        final mensaje = detalle['error'];
+        if (mensaje is String && mensaje.trim().isNotEmpty) {
+          throw RondinAdminException(mensaje);
+        }
+      }
+      throw RondinAdminException(switch (error.status) {
+        401 => 'Tu sesión terminó. Inicia sesión nuevamente.',
+        403 => 'No tienes permiso para administrar puntos de rondín.',
+        404 => 'El punto de rondín ya no existe.',
+        409 => 'La operación entra en conflicto con el estado actual.',
+        _ => 'No se pudo completar la operación de rondín.',
+      });
+    } on RondinAdminException {
+      rethrow;
+    } catch (_) {
+      throw const RondinAdminException(
+        'No se pudo conectar con la administración de rondines.',
+      );
     }
   }
 

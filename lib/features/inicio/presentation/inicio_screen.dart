@@ -66,10 +66,20 @@ class InicioScreen extends ConsumerWidget {
               _AccionesDeTurno(horasEnTurno: _horas(turno.inicioAt)),
 
             const SizedBox(height: 24),
-            const Text('Acciones',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
+            const Text(
+              'Acciones',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+            ),
             const SizedBox(height: 12),
 
+            _Accion(
+              icono: Icons.qr_code_scanner,
+              titulo: 'Rondín QR',
+              detalle: turno == null
+                  ? 'Registra tu entrada para iniciar'
+                  : 'Recorre y comprueba los puntos de la planta',
+              onTap: () => context.push(Rutas.rondines),
+            ),
             _Accion(
               icono: Icons.inventory_2_outlined,
               titulo: 'Recepción de turno',
@@ -115,8 +125,10 @@ class _Saludo extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('$saludo, $primerNombre',
-            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w700)),
+        Text(
+          '$saludo, $primerNombre',
+          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
+        ),
         const SizedBox(height: 2),
         Text(
           '${rol.etiqueta} · ${DateFormat('EEEE d \'de\' MMMM', 'es_MX').format(DateTime.now())}',
@@ -142,32 +154,32 @@ class _EstadoSincronizacion extends ConsumerWidget {
 
     final (icono, color, texto) = switch (estado) {
       SyncEstado.sincronizando => (
-          Icons.sync,
-          AppTheme.azulAcero,
-          'Sincronizando…'
-        ),
+        Icons.sync,
+        AppTheme.azulAcero,
+        'Sincronizando…',
+      ),
       SyncEstado.sinConexion => (
-          Icons.cloud_off_outlined,
-          AppTheme.ambarSeguridad,
-          pendientes > 0
-              ? 'Sin conexión · $pendientes registro(s) por subir'
-              : 'Sin conexión · puedes seguir trabajando'
-        ),
+        Icons.cloud_off_outlined,
+        AppTheme.ambarSeguridad,
+        pendientes > 0
+            ? 'Sin conexión · $pendientes registro(s) por subir'
+            : 'Sin conexión · puedes seguir trabajando',
+      ),
       SyncEstado.error => (
-          Icons.error_outline,
-          AppTheme.rojoAlerta,
-          'Error al sincronizar · se reintentará solo'
-        ),
+        Icons.error_outline,
+        AppTheme.rojoAlerta,
+        'Error al sincronizar · se reintentará solo',
+      ),
       SyncEstado.conPendientes => (
-          Icons.cloud_upload_outlined,
-          AppTheme.ambarSeguridad,
-          '$pendientes registro(s) por subir'
-        ),
+        Icons.cloud_upload_outlined,
+        AppTheme.ambarSeguridad,
+        '$pendientes registro(s) por subir',
+      ),
       _ => (
-          Icons.cloud_done_outlined,
-          AppTheme.verdeOperativo,
-          'Todo sincronizado'
-        ),
+        Icons.cloud_done_outlined,
+        AppTheme.verdeOperativo,
+        'Todo sincronizado',
+      ),
     };
 
     return Container(
@@ -182,8 +194,10 @@ class _EstadoSincronizacion extends ConsumerWidget {
           Icon(icono, color: color, size: 20),
           const SizedBox(width: 12),
           Expanded(
-            child: Text(texto,
-                style: TextStyle(color: color, fontWeight: FontWeight.w600)),
+            child: Text(
+              texto,
+              style: TextStyle(color: color, fontWeight: FontWeight.w600),
+            ),
           ),
         ],
       ),
@@ -208,9 +222,10 @@ class _AvisoSinTurno extends StatelessWidget {
               children: [
                 Icon(Icons.schedule, color: AppTheme.grisNeutro),
                 SizedBox(width: 10),
-                Text('No has registrado entrada',
-                    style:
-                        TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
+                Text(
+                  'No has registrado entrada',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                ),
               ],
             ),
             const SizedBox(height: 8),
@@ -252,8 +267,11 @@ class _AccionesDeTurno extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: Row(
           children: [
-            Icon(cumplido ? Icons.notification_important : Icons.shield,
-                color: color, size: 30),
+            Icon(
+              cumplido ? Icons.notification_important : Icons.shield,
+              color: color,
+              size: 30,
+            ),
             const SizedBox(width: 14),
             Expanded(
               child: Column(
@@ -262,9 +280,14 @@ class _AccionesDeTurno extends StatelessWidget {
                   Text(
                     cumplido
                         ? 'Turno cumplido'
-                        : (porCumplirse ? 'Tu relevo está por llegar' : 'En turno'),
+                        : (porCumplirse
+                              ? 'Tu relevo está por llegar'
+                              : 'En turno'),
                     style: TextStyle(
-                        fontSize: 16, fontWeight: FontWeight.w700, color: color),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      color: color,
+                    ),
                   ),
                   const SizedBox(height: 4),
                   Text(
@@ -272,7 +295,9 @@ class _AccionesDeTurno extends StatelessWidget {
                         ? 'Ya pasaron ${horasEnTurno.floor()} h. Registra tu salida.'
                         : 'Llevas ${horasEnTurno.floor()} h de 24.',
                     style: const TextStyle(
-                        color: AppTheme.grisNeutro, fontSize: 13),
+                      color: AppTheme.grisNeutro,
+                      fontSize: 13,
+                    ),
                   ),
                 ],
               ),
@@ -311,8 +336,10 @@ class _Accion extends StatelessWidget {
           ),
           child: Icon(icono, color: AppTheme.azulAcero),
         ),
-        title: Text(titulo,
-            style: const TextStyle(fontWeight: FontWeight.w600)),
+        title: Text(
+          titulo,
+          style: const TextStyle(fontWeight: FontWeight.w600),
+        ),
         subtitle: Text(detalle, style: const TextStyle(fontSize: 12.5)),
         trailing: const Icon(Icons.chevron_right),
       ),

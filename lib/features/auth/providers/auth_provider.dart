@@ -1,9 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../core/services/app_logger.dart';
 import '../../../core/services/supabase_service.dart';
 import '../../../data/models/perfil.dart';
+import '../data/perfil_local_cache.dart';
 
 /// Estado de autenticación de la app.
 sealed class EstadoAuth {
@@ -47,12 +50,10 @@ class AuthController extends Notifier<EstadoAuth> {
   EstadoAuth build() {
     _escucharCambiosDeSesion();
 
-    // Si ya había sesión guardada, se recupera el perfil en segundo plano.
-    if (SupabaseService.haySesion) {
-      Future.microtask(_cargarPerfil);
-      return const AuthCargando();
-    }
-    return const AuthSinSesion();
+    // También se intenta el perfil cacheado para continuar sin red dentro del
+    // mismo arranque y de la misma sesión. La primera sesión exige conexión.
+    Future.microtask(_cargarPerfil);
+    return const AuthCargando();
   }
 
   void _escucharCambiosDeSesion() {
@@ -73,12 +74,9 @@ class AuthController extends Notifier<EstadoAuth> {
 
   Future<void> _cargarPerfil() async {
     final id = SupabaseService.usuarioId;
-    if (id == null) {
-      state = const AuthSinSesion();
-      return;
-    }
-
+    final sessionId = _sessionIdActual();
     try {
+      if (id == null) throw const AuthException('offline_without_session');
       final fila = await SupabaseService.cliente
           .from('profiles')
           .select()
@@ -97,12 +95,44 @@ class AuthController extends Notifier<EstadoAuth> {
         return;
       }
 
+      if (sessionId == null) {
+        await PerfilLocalCache.limpiar();
+      } else {
+        await PerfilLocalCache.guardar(perfil, sessionId: sessionId);
+      }
       state = AuthAutenticado(perfil);
     } catch (e, s) {
       AppLogger.e('No se pudo cargar el perfil', e, s);
+      // El caché permite continuar sin red, pero nunca sustituye una sesión
+      // local de Supabase. Si no hay usuario persistido, no hay identidad a la
+      // cual vincular de forma segura las capturas offline.
+      final cacheado = id == null || sessionId == null
+          ? null
+          : await PerfilLocalCache.cargar(usuarioId: id, sessionId: sessionId);
+      if (cacheado != null) {
+        state = AuthAutenticado(cacheado.perfil);
+        return;
+      }
       state = const AuthSinSesion(
-        mensaje: 'No se pudo cargar tu perfil. Revisa tu conexión.',
+        mensaje: 'Conéctate para validar tu sesión antes de trabajar offline.',
       );
+    }
+  }
+
+  String? _sessionIdActual() {
+    try {
+      final token = SupabaseService.auth.currentSession?.accessToken;
+      if (token == null) return null;
+      final partes = token.split('.');
+      if (partes.length != 3) return null;
+      final payload = jsonDecode(
+        utf8.decode(base64Url.decode(base64Url.normalize(partes[1]))),
+      );
+      if (payload is! Map) return null;
+      final sessionId = payload['session_id'];
+      return sessionId is String && sessionId.isNotEmpty ? sessionId : null;
+    } catch (_) {
+      return null;
     }
   }
 
@@ -177,6 +207,7 @@ class AuthController extends Notifier<EstadoAuth> {
   }
 
   Future<void> cerrarSesion() async {
+    await PerfilLocalCache.limpiar();
     await SupabaseService.auth.signOut();
     state = const AuthSinSesion();
   }

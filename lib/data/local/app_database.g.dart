@@ -8465,6 +8465,3278 @@ class LocalRecepcionItemsCompanion extends UpdateCompanion<LocalRecepcionItem> {
   }
 }
 
+class $LocalRondinesTable extends LocalRondines
+    with TableInfo<$LocalRondinesTable, LocalRondine> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $LocalRondinesTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _localIdMeta = const VerificationMeta(
+    'localId',
+  );
+  @override
+  late final GeneratedColumn<String> localId = GeneratedColumn<String>(
+    'local_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    clientDefault: () => _uuid.v4(),
+  );
+  static const VerificationMeta _remoteIdMeta = const VerificationMeta(
+    'remoteId',
+  );
+  @override
+  late final GeneratedColumn<String> remoteId = GeneratedColumn<String>(
+    'remote_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _syncStatusMeta = const VerificationMeta(
+    'syncStatus',
+  );
+  @override
+  late final GeneratedColumn<String> syncStatus = GeneratedColumn<String>(
+    'sync_status',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('pendiente'),
+  );
+  static const VerificationMeta _syncErrorMeta = const VerificationMeta(
+    'syncError',
+  );
+  @override
+  late final GeneratedColumn<String> syncError = GeneratedColumn<String>(
+    'sync_error',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(''),
+  );
+  static const VerificationMeta _syncIntentosMeta = const VerificationMeta(
+    'syncIntentos',
+  );
+  @override
+  late final GeneratedColumn<int> syncIntentos = GeneratedColumn<int>(
+    'sync_intentos',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _deviceIdMeta = const VerificationMeta(
+    'deviceId',
+  );
+  @override
+  late final GeneratedColumn<String> deviceId = GeneratedColumn<String>(
+    'device_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(''),
+  );
+  static const VerificationMeta _createdAtLocalMeta = const VerificationMeta(
+    'createdAtLocal',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAtLocal =
+      GeneratedColumn<DateTime>(
+        'created_at_local',
+        aliasedName,
+        false,
+        type: DriftSqlType.dateTime,
+        requiredDuringInsert: false,
+        clientDefault: DateTime.now,
+      );
+  static const VerificationMeta _updatedAtLocalMeta = const VerificationMeta(
+    'updatedAtLocal',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAtLocal =
+      GeneratedColumn<DateTime>(
+        'updated_at_local',
+        aliasedName,
+        false,
+        type: DriftSqlType.dateTime,
+        requiredDuringInsert: false,
+        clientDefault: DateTime.now,
+      );
+  static const VerificationMeta _syncedAtMeta = const VerificationMeta(
+    'syncedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> syncedAt = GeneratedColumn<DateTime>(
+    'synced_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _usuarioIdMeta = const VerificationMeta(
+    'usuarioId',
+  );
+  @override
+  late final GeneratedColumn<String> usuarioId = GeneratedColumn<String>(
+    'usuario_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _sitioIdMeta = const VerificationMeta(
+    'sitioId',
+  );
+  @override
+  late final GeneratedColumn<String> sitioId = GeneratedColumn<String>(
+    'sitio_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _rutaIdMeta = const VerificationMeta('rutaId');
+  @override
+  late final GeneratedColumn<String> rutaId = GeneratedColumn<String>(
+    'ruta_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _turnoIdMeta = const VerificationMeta(
+    'turnoId',
+  );
+  @override
+  late final GeneratedColumn<String> turnoId = GeneratedColumn<String>(
+    'turno_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _turnoFechaMeta = const VerificationMeta(
+    'turnoFecha',
+  );
+  @override
+  late final GeneratedColumn<DateTime> turnoFecha = GeneratedColumn<DateTime>(
+    'turno_fecha',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _iniciadoAtDispositivoMeta =
+      const VerificationMeta('iniciadoAtDispositivo');
+  @override
+  late final GeneratedColumn<DateTime> iniciadoAtDispositivo =
+      GeneratedColumn<DateTime>(
+        'iniciado_at_dispositivo',
+        aliasedName,
+        false,
+        type: DriftSqlType.dateTime,
+        requiredDuringInsert: true,
+      );
+  static const VerificationMeta _iniciadoMonotonicMsMeta =
+      const VerificationMeta('iniciadoMonotonicMs');
+  @override
+  late final GeneratedColumn<int> iniciadoMonotonicMs = GeneratedColumn<int>(
+    'iniciado_monotonic_ms',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _finalizadoAtDispositivoMeta =
+      const VerificationMeta('finalizadoAtDispositivo');
+  @override
+  late final GeneratedColumn<DateTime> finalizadoAtDispositivo =
+      GeneratedColumn<DateTime>(
+        'finalizado_at_dispositivo',
+        aliasedName,
+        true,
+        type: DriftSqlType.dateTime,
+        requiredDuringInsert: false,
+      );
+  static const VerificationMeta _estadoLocalMeta = const VerificationMeta(
+    'estadoLocal',
+  );
+  @override
+  late final GeneratedColumn<String> estadoLocal = GeneratedColumn<String>(
+    'estado_local',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('en_curso'),
+  );
+  static const VerificationMeta _estadoValidacionServidorMeta =
+      const VerificationMeta('estadoValidacionServidor');
+  @override
+  late final GeneratedColumn<String> estadoValidacionServidor =
+      GeneratedColumn<String>(
+        'estado_validacion_servidor',
+        aliasedName,
+        true,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+      );
+  static const VerificationMeta _puntajeRiesgoServidorMeta =
+      const VerificationMeta('puntajeRiesgoServidor');
+  @override
+  late final GeneratedColumn<int> puntajeRiesgoServidor = GeneratedColumn<int>(
+    'puntaje_riesgo_servidor',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _codigosRiesgoServidorJsonMeta =
+      const VerificationMeta('codigosRiesgoServidorJson');
+  @override
+  late final GeneratedColumn<String> codigosRiesgoServidorJson =
+      GeneratedColumn<String>(
+        'codigos_riesgo_servidor_json',
+        aliasedName,
+        true,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+      );
+  @override
+  List<GeneratedColumn> get $columns => [
+    localId,
+    remoteId,
+    syncStatus,
+    syncError,
+    syncIntentos,
+    deviceId,
+    createdAtLocal,
+    updatedAtLocal,
+    syncedAt,
+    usuarioId,
+    sitioId,
+    rutaId,
+    turnoId,
+    turnoFecha,
+    iniciadoAtDispositivo,
+    iniciadoMonotonicMs,
+    finalizadoAtDispositivo,
+    estadoLocal,
+    estadoValidacionServidor,
+    puntajeRiesgoServidor,
+    codigosRiesgoServidorJson,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'local_rondines';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<LocalRondine> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('local_id')) {
+      context.handle(
+        _localIdMeta,
+        localId.isAcceptableOrUnknown(data['local_id']!, _localIdMeta),
+      );
+    }
+    if (data.containsKey('remote_id')) {
+      context.handle(
+        _remoteIdMeta,
+        remoteId.isAcceptableOrUnknown(data['remote_id']!, _remoteIdMeta),
+      );
+    }
+    if (data.containsKey('sync_status')) {
+      context.handle(
+        _syncStatusMeta,
+        syncStatus.isAcceptableOrUnknown(data['sync_status']!, _syncStatusMeta),
+      );
+    }
+    if (data.containsKey('sync_error')) {
+      context.handle(
+        _syncErrorMeta,
+        syncError.isAcceptableOrUnknown(data['sync_error']!, _syncErrorMeta),
+      );
+    }
+    if (data.containsKey('sync_intentos')) {
+      context.handle(
+        _syncIntentosMeta,
+        syncIntentos.isAcceptableOrUnknown(
+          data['sync_intentos']!,
+          _syncIntentosMeta,
+        ),
+      );
+    }
+    if (data.containsKey('device_id')) {
+      context.handle(
+        _deviceIdMeta,
+        deviceId.isAcceptableOrUnknown(data['device_id']!, _deviceIdMeta),
+      );
+    }
+    if (data.containsKey('created_at_local')) {
+      context.handle(
+        _createdAtLocalMeta,
+        createdAtLocal.isAcceptableOrUnknown(
+          data['created_at_local']!,
+          _createdAtLocalMeta,
+        ),
+      );
+    }
+    if (data.containsKey('updated_at_local')) {
+      context.handle(
+        _updatedAtLocalMeta,
+        updatedAtLocal.isAcceptableOrUnknown(
+          data['updated_at_local']!,
+          _updatedAtLocalMeta,
+        ),
+      );
+    }
+    if (data.containsKey('synced_at')) {
+      context.handle(
+        _syncedAtMeta,
+        syncedAt.isAcceptableOrUnknown(data['synced_at']!, _syncedAtMeta),
+      );
+    }
+    if (data.containsKey('usuario_id')) {
+      context.handle(
+        _usuarioIdMeta,
+        usuarioId.isAcceptableOrUnknown(data['usuario_id']!, _usuarioIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_usuarioIdMeta);
+    }
+    if (data.containsKey('sitio_id')) {
+      context.handle(
+        _sitioIdMeta,
+        sitioId.isAcceptableOrUnknown(data['sitio_id']!, _sitioIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_sitioIdMeta);
+    }
+    if (data.containsKey('ruta_id')) {
+      context.handle(
+        _rutaIdMeta,
+        rutaId.isAcceptableOrUnknown(data['ruta_id']!, _rutaIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_rutaIdMeta);
+    }
+    if (data.containsKey('turno_id')) {
+      context.handle(
+        _turnoIdMeta,
+        turnoId.isAcceptableOrUnknown(data['turno_id']!, _turnoIdMeta),
+      );
+    }
+    if (data.containsKey('turno_fecha')) {
+      context.handle(
+        _turnoFechaMeta,
+        turnoFecha.isAcceptableOrUnknown(data['turno_fecha']!, _turnoFechaMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_turnoFechaMeta);
+    }
+    if (data.containsKey('iniciado_at_dispositivo')) {
+      context.handle(
+        _iniciadoAtDispositivoMeta,
+        iniciadoAtDispositivo.isAcceptableOrUnknown(
+          data['iniciado_at_dispositivo']!,
+          _iniciadoAtDispositivoMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_iniciadoAtDispositivoMeta);
+    }
+    if (data.containsKey('iniciado_monotonic_ms')) {
+      context.handle(
+        _iniciadoMonotonicMsMeta,
+        iniciadoMonotonicMs.isAcceptableOrUnknown(
+          data['iniciado_monotonic_ms']!,
+          _iniciadoMonotonicMsMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_iniciadoMonotonicMsMeta);
+    }
+    if (data.containsKey('finalizado_at_dispositivo')) {
+      context.handle(
+        _finalizadoAtDispositivoMeta,
+        finalizadoAtDispositivo.isAcceptableOrUnknown(
+          data['finalizado_at_dispositivo']!,
+          _finalizadoAtDispositivoMeta,
+        ),
+      );
+    }
+    if (data.containsKey('estado_local')) {
+      context.handle(
+        _estadoLocalMeta,
+        estadoLocal.isAcceptableOrUnknown(
+          data['estado_local']!,
+          _estadoLocalMeta,
+        ),
+      );
+    }
+    if (data.containsKey('estado_validacion_servidor')) {
+      context.handle(
+        _estadoValidacionServidorMeta,
+        estadoValidacionServidor.isAcceptableOrUnknown(
+          data['estado_validacion_servidor']!,
+          _estadoValidacionServidorMeta,
+        ),
+      );
+    }
+    if (data.containsKey('puntaje_riesgo_servidor')) {
+      context.handle(
+        _puntajeRiesgoServidorMeta,
+        puntajeRiesgoServidor.isAcceptableOrUnknown(
+          data['puntaje_riesgo_servidor']!,
+          _puntajeRiesgoServidorMeta,
+        ),
+      );
+    }
+    if (data.containsKey('codigos_riesgo_servidor_json')) {
+      context.handle(
+        _codigosRiesgoServidorJsonMeta,
+        codigosRiesgoServidorJson.isAcceptableOrUnknown(
+          data['codigos_riesgo_servidor_json']!,
+          _codigosRiesgoServidorJsonMeta,
+        ),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {localId};
+  @override
+  LocalRondine map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return LocalRondine(
+      localId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}local_id'],
+      )!,
+      remoteId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}remote_id'],
+      ),
+      syncStatus: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}sync_status'],
+      )!,
+      syncError: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}sync_error'],
+      )!,
+      syncIntentos: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}sync_intentos'],
+      )!,
+      deviceId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}device_id'],
+      )!,
+      createdAtLocal: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at_local'],
+      )!,
+      updatedAtLocal: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at_local'],
+      )!,
+      syncedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}synced_at'],
+      ),
+      usuarioId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}usuario_id'],
+      )!,
+      sitioId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}sitio_id'],
+      )!,
+      rutaId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}ruta_id'],
+      )!,
+      turnoId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}turno_id'],
+      ),
+      turnoFecha: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}turno_fecha'],
+      )!,
+      iniciadoAtDispositivo: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}iniciado_at_dispositivo'],
+      )!,
+      iniciadoMonotonicMs: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}iniciado_monotonic_ms'],
+      )!,
+      finalizadoAtDispositivo: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}finalizado_at_dispositivo'],
+      ),
+      estadoLocal: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}estado_local'],
+      )!,
+      estadoValidacionServidor: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}estado_validacion_servidor'],
+      ),
+      puntajeRiesgoServidor: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}puntaje_riesgo_servidor'],
+      ),
+      codigosRiesgoServidorJson: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}codigos_riesgo_servidor_json'],
+      ),
+    );
+  }
+
+  @override
+  $LocalRondinesTable createAlias(String alias) {
+    return $LocalRondinesTable(attachedDatabase, alias);
+  }
+}
+
+class LocalRondine extends DataClass implements Insertable<LocalRondine> {
+  final String localId;
+
+  /// UUID que asignó Supabase. Nulo mientras no se haya sincronizado.
+  final String? remoteId;
+
+  /// pendiente | sincronizando | sincronizado | fallido
+  final String syncStatus;
+  final String syncError;
+
+  /// Se pausan los reintentos al llegar al máximo para no quemar batería
+  /// reintentando algo que falla por una razón que no se va a resolver sola
+  /// (por ejemplo, violar un CHECK del servidor).
+  final int syncIntentos;
+  final String deviceId;
+  final DateTime createdAtLocal;
+  final DateTime updatedAtLocal;
+  final DateTime? syncedAt;
+  final String usuarioId;
+  final String sitioId;
+  final String rutaId;
+  final String? turnoId;
+  final DateTime turnoFecha;
+  final DateTime iniciadoAtDispositivo;
+  final int iniciadoMonotonicMs;
+  final DateTime? finalizadoAtDispositivo;
+  final String estadoLocal;
+  final String? estadoValidacionServidor;
+  final int? puntajeRiesgoServidor;
+  final String? codigosRiesgoServidorJson;
+  const LocalRondine({
+    required this.localId,
+    this.remoteId,
+    required this.syncStatus,
+    required this.syncError,
+    required this.syncIntentos,
+    required this.deviceId,
+    required this.createdAtLocal,
+    required this.updatedAtLocal,
+    this.syncedAt,
+    required this.usuarioId,
+    required this.sitioId,
+    required this.rutaId,
+    this.turnoId,
+    required this.turnoFecha,
+    required this.iniciadoAtDispositivo,
+    required this.iniciadoMonotonicMs,
+    this.finalizadoAtDispositivo,
+    required this.estadoLocal,
+    this.estadoValidacionServidor,
+    this.puntajeRiesgoServidor,
+    this.codigosRiesgoServidorJson,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['local_id'] = Variable<String>(localId);
+    if (!nullToAbsent || remoteId != null) {
+      map['remote_id'] = Variable<String>(remoteId);
+    }
+    map['sync_status'] = Variable<String>(syncStatus);
+    map['sync_error'] = Variable<String>(syncError);
+    map['sync_intentos'] = Variable<int>(syncIntentos);
+    map['device_id'] = Variable<String>(deviceId);
+    map['created_at_local'] = Variable<DateTime>(createdAtLocal);
+    map['updated_at_local'] = Variable<DateTime>(updatedAtLocal);
+    if (!nullToAbsent || syncedAt != null) {
+      map['synced_at'] = Variable<DateTime>(syncedAt);
+    }
+    map['usuario_id'] = Variable<String>(usuarioId);
+    map['sitio_id'] = Variable<String>(sitioId);
+    map['ruta_id'] = Variable<String>(rutaId);
+    if (!nullToAbsent || turnoId != null) {
+      map['turno_id'] = Variable<String>(turnoId);
+    }
+    map['turno_fecha'] = Variable<DateTime>(turnoFecha);
+    map['iniciado_at_dispositivo'] = Variable<DateTime>(iniciadoAtDispositivo);
+    map['iniciado_monotonic_ms'] = Variable<int>(iniciadoMonotonicMs);
+    if (!nullToAbsent || finalizadoAtDispositivo != null) {
+      map['finalizado_at_dispositivo'] = Variable<DateTime>(
+        finalizadoAtDispositivo,
+      );
+    }
+    map['estado_local'] = Variable<String>(estadoLocal);
+    if (!nullToAbsent || estadoValidacionServidor != null) {
+      map['estado_validacion_servidor'] = Variable<String>(
+        estadoValidacionServidor,
+      );
+    }
+    if (!nullToAbsent || puntajeRiesgoServidor != null) {
+      map['puntaje_riesgo_servidor'] = Variable<int>(puntajeRiesgoServidor);
+    }
+    if (!nullToAbsent || codigosRiesgoServidorJson != null) {
+      map['codigos_riesgo_servidor_json'] = Variable<String>(
+        codigosRiesgoServidorJson,
+      );
+    }
+    return map;
+  }
+
+  LocalRondinesCompanion toCompanion(bool nullToAbsent) {
+    return LocalRondinesCompanion(
+      localId: Value(localId),
+      remoteId: remoteId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(remoteId),
+      syncStatus: Value(syncStatus),
+      syncError: Value(syncError),
+      syncIntentos: Value(syncIntentos),
+      deviceId: Value(deviceId),
+      createdAtLocal: Value(createdAtLocal),
+      updatedAtLocal: Value(updatedAtLocal),
+      syncedAt: syncedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(syncedAt),
+      usuarioId: Value(usuarioId),
+      sitioId: Value(sitioId),
+      rutaId: Value(rutaId),
+      turnoId: turnoId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(turnoId),
+      turnoFecha: Value(turnoFecha),
+      iniciadoAtDispositivo: Value(iniciadoAtDispositivo),
+      iniciadoMonotonicMs: Value(iniciadoMonotonicMs),
+      finalizadoAtDispositivo: finalizadoAtDispositivo == null && nullToAbsent
+          ? const Value.absent()
+          : Value(finalizadoAtDispositivo),
+      estadoLocal: Value(estadoLocal),
+      estadoValidacionServidor: estadoValidacionServidor == null && nullToAbsent
+          ? const Value.absent()
+          : Value(estadoValidacionServidor),
+      puntajeRiesgoServidor: puntajeRiesgoServidor == null && nullToAbsent
+          ? const Value.absent()
+          : Value(puntajeRiesgoServidor),
+      codigosRiesgoServidorJson:
+          codigosRiesgoServidorJson == null && nullToAbsent
+          ? const Value.absent()
+          : Value(codigosRiesgoServidorJson),
+    );
+  }
+
+  factory LocalRondine.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return LocalRondine(
+      localId: serializer.fromJson<String>(json['localId']),
+      remoteId: serializer.fromJson<String?>(json['remoteId']),
+      syncStatus: serializer.fromJson<String>(json['syncStatus']),
+      syncError: serializer.fromJson<String>(json['syncError']),
+      syncIntentos: serializer.fromJson<int>(json['syncIntentos']),
+      deviceId: serializer.fromJson<String>(json['deviceId']),
+      createdAtLocal: serializer.fromJson<DateTime>(json['createdAtLocal']),
+      updatedAtLocal: serializer.fromJson<DateTime>(json['updatedAtLocal']),
+      syncedAt: serializer.fromJson<DateTime?>(json['syncedAt']),
+      usuarioId: serializer.fromJson<String>(json['usuarioId']),
+      sitioId: serializer.fromJson<String>(json['sitioId']),
+      rutaId: serializer.fromJson<String>(json['rutaId']),
+      turnoId: serializer.fromJson<String?>(json['turnoId']),
+      turnoFecha: serializer.fromJson<DateTime>(json['turnoFecha']),
+      iniciadoAtDispositivo: serializer.fromJson<DateTime>(
+        json['iniciadoAtDispositivo'],
+      ),
+      iniciadoMonotonicMs: serializer.fromJson<int>(
+        json['iniciadoMonotonicMs'],
+      ),
+      finalizadoAtDispositivo: serializer.fromJson<DateTime?>(
+        json['finalizadoAtDispositivo'],
+      ),
+      estadoLocal: serializer.fromJson<String>(json['estadoLocal']),
+      estadoValidacionServidor: serializer.fromJson<String?>(
+        json['estadoValidacionServidor'],
+      ),
+      puntajeRiesgoServidor: serializer.fromJson<int?>(
+        json['puntajeRiesgoServidor'],
+      ),
+      codigosRiesgoServidorJson: serializer.fromJson<String?>(
+        json['codigosRiesgoServidorJson'],
+      ),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'localId': serializer.toJson<String>(localId),
+      'remoteId': serializer.toJson<String?>(remoteId),
+      'syncStatus': serializer.toJson<String>(syncStatus),
+      'syncError': serializer.toJson<String>(syncError),
+      'syncIntentos': serializer.toJson<int>(syncIntentos),
+      'deviceId': serializer.toJson<String>(deviceId),
+      'createdAtLocal': serializer.toJson<DateTime>(createdAtLocal),
+      'updatedAtLocal': serializer.toJson<DateTime>(updatedAtLocal),
+      'syncedAt': serializer.toJson<DateTime?>(syncedAt),
+      'usuarioId': serializer.toJson<String>(usuarioId),
+      'sitioId': serializer.toJson<String>(sitioId),
+      'rutaId': serializer.toJson<String>(rutaId),
+      'turnoId': serializer.toJson<String?>(turnoId),
+      'turnoFecha': serializer.toJson<DateTime>(turnoFecha),
+      'iniciadoAtDispositivo': serializer.toJson<DateTime>(
+        iniciadoAtDispositivo,
+      ),
+      'iniciadoMonotonicMs': serializer.toJson<int>(iniciadoMonotonicMs),
+      'finalizadoAtDispositivo': serializer.toJson<DateTime?>(
+        finalizadoAtDispositivo,
+      ),
+      'estadoLocal': serializer.toJson<String>(estadoLocal),
+      'estadoValidacionServidor': serializer.toJson<String?>(
+        estadoValidacionServidor,
+      ),
+      'puntajeRiesgoServidor': serializer.toJson<int?>(puntajeRiesgoServidor),
+      'codigosRiesgoServidorJson': serializer.toJson<String?>(
+        codigosRiesgoServidorJson,
+      ),
+    };
+  }
+
+  LocalRondine copyWith({
+    String? localId,
+    Value<String?> remoteId = const Value.absent(),
+    String? syncStatus,
+    String? syncError,
+    int? syncIntentos,
+    String? deviceId,
+    DateTime? createdAtLocal,
+    DateTime? updatedAtLocal,
+    Value<DateTime?> syncedAt = const Value.absent(),
+    String? usuarioId,
+    String? sitioId,
+    String? rutaId,
+    Value<String?> turnoId = const Value.absent(),
+    DateTime? turnoFecha,
+    DateTime? iniciadoAtDispositivo,
+    int? iniciadoMonotonicMs,
+    Value<DateTime?> finalizadoAtDispositivo = const Value.absent(),
+    String? estadoLocal,
+    Value<String?> estadoValidacionServidor = const Value.absent(),
+    Value<int?> puntajeRiesgoServidor = const Value.absent(),
+    Value<String?> codigosRiesgoServidorJson = const Value.absent(),
+  }) => LocalRondine(
+    localId: localId ?? this.localId,
+    remoteId: remoteId.present ? remoteId.value : this.remoteId,
+    syncStatus: syncStatus ?? this.syncStatus,
+    syncError: syncError ?? this.syncError,
+    syncIntentos: syncIntentos ?? this.syncIntentos,
+    deviceId: deviceId ?? this.deviceId,
+    createdAtLocal: createdAtLocal ?? this.createdAtLocal,
+    updatedAtLocal: updatedAtLocal ?? this.updatedAtLocal,
+    syncedAt: syncedAt.present ? syncedAt.value : this.syncedAt,
+    usuarioId: usuarioId ?? this.usuarioId,
+    sitioId: sitioId ?? this.sitioId,
+    rutaId: rutaId ?? this.rutaId,
+    turnoId: turnoId.present ? turnoId.value : this.turnoId,
+    turnoFecha: turnoFecha ?? this.turnoFecha,
+    iniciadoAtDispositivo: iniciadoAtDispositivo ?? this.iniciadoAtDispositivo,
+    iniciadoMonotonicMs: iniciadoMonotonicMs ?? this.iniciadoMonotonicMs,
+    finalizadoAtDispositivo: finalizadoAtDispositivo.present
+        ? finalizadoAtDispositivo.value
+        : this.finalizadoAtDispositivo,
+    estadoLocal: estadoLocal ?? this.estadoLocal,
+    estadoValidacionServidor: estadoValidacionServidor.present
+        ? estadoValidacionServidor.value
+        : this.estadoValidacionServidor,
+    puntajeRiesgoServidor: puntajeRiesgoServidor.present
+        ? puntajeRiesgoServidor.value
+        : this.puntajeRiesgoServidor,
+    codigosRiesgoServidorJson: codigosRiesgoServidorJson.present
+        ? codigosRiesgoServidorJson.value
+        : this.codigosRiesgoServidorJson,
+  );
+  LocalRondine copyWithCompanion(LocalRondinesCompanion data) {
+    return LocalRondine(
+      localId: data.localId.present ? data.localId.value : this.localId,
+      remoteId: data.remoteId.present ? data.remoteId.value : this.remoteId,
+      syncStatus: data.syncStatus.present
+          ? data.syncStatus.value
+          : this.syncStatus,
+      syncError: data.syncError.present ? data.syncError.value : this.syncError,
+      syncIntentos: data.syncIntentos.present
+          ? data.syncIntentos.value
+          : this.syncIntentos,
+      deviceId: data.deviceId.present ? data.deviceId.value : this.deviceId,
+      createdAtLocal: data.createdAtLocal.present
+          ? data.createdAtLocal.value
+          : this.createdAtLocal,
+      updatedAtLocal: data.updatedAtLocal.present
+          ? data.updatedAtLocal.value
+          : this.updatedAtLocal,
+      syncedAt: data.syncedAt.present ? data.syncedAt.value : this.syncedAt,
+      usuarioId: data.usuarioId.present ? data.usuarioId.value : this.usuarioId,
+      sitioId: data.sitioId.present ? data.sitioId.value : this.sitioId,
+      rutaId: data.rutaId.present ? data.rutaId.value : this.rutaId,
+      turnoId: data.turnoId.present ? data.turnoId.value : this.turnoId,
+      turnoFecha: data.turnoFecha.present
+          ? data.turnoFecha.value
+          : this.turnoFecha,
+      iniciadoAtDispositivo: data.iniciadoAtDispositivo.present
+          ? data.iniciadoAtDispositivo.value
+          : this.iniciadoAtDispositivo,
+      iniciadoMonotonicMs: data.iniciadoMonotonicMs.present
+          ? data.iniciadoMonotonicMs.value
+          : this.iniciadoMonotonicMs,
+      finalizadoAtDispositivo: data.finalizadoAtDispositivo.present
+          ? data.finalizadoAtDispositivo.value
+          : this.finalizadoAtDispositivo,
+      estadoLocal: data.estadoLocal.present
+          ? data.estadoLocal.value
+          : this.estadoLocal,
+      estadoValidacionServidor: data.estadoValidacionServidor.present
+          ? data.estadoValidacionServidor.value
+          : this.estadoValidacionServidor,
+      puntajeRiesgoServidor: data.puntajeRiesgoServidor.present
+          ? data.puntajeRiesgoServidor.value
+          : this.puntajeRiesgoServidor,
+      codigosRiesgoServidorJson: data.codigosRiesgoServidorJson.present
+          ? data.codigosRiesgoServidorJson.value
+          : this.codigosRiesgoServidorJson,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('LocalRondine(')
+          ..write('localId: $localId, ')
+          ..write('remoteId: $remoteId, ')
+          ..write('syncStatus: $syncStatus, ')
+          ..write('syncError: $syncError, ')
+          ..write('syncIntentos: $syncIntentos, ')
+          ..write('deviceId: $deviceId, ')
+          ..write('createdAtLocal: $createdAtLocal, ')
+          ..write('updatedAtLocal: $updatedAtLocal, ')
+          ..write('syncedAt: $syncedAt, ')
+          ..write('usuarioId: $usuarioId, ')
+          ..write('sitioId: $sitioId, ')
+          ..write('rutaId: $rutaId, ')
+          ..write('turnoId: $turnoId, ')
+          ..write('turnoFecha: $turnoFecha, ')
+          ..write('iniciadoAtDispositivo: $iniciadoAtDispositivo, ')
+          ..write('iniciadoMonotonicMs: $iniciadoMonotonicMs, ')
+          ..write('finalizadoAtDispositivo: $finalizadoAtDispositivo, ')
+          ..write('estadoLocal: $estadoLocal, ')
+          ..write('estadoValidacionServidor: $estadoValidacionServidor, ')
+          ..write('puntajeRiesgoServidor: $puntajeRiesgoServidor, ')
+          ..write('codigosRiesgoServidorJson: $codigosRiesgoServidorJson')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hashAll([
+    localId,
+    remoteId,
+    syncStatus,
+    syncError,
+    syncIntentos,
+    deviceId,
+    createdAtLocal,
+    updatedAtLocal,
+    syncedAt,
+    usuarioId,
+    sitioId,
+    rutaId,
+    turnoId,
+    turnoFecha,
+    iniciadoAtDispositivo,
+    iniciadoMonotonicMs,
+    finalizadoAtDispositivo,
+    estadoLocal,
+    estadoValidacionServidor,
+    puntajeRiesgoServidor,
+    codigosRiesgoServidorJson,
+  ]);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is LocalRondine &&
+          other.localId == this.localId &&
+          other.remoteId == this.remoteId &&
+          other.syncStatus == this.syncStatus &&
+          other.syncError == this.syncError &&
+          other.syncIntentos == this.syncIntentos &&
+          other.deviceId == this.deviceId &&
+          other.createdAtLocal == this.createdAtLocal &&
+          other.updatedAtLocal == this.updatedAtLocal &&
+          other.syncedAt == this.syncedAt &&
+          other.usuarioId == this.usuarioId &&
+          other.sitioId == this.sitioId &&
+          other.rutaId == this.rutaId &&
+          other.turnoId == this.turnoId &&
+          other.turnoFecha == this.turnoFecha &&
+          other.iniciadoAtDispositivo == this.iniciadoAtDispositivo &&
+          other.iniciadoMonotonicMs == this.iniciadoMonotonicMs &&
+          other.finalizadoAtDispositivo == this.finalizadoAtDispositivo &&
+          other.estadoLocal == this.estadoLocal &&
+          other.estadoValidacionServidor == this.estadoValidacionServidor &&
+          other.puntajeRiesgoServidor == this.puntajeRiesgoServidor &&
+          other.codigosRiesgoServidorJson == this.codigosRiesgoServidorJson);
+}
+
+class LocalRondinesCompanion extends UpdateCompanion<LocalRondine> {
+  final Value<String> localId;
+  final Value<String?> remoteId;
+  final Value<String> syncStatus;
+  final Value<String> syncError;
+  final Value<int> syncIntentos;
+  final Value<String> deviceId;
+  final Value<DateTime> createdAtLocal;
+  final Value<DateTime> updatedAtLocal;
+  final Value<DateTime?> syncedAt;
+  final Value<String> usuarioId;
+  final Value<String> sitioId;
+  final Value<String> rutaId;
+  final Value<String?> turnoId;
+  final Value<DateTime> turnoFecha;
+  final Value<DateTime> iniciadoAtDispositivo;
+  final Value<int> iniciadoMonotonicMs;
+  final Value<DateTime?> finalizadoAtDispositivo;
+  final Value<String> estadoLocal;
+  final Value<String?> estadoValidacionServidor;
+  final Value<int?> puntajeRiesgoServidor;
+  final Value<String?> codigosRiesgoServidorJson;
+  final Value<int> rowid;
+  const LocalRondinesCompanion({
+    this.localId = const Value.absent(),
+    this.remoteId = const Value.absent(),
+    this.syncStatus = const Value.absent(),
+    this.syncError = const Value.absent(),
+    this.syncIntentos = const Value.absent(),
+    this.deviceId = const Value.absent(),
+    this.createdAtLocal = const Value.absent(),
+    this.updatedAtLocal = const Value.absent(),
+    this.syncedAt = const Value.absent(),
+    this.usuarioId = const Value.absent(),
+    this.sitioId = const Value.absent(),
+    this.rutaId = const Value.absent(),
+    this.turnoId = const Value.absent(),
+    this.turnoFecha = const Value.absent(),
+    this.iniciadoAtDispositivo = const Value.absent(),
+    this.iniciadoMonotonicMs = const Value.absent(),
+    this.finalizadoAtDispositivo = const Value.absent(),
+    this.estadoLocal = const Value.absent(),
+    this.estadoValidacionServidor = const Value.absent(),
+    this.puntajeRiesgoServidor = const Value.absent(),
+    this.codigosRiesgoServidorJson = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  LocalRondinesCompanion.insert({
+    this.localId = const Value.absent(),
+    this.remoteId = const Value.absent(),
+    this.syncStatus = const Value.absent(),
+    this.syncError = const Value.absent(),
+    this.syncIntentos = const Value.absent(),
+    this.deviceId = const Value.absent(),
+    this.createdAtLocal = const Value.absent(),
+    this.updatedAtLocal = const Value.absent(),
+    this.syncedAt = const Value.absent(),
+    required String usuarioId,
+    required String sitioId,
+    required String rutaId,
+    this.turnoId = const Value.absent(),
+    required DateTime turnoFecha,
+    required DateTime iniciadoAtDispositivo,
+    required int iniciadoMonotonicMs,
+    this.finalizadoAtDispositivo = const Value.absent(),
+    this.estadoLocal = const Value.absent(),
+    this.estadoValidacionServidor = const Value.absent(),
+    this.puntajeRiesgoServidor = const Value.absent(),
+    this.codigosRiesgoServidorJson = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : usuarioId = Value(usuarioId),
+       sitioId = Value(sitioId),
+       rutaId = Value(rutaId),
+       turnoFecha = Value(turnoFecha),
+       iniciadoAtDispositivo = Value(iniciadoAtDispositivo),
+       iniciadoMonotonicMs = Value(iniciadoMonotonicMs);
+  static Insertable<LocalRondine> custom({
+    Expression<String>? localId,
+    Expression<String>? remoteId,
+    Expression<String>? syncStatus,
+    Expression<String>? syncError,
+    Expression<int>? syncIntentos,
+    Expression<String>? deviceId,
+    Expression<DateTime>? createdAtLocal,
+    Expression<DateTime>? updatedAtLocal,
+    Expression<DateTime>? syncedAt,
+    Expression<String>? usuarioId,
+    Expression<String>? sitioId,
+    Expression<String>? rutaId,
+    Expression<String>? turnoId,
+    Expression<DateTime>? turnoFecha,
+    Expression<DateTime>? iniciadoAtDispositivo,
+    Expression<int>? iniciadoMonotonicMs,
+    Expression<DateTime>? finalizadoAtDispositivo,
+    Expression<String>? estadoLocal,
+    Expression<String>? estadoValidacionServidor,
+    Expression<int>? puntajeRiesgoServidor,
+    Expression<String>? codigosRiesgoServidorJson,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (localId != null) 'local_id': localId,
+      if (remoteId != null) 'remote_id': remoteId,
+      if (syncStatus != null) 'sync_status': syncStatus,
+      if (syncError != null) 'sync_error': syncError,
+      if (syncIntentos != null) 'sync_intentos': syncIntentos,
+      if (deviceId != null) 'device_id': deviceId,
+      if (createdAtLocal != null) 'created_at_local': createdAtLocal,
+      if (updatedAtLocal != null) 'updated_at_local': updatedAtLocal,
+      if (syncedAt != null) 'synced_at': syncedAt,
+      if (usuarioId != null) 'usuario_id': usuarioId,
+      if (sitioId != null) 'sitio_id': sitioId,
+      if (rutaId != null) 'ruta_id': rutaId,
+      if (turnoId != null) 'turno_id': turnoId,
+      if (turnoFecha != null) 'turno_fecha': turnoFecha,
+      if (iniciadoAtDispositivo != null)
+        'iniciado_at_dispositivo': iniciadoAtDispositivo,
+      if (iniciadoMonotonicMs != null)
+        'iniciado_monotonic_ms': iniciadoMonotonicMs,
+      if (finalizadoAtDispositivo != null)
+        'finalizado_at_dispositivo': finalizadoAtDispositivo,
+      if (estadoLocal != null) 'estado_local': estadoLocal,
+      if (estadoValidacionServidor != null)
+        'estado_validacion_servidor': estadoValidacionServidor,
+      if (puntajeRiesgoServidor != null)
+        'puntaje_riesgo_servidor': puntajeRiesgoServidor,
+      if (codigosRiesgoServidorJson != null)
+        'codigos_riesgo_servidor_json': codigosRiesgoServidorJson,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  LocalRondinesCompanion copyWith({
+    Value<String>? localId,
+    Value<String?>? remoteId,
+    Value<String>? syncStatus,
+    Value<String>? syncError,
+    Value<int>? syncIntentos,
+    Value<String>? deviceId,
+    Value<DateTime>? createdAtLocal,
+    Value<DateTime>? updatedAtLocal,
+    Value<DateTime?>? syncedAt,
+    Value<String>? usuarioId,
+    Value<String>? sitioId,
+    Value<String>? rutaId,
+    Value<String?>? turnoId,
+    Value<DateTime>? turnoFecha,
+    Value<DateTime>? iniciadoAtDispositivo,
+    Value<int>? iniciadoMonotonicMs,
+    Value<DateTime?>? finalizadoAtDispositivo,
+    Value<String>? estadoLocal,
+    Value<String?>? estadoValidacionServidor,
+    Value<int?>? puntajeRiesgoServidor,
+    Value<String?>? codigosRiesgoServidorJson,
+    Value<int>? rowid,
+  }) {
+    return LocalRondinesCompanion(
+      localId: localId ?? this.localId,
+      remoteId: remoteId ?? this.remoteId,
+      syncStatus: syncStatus ?? this.syncStatus,
+      syncError: syncError ?? this.syncError,
+      syncIntentos: syncIntentos ?? this.syncIntentos,
+      deviceId: deviceId ?? this.deviceId,
+      createdAtLocal: createdAtLocal ?? this.createdAtLocal,
+      updatedAtLocal: updatedAtLocal ?? this.updatedAtLocal,
+      syncedAt: syncedAt ?? this.syncedAt,
+      usuarioId: usuarioId ?? this.usuarioId,
+      sitioId: sitioId ?? this.sitioId,
+      rutaId: rutaId ?? this.rutaId,
+      turnoId: turnoId ?? this.turnoId,
+      turnoFecha: turnoFecha ?? this.turnoFecha,
+      iniciadoAtDispositivo:
+          iniciadoAtDispositivo ?? this.iniciadoAtDispositivo,
+      iniciadoMonotonicMs: iniciadoMonotonicMs ?? this.iniciadoMonotonicMs,
+      finalizadoAtDispositivo:
+          finalizadoAtDispositivo ?? this.finalizadoAtDispositivo,
+      estadoLocal: estadoLocal ?? this.estadoLocal,
+      estadoValidacionServidor:
+          estadoValidacionServidor ?? this.estadoValidacionServidor,
+      puntajeRiesgoServidor:
+          puntajeRiesgoServidor ?? this.puntajeRiesgoServidor,
+      codigosRiesgoServidorJson:
+          codigosRiesgoServidorJson ?? this.codigosRiesgoServidorJson,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (localId.present) {
+      map['local_id'] = Variable<String>(localId.value);
+    }
+    if (remoteId.present) {
+      map['remote_id'] = Variable<String>(remoteId.value);
+    }
+    if (syncStatus.present) {
+      map['sync_status'] = Variable<String>(syncStatus.value);
+    }
+    if (syncError.present) {
+      map['sync_error'] = Variable<String>(syncError.value);
+    }
+    if (syncIntentos.present) {
+      map['sync_intentos'] = Variable<int>(syncIntentos.value);
+    }
+    if (deviceId.present) {
+      map['device_id'] = Variable<String>(deviceId.value);
+    }
+    if (createdAtLocal.present) {
+      map['created_at_local'] = Variable<DateTime>(createdAtLocal.value);
+    }
+    if (updatedAtLocal.present) {
+      map['updated_at_local'] = Variable<DateTime>(updatedAtLocal.value);
+    }
+    if (syncedAt.present) {
+      map['synced_at'] = Variable<DateTime>(syncedAt.value);
+    }
+    if (usuarioId.present) {
+      map['usuario_id'] = Variable<String>(usuarioId.value);
+    }
+    if (sitioId.present) {
+      map['sitio_id'] = Variable<String>(sitioId.value);
+    }
+    if (rutaId.present) {
+      map['ruta_id'] = Variable<String>(rutaId.value);
+    }
+    if (turnoId.present) {
+      map['turno_id'] = Variable<String>(turnoId.value);
+    }
+    if (turnoFecha.present) {
+      map['turno_fecha'] = Variable<DateTime>(turnoFecha.value);
+    }
+    if (iniciadoAtDispositivo.present) {
+      map['iniciado_at_dispositivo'] = Variable<DateTime>(
+        iniciadoAtDispositivo.value,
+      );
+    }
+    if (iniciadoMonotonicMs.present) {
+      map['iniciado_monotonic_ms'] = Variable<int>(iniciadoMonotonicMs.value);
+    }
+    if (finalizadoAtDispositivo.present) {
+      map['finalizado_at_dispositivo'] = Variable<DateTime>(
+        finalizadoAtDispositivo.value,
+      );
+    }
+    if (estadoLocal.present) {
+      map['estado_local'] = Variable<String>(estadoLocal.value);
+    }
+    if (estadoValidacionServidor.present) {
+      map['estado_validacion_servidor'] = Variable<String>(
+        estadoValidacionServidor.value,
+      );
+    }
+    if (puntajeRiesgoServidor.present) {
+      map['puntaje_riesgo_servidor'] = Variable<int>(
+        puntajeRiesgoServidor.value,
+      );
+    }
+    if (codigosRiesgoServidorJson.present) {
+      map['codigos_riesgo_servidor_json'] = Variable<String>(
+        codigosRiesgoServidorJson.value,
+      );
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('LocalRondinesCompanion(')
+          ..write('localId: $localId, ')
+          ..write('remoteId: $remoteId, ')
+          ..write('syncStatus: $syncStatus, ')
+          ..write('syncError: $syncError, ')
+          ..write('syncIntentos: $syncIntentos, ')
+          ..write('deviceId: $deviceId, ')
+          ..write('createdAtLocal: $createdAtLocal, ')
+          ..write('updatedAtLocal: $updatedAtLocal, ')
+          ..write('syncedAt: $syncedAt, ')
+          ..write('usuarioId: $usuarioId, ')
+          ..write('sitioId: $sitioId, ')
+          ..write('rutaId: $rutaId, ')
+          ..write('turnoId: $turnoId, ')
+          ..write('turnoFecha: $turnoFecha, ')
+          ..write('iniciadoAtDispositivo: $iniciadoAtDispositivo, ')
+          ..write('iniciadoMonotonicMs: $iniciadoMonotonicMs, ')
+          ..write('finalizadoAtDispositivo: $finalizadoAtDispositivo, ')
+          ..write('estadoLocal: $estadoLocal, ')
+          ..write('estadoValidacionServidor: $estadoValidacionServidor, ')
+          ..write('puntajeRiesgoServidor: $puntajeRiesgoServidor, ')
+          ..write('codigosRiesgoServidorJson: $codigosRiesgoServidorJson, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $LocalRondinLecturasTable extends LocalRondinLecturas
+    with TableInfo<$LocalRondinLecturasTable, LocalRondinLectura> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $LocalRondinLecturasTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _localIdMeta = const VerificationMeta(
+    'localId',
+  );
+  @override
+  late final GeneratedColumn<String> localId = GeneratedColumn<String>(
+    'local_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    clientDefault: () => _uuid.v4(),
+  );
+  static const VerificationMeta _remoteIdMeta = const VerificationMeta(
+    'remoteId',
+  );
+  @override
+  late final GeneratedColumn<String> remoteId = GeneratedColumn<String>(
+    'remote_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _syncStatusMeta = const VerificationMeta(
+    'syncStatus',
+  );
+  @override
+  late final GeneratedColumn<String> syncStatus = GeneratedColumn<String>(
+    'sync_status',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('pendiente'),
+  );
+  static const VerificationMeta _syncErrorMeta = const VerificationMeta(
+    'syncError',
+  );
+  @override
+  late final GeneratedColumn<String> syncError = GeneratedColumn<String>(
+    'sync_error',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(''),
+  );
+  static const VerificationMeta _syncIntentosMeta = const VerificationMeta(
+    'syncIntentos',
+  );
+  @override
+  late final GeneratedColumn<int> syncIntentos = GeneratedColumn<int>(
+    'sync_intentos',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _deviceIdMeta = const VerificationMeta(
+    'deviceId',
+  );
+  @override
+  late final GeneratedColumn<String> deviceId = GeneratedColumn<String>(
+    'device_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(''),
+  );
+  static const VerificationMeta _createdAtLocalMeta = const VerificationMeta(
+    'createdAtLocal',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAtLocal =
+      GeneratedColumn<DateTime>(
+        'created_at_local',
+        aliasedName,
+        false,
+        type: DriftSqlType.dateTime,
+        requiredDuringInsert: false,
+        clientDefault: DateTime.now,
+      );
+  static const VerificationMeta _updatedAtLocalMeta = const VerificationMeta(
+    'updatedAtLocal',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAtLocal =
+      GeneratedColumn<DateTime>(
+        'updated_at_local',
+        aliasedName,
+        false,
+        type: DriftSqlType.dateTime,
+        requiredDuringInsert: false,
+        clientDefault: DateTime.now,
+      );
+  static const VerificationMeta _syncedAtMeta = const VerificationMeta(
+    'syncedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> syncedAt = GeneratedColumn<DateTime>(
+    'synced_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _rondinLocalIdMeta = const VerificationMeta(
+    'rondinLocalId',
+  );
+  @override
+  late final GeneratedColumn<String> rondinLocalId = GeneratedColumn<String>(
+    'rondin_local_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _puntoIdMeta = const VerificationMeta(
+    'puntoId',
+  );
+  @override
+  late final GeneratedColumn<String> puntoId = GeneratedColumn<String>(
+    'punto_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _secuenciaMeta = const VerificationMeta(
+    'secuencia',
+  );
+  @override
+  late final GeneratedColumn<int> secuencia = GeneratedColumn<int>(
+    'secuencia',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _capturadoAtDispositivoMeta =
+      const VerificationMeta('capturadoAtDispositivo');
+  @override
+  late final GeneratedColumn<DateTime> capturadoAtDispositivo =
+      GeneratedColumn<DateTime>(
+        'capturado_at_dispositivo',
+        aliasedName,
+        false,
+        type: DriftSqlType.dateTime,
+        requiredDuringInsert: true,
+      );
+  static const VerificationMeta _monotonicMsMeta = const VerificationMeta(
+    'monotonicMs',
+  );
+  @override
+  late final GeneratedColumn<int> monotonicMs = GeneratedColumn<int>(
+    'monotonic_ms',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _bootCountMeta = const VerificationMeta(
+    'bootCount',
+  );
+  @override
+  late final GeneratedColumn<int> bootCount = GeneratedColumn<int>(
+    'boot_count',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _latMeta = const VerificationMeta('lat');
+  @override
+  late final GeneratedColumn<double> lat = GeneratedColumn<double>(
+    'lat',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _lngMeta = const VerificationMeta('lng');
+  @override
+  late final GeneratedColumn<double> lng = GeneratedColumn<double>(
+    'lng',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _gpsAccuracyMMeta = const VerificationMeta(
+    'gpsAccuracyM',
+  );
+  @override
+  late final GeneratedColumn<double> gpsAccuracyM = GeneratedColumn<double>(
+    'gps_accuracy_m',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _gpsAgeMsMeta = const VerificationMeta(
+    'gpsAgeMs',
+  );
+  @override
+  late final GeneratedColumn<int> gpsAgeMs = GeneratedColumn<int>(
+    'gps_age_ms',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _ubicacionSimuladaMeta = const VerificationMeta(
+    'ubicacionSimulada',
+  );
+  @override
+  late final GeneratedColumn<bool> ubicacionSimulada = GeneratedColumn<bool>(
+    'ubicacion_simulada',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("ubicacion_simulada" IN (0, 1))',
+    ),
+    defaultValue: const Constant(false),
+  );
+  static const VerificationMeta _wifiBssidMeta = const VerificationMeta(
+    'wifiBssid',
+  );
+  @override
+  late final GeneratedColumn<String> wifiBssid = GeneratedColumn<String>(
+    'wifi_bssid',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _wifiSsidMeta = const VerificationMeta(
+    'wifiSsid',
+  );
+  @override
+  late final GeneratedColumn<String> wifiSsid = GeneratedColumn<String>(
+    'wifi_ssid',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _tokenVersionMeta = const VerificationMeta(
+    'tokenVersion',
+  );
+  @override
+  late final GeneratedColumn<int> tokenVersion = GeneratedColumn<int>(
+    'token_version',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _qrPayloadRawMeta = const VerificationMeta(
+    'qrPayloadRaw',
+  );
+  @override
+  late final GeneratedColumn<String> qrPayloadRaw = GeneratedColumn<String>(
+    'qr_payload_raw',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(''),
+  );
+  static const VerificationMeta _qrPayloadHashMeta = const VerificationMeta(
+    'qrPayloadHash',
+  );
+  @override
+  late final GeneratedColumn<String> qrPayloadHash = GeneratedColumn<String>(
+    'qr_payload_hash',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _livenessPassedMeta = const VerificationMeta(
+    'livenessPassed',
+  );
+  @override
+  late final GeneratedColumn<bool> livenessPassed = GeneratedColumn<bool>(
+    'liveness_passed',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("liveness_passed" IN (0, 1))',
+    ),
+    defaultValue: const Constant(false),
+  );
+  static const VerificationMeta _horaAutomaticaMeta = const VerificationMeta(
+    'horaAutomatica',
+  );
+  @override
+  late final GeneratedColumn<bool> horaAutomatica = GeneratedColumn<bool>(
+    'hora_automatica',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("hora_automatica" IN (0, 1))',
+    ),
+    defaultValue: const Constant(true),
+  );
+  static const VerificationMeta _opcionesDesarrolladorMeta =
+      const VerificationMeta('opcionesDesarrollador');
+  @override
+  late final GeneratedColumn<bool> opcionesDesarrollador =
+      GeneratedColumn<bool>(
+        'opciones_desarrollador',
+        aliasedName,
+        false,
+        type: DriftSqlType.bool,
+        requiredDuringInsert: false,
+        defaultConstraints: GeneratedColumn.constraintIsAlways(
+          'CHECK ("opciones_desarrollador" IN (0, 1))',
+        ),
+        defaultValue: const Constant(false),
+      );
+  static const VerificationMeta _adbActivoMeta = const VerificationMeta(
+    'adbActivo',
+  );
+  @override
+  late final GeneratedColumn<bool> adbActivo = GeneratedColumn<bool>(
+    'adb_activo',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("adb_activo" IN (0, 1))',
+    ),
+    defaultValue: const Constant(false),
+  );
+  static const VerificationMeta _hashAnteriorMeta = const VerificationMeta(
+    'hashAnterior',
+  );
+  @override
+  late final GeneratedColumn<String> hashAnterior = GeneratedColumn<String>(
+    'hash_anterior',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _hashEventoMeta = const VerificationMeta(
+    'hashEvento',
+  );
+  @override
+  late final GeneratedColumn<String> hashEvento = GeneratedColumn<String>(
+    'hash_evento',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _validacionLocalMeta = const VerificationMeta(
+    'validacionLocal',
+  );
+  @override
+  late final GeneratedColumn<String> validacionLocal = GeneratedColumn<String>(
+    'validacion_local',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('capturado_offline'),
+  );
+  static const VerificationMeta _codigosRiesgoLocalJsonMeta =
+      const VerificationMeta('codigosRiesgoLocalJson');
+  @override
+  late final GeneratedColumn<String> codigosRiesgoLocalJson =
+      GeneratedColumn<String>(
+        'codigos_riesgo_local_json',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+        defaultValue: const Constant('[]'),
+      );
+  static const VerificationMeta _estadoValidacionServidorMeta =
+      const VerificationMeta('estadoValidacionServidor');
+  @override
+  late final GeneratedColumn<String> estadoValidacionServidor =
+      GeneratedColumn<String>(
+        'estado_validacion_servidor',
+        aliasedName,
+        true,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+      );
+  static const VerificationMeta _puntajeRiesgoServidorMeta =
+      const VerificationMeta('puntajeRiesgoServidor');
+  @override
+  late final GeneratedColumn<int> puntajeRiesgoServidor = GeneratedColumn<int>(
+    'puntaje_riesgo_servidor',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _codigosRiesgoServidorJsonMeta =
+      const VerificationMeta('codigosRiesgoServidorJson');
+  @override
+  late final GeneratedColumn<String> codigosRiesgoServidorJson =
+      GeneratedColumn<String>(
+        'codigos_riesgo_servidor_json',
+        aliasedName,
+        true,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+      );
+  @override
+  List<GeneratedColumn> get $columns => [
+    localId,
+    remoteId,
+    syncStatus,
+    syncError,
+    syncIntentos,
+    deviceId,
+    createdAtLocal,
+    updatedAtLocal,
+    syncedAt,
+    rondinLocalId,
+    puntoId,
+    secuencia,
+    capturadoAtDispositivo,
+    monotonicMs,
+    bootCount,
+    lat,
+    lng,
+    gpsAccuracyM,
+    gpsAgeMs,
+    ubicacionSimulada,
+    wifiBssid,
+    wifiSsid,
+    tokenVersion,
+    qrPayloadRaw,
+    qrPayloadHash,
+    livenessPassed,
+    horaAutomatica,
+    opcionesDesarrollador,
+    adbActivo,
+    hashAnterior,
+    hashEvento,
+    validacionLocal,
+    codigosRiesgoLocalJson,
+    estadoValidacionServidor,
+    puntajeRiesgoServidor,
+    codigosRiesgoServidorJson,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'local_rondin_lecturas';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<LocalRondinLectura> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('local_id')) {
+      context.handle(
+        _localIdMeta,
+        localId.isAcceptableOrUnknown(data['local_id']!, _localIdMeta),
+      );
+    }
+    if (data.containsKey('remote_id')) {
+      context.handle(
+        _remoteIdMeta,
+        remoteId.isAcceptableOrUnknown(data['remote_id']!, _remoteIdMeta),
+      );
+    }
+    if (data.containsKey('sync_status')) {
+      context.handle(
+        _syncStatusMeta,
+        syncStatus.isAcceptableOrUnknown(data['sync_status']!, _syncStatusMeta),
+      );
+    }
+    if (data.containsKey('sync_error')) {
+      context.handle(
+        _syncErrorMeta,
+        syncError.isAcceptableOrUnknown(data['sync_error']!, _syncErrorMeta),
+      );
+    }
+    if (data.containsKey('sync_intentos')) {
+      context.handle(
+        _syncIntentosMeta,
+        syncIntentos.isAcceptableOrUnknown(
+          data['sync_intentos']!,
+          _syncIntentosMeta,
+        ),
+      );
+    }
+    if (data.containsKey('device_id')) {
+      context.handle(
+        _deviceIdMeta,
+        deviceId.isAcceptableOrUnknown(data['device_id']!, _deviceIdMeta),
+      );
+    }
+    if (data.containsKey('created_at_local')) {
+      context.handle(
+        _createdAtLocalMeta,
+        createdAtLocal.isAcceptableOrUnknown(
+          data['created_at_local']!,
+          _createdAtLocalMeta,
+        ),
+      );
+    }
+    if (data.containsKey('updated_at_local')) {
+      context.handle(
+        _updatedAtLocalMeta,
+        updatedAtLocal.isAcceptableOrUnknown(
+          data['updated_at_local']!,
+          _updatedAtLocalMeta,
+        ),
+      );
+    }
+    if (data.containsKey('synced_at')) {
+      context.handle(
+        _syncedAtMeta,
+        syncedAt.isAcceptableOrUnknown(data['synced_at']!, _syncedAtMeta),
+      );
+    }
+    if (data.containsKey('rondin_local_id')) {
+      context.handle(
+        _rondinLocalIdMeta,
+        rondinLocalId.isAcceptableOrUnknown(
+          data['rondin_local_id']!,
+          _rondinLocalIdMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_rondinLocalIdMeta);
+    }
+    if (data.containsKey('punto_id')) {
+      context.handle(
+        _puntoIdMeta,
+        puntoId.isAcceptableOrUnknown(data['punto_id']!, _puntoIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_puntoIdMeta);
+    }
+    if (data.containsKey('secuencia')) {
+      context.handle(
+        _secuenciaMeta,
+        secuencia.isAcceptableOrUnknown(data['secuencia']!, _secuenciaMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_secuenciaMeta);
+    }
+    if (data.containsKey('capturado_at_dispositivo')) {
+      context.handle(
+        _capturadoAtDispositivoMeta,
+        capturadoAtDispositivo.isAcceptableOrUnknown(
+          data['capturado_at_dispositivo']!,
+          _capturadoAtDispositivoMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_capturadoAtDispositivoMeta);
+    }
+    if (data.containsKey('monotonic_ms')) {
+      context.handle(
+        _monotonicMsMeta,
+        monotonicMs.isAcceptableOrUnknown(
+          data['monotonic_ms']!,
+          _monotonicMsMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_monotonicMsMeta);
+    }
+    if (data.containsKey('boot_count')) {
+      context.handle(
+        _bootCountMeta,
+        bootCount.isAcceptableOrUnknown(data['boot_count']!, _bootCountMeta),
+      );
+    }
+    if (data.containsKey('lat')) {
+      context.handle(
+        _latMeta,
+        lat.isAcceptableOrUnknown(data['lat']!, _latMeta),
+      );
+    }
+    if (data.containsKey('lng')) {
+      context.handle(
+        _lngMeta,
+        lng.isAcceptableOrUnknown(data['lng']!, _lngMeta),
+      );
+    }
+    if (data.containsKey('gps_accuracy_m')) {
+      context.handle(
+        _gpsAccuracyMMeta,
+        gpsAccuracyM.isAcceptableOrUnknown(
+          data['gps_accuracy_m']!,
+          _gpsAccuracyMMeta,
+        ),
+      );
+    }
+    if (data.containsKey('gps_age_ms')) {
+      context.handle(
+        _gpsAgeMsMeta,
+        gpsAgeMs.isAcceptableOrUnknown(data['gps_age_ms']!, _gpsAgeMsMeta),
+      );
+    }
+    if (data.containsKey('ubicacion_simulada')) {
+      context.handle(
+        _ubicacionSimuladaMeta,
+        ubicacionSimulada.isAcceptableOrUnknown(
+          data['ubicacion_simulada']!,
+          _ubicacionSimuladaMeta,
+        ),
+      );
+    }
+    if (data.containsKey('wifi_bssid')) {
+      context.handle(
+        _wifiBssidMeta,
+        wifiBssid.isAcceptableOrUnknown(data['wifi_bssid']!, _wifiBssidMeta),
+      );
+    }
+    if (data.containsKey('wifi_ssid')) {
+      context.handle(
+        _wifiSsidMeta,
+        wifiSsid.isAcceptableOrUnknown(data['wifi_ssid']!, _wifiSsidMeta),
+      );
+    }
+    if (data.containsKey('token_version')) {
+      context.handle(
+        _tokenVersionMeta,
+        tokenVersion.isAcceptableOrUnknown(
+          data['token_version']!,
+          _tokenVersionMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_tokenVersionMeta);
+    }
+    if (data.containsKey('qr_payload_raw')) {
+      context.handle(
+        _qrPayloadRawMeta,
+        qrPayloadRaw.isAcceptableOrUnknown(
+          data['qr_payload_raw']!,
+          _qrPayloadRawMeta,
+        ),
+      );
+    }
+    if (data.containsKey('qr_payload_hash')) {
+      context.handle(
+        _qrPayloadHashMeta,
+        qrPayloadHash.isAcceptableOrUnknown(
+          data['qr_payload_hash']!,
+          _qrPayloadHashMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_qrPayloadHashMeta);
+    }
+    if (data.containsKey('liveness_passed')) {
+      context.handle(
+        _livenessPassedMeta,
+        livenessPassed.isAcceptableOrUnknown(
+          data['liveness_passed']!,
+          _livenessPassedMeta,
+        ),
+      );
+    }
+    if (data.containsKey('hora_automatica')) {
+      context.handle(
+        _horaAutomaticaMeta,
+        horaAutomatica.isAcceptableOrUnknown(
+          data['hora_automatica']!,
+          _horaAutomaticaMeta,
+        ),
+      );
+    }
+    if (data.containsKey('opciones_desarrollador')) {
+      context.handle(
+        _opcionesDesarrolladorMeta,
+        opcionesDesarrollador.isAcceptableOrUnknown(
+          data['opciones_desarrollador']!,
+          _opcionesDesarrolladorMeta,
+        ),
+      );
+    }
+    if (data.containsKey('adb_activo')) {
+      context.handle(
+        _adbActivoMeta,
+        adbActivo.isAcceptableOrUnknown(data['adb_activo']!, _adbActivoMeta),
+      );
+    }
+    if (data.containsKey('hash_anterior')) {
+      context.handle(
+        _hashAnteriorMeta,
+        hashAnterior.isAcceptableOrUnknown(
+          data['hash_anterior']!,
+          _hashAnteriorMeta,
+        ),
+      );
+    }
+    if (data.containsKey('hash_evento')) {
+      context.handle(
+        _hashEventoMeta,
+        hashEvento.isAcceptableOrUnknown(data['hash_evento']!, _hashEventoMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_hashEventoMeta);
+    }
+    if (data.containsKey('validacion_local')) {
+      context.handle(
+        _validacionLocalMeta,
+        validacionLocal.isAcceptableOrUnknown(
+          data['validacion_local']!,
+          _validacionLocalMeta,
+        ),
+      );
+    }
+    if (data.containsKey('codigos_riesgo_local_json')) {
+      context.handle(
+        _codigosRiesgoLocalJsonMeta,
+        codigosRiesgoLocalJson.isAcceptableOrUnknown(
+          data['codigos_riesgo_local_json']!,
+          _codigosRiesgoLocalJsonMeta,
+        ),
+      );
+    }
+    if (data.containsKey('estado_validacion_servidor')) {
+      context.handle(
+        _estadoValidacionServidorMeta,
+        estadoValidacionServidor.isAcceptableOrUnknown(
+          data['estado_validacion_servidor']!,
+          _estadoValidacionServidorMeta,
+        ),
+      );
+    }
+    if (data.containsKey('puntaje_riesgo_servidor')) {
+      context.handle(
+        _puntajeRiesgoServidorMeta,
+        puntajeRiesgoServidor.isAcceptableOrUnknown(
+          data['puntaje_riesgo_servidor']!,
+          _puntajeRiesgoServidorMeta,
+        ),
+      );
+    }
+    if (data.containsKey('codigos_riesgo_servidor_json')) {
+      context.handle(
+        _codigosRiesgoServidorJsonMeta,
+        codigosRiesgoServidorJson.isAcceptableOrUnknown(
+          data['codigos_riesgo_servidor_json']!,
+          _codigosRiesgoServidorJsonMeta,
+        ),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {localId};
+  @override
+  LocalRondinLectura map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return LocalRondinLectura(
+      localId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}local_id'],
+      )!,
+      remoteId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}remote_id'],
+      ),
+      syncStatus: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}sync_status'],
+      )!,
+      syncError: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}sync_error'],
+      )!,
+      syncIntentos: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}sync_intentos'],
+      )!,
+      deviceId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}device_id'],
+      )!,
+      createdAtLocal: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at_local'],
+      )!,
+      updatedAtLocal: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at_local'],
+      )!,
+      syncedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}synced_at'],
+      ),
+      rondinLocalId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}rondin_local_id'],
+      )!,
+      puntoId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}punto_id'],
+      )!,
+      secuencia: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}secuencia'],
+      )!,
+      capturadoAtDispositivo: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}capturado_at_dispositivo'],
+      )!,
+      monotonicMs: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}monotonic_ms'],
+      )!,
+      bootCount: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}boot_count'],
+      )!,
+      lat: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}lat'],
+      ),
+      lng: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}lng'],
+      ),
+      gpsAccuracyM: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}gps_accuracy_m'],
+      ),
+      gpsAgeMs: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}gps_age_ms'],
+      ),
+      ubicacionSimulada: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}ubicacion_simulada'],
+      )!,
+      wifiBssid: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}wifi_bssid'],
+      ),
+      wifiSsid: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}wifi_ssid'],
+      ),
+      tokenVersion: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}token_version'],
+      )!,
+      qrPayloadRaw: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}qr_payload_raw'],
+      )!,
+      qrPayloadHash: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}qr_payload_hash'],
+      )!,
+      livenessPassed: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}liveness_passed'],
+      )!,
+      horaAutomatica: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}hora_automatica'],
+      )!,
+      opcionesDesarrollador: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}opciones_desarrollador'],
+      )!,
+      adbActivo: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}adb_activo'],
+      )!,
+      hashAnterior: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}hash_anterior'],
+      ),
+      hashEvento: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}hash_evento'],
+      )!,
+      validacionLocal: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}validacion_local'],
+      )!,
+      codigosRiesgoLocalJson: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}codigos_riesgo_local_json'],
+      )!,
+      estadoValidacionServidor: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}estado_validacion_servidor'],
+      ),
+      puntajeRiesgoServidor: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}puntaje_riesgo_servidor'],
+      ),
+      codigosRiesgoServidorJson: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}codigos_riesgo_servidor_json'],
+      ),
+    );
+  }
+
+  @override
+  $LocalRondinLecturasTable createAlias(String alias) {
+    return $LocalRondinLecturasTable(attachedDatabase, alias);
+  }
+}
+
+class LocalRondinLectura extends DataClass
+    implements Insertable<LocalRondinLectura> {
+  final String localId;
+
+  /// UUID que asignó Supabase. Nulo mientras no se haya sincronizado.
+  final String? remoteId;
+
+  /// pendiente | sincronizando | sincronizado | fallido
+  final String syncStatus;
+  final String syncError;
+
+  /// Se pausan los reintentos al llegar al máximo para no quemar batería
+  /// reintentando algo que falla por una razón que no se va a resolver sola
+  /// (por ejemplo, violar un CHECK del servidor).
+  final int syncIntentos;
+  final String deviceId;
+  final DateTime createdAtLocal;
+  final DateTime updatedAtLocal;
+  final DateTime? syncedAt;
+  final String rondinLocalId;
+  final String puntoId;
+  final int secuencia;
+  final DateTime capturadoAtDispositivo;
+  final int monotonicMs;
+  final int bootCount;
+  final double? lat;
+  final double? lng;
+  final double? gpsAccuracyM;
+  final int? gpsAgeMs;
+  final bool ubicacionSimulada;
+  final String? wifiBssid;
+  final String? wifiSsid;
+  final int tokenVersion;
+
+  /// Payload RAW capturado por cámara. Es necesario para que el servidor
+  /// autentique el token; se vacía atómicamente después de sincronizar.
+  final String qrPayloadRaw;
+  final String qrPayloadHash;
+  final bool livenessPassed;
+  final bool horaAutomatica;
+  final bool opcionesDesarrollador;
+  final bool adbActivo;
+  final String? hashAnterior;
+  final String hashEvento;
+  final String validacionLocal;
+  final String codigosRiesgoLocalJson;
+  final String? estadoValidacionServidor;
+  final int? puntajeRiesgoServidor;
+  final String? codigosRiesgoServidorJson;
+  const LocalRondinLectura({
+    required this.localId,
+    this.remoteId,
+    required this.syncStatus,
+    required this.syncError,
+    required this.syncIntentos,
+    required this.deviceId,
+    required this.createdAtLocal,
+    required this.updatedAtLocal,
+    this.syncedAt,
+    required this.rondinLocalId,
+    required this.puntoId,
+    required this.secuencia,
+    required this.capturadoAtDispositivo,
+    required this.monotonicMs,
+    required this.bootCount,
+    this.lat,
+    this.lng,
+    this.gpsAccuracyM,
+    this.gpsAgeMs,
+    required this.ubicacionSimulada,
+    this.wifiBssid,
+    this.wifiSsid,
+    required this.tokenVersion,
+    required this.qrPayloadRaw,
+    required this.qrPayloadHash,
+    required this.livenessPassed,
+    required this.horaAutomatica,
+    required this.opcionesDesarrollador,
+    required this.adbActivo,
+    this.hashAnterior,
+    required this.hashEvento,
+    required this.validacionLocal,
+    required this.codigosRiesgoLocalJson,
+    this.estadoValidacionServidor,
+    this.puntajeRiesgoServidor,
+    this.codigosRiesgoServidorJson,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['local_id'] = Variable<String>(localId);
+    if (!nullToAbsent || remoteId != null) {
+      map['remote_id'] = Variable<String>(remoteId);
+    }
+    map['sync_status'] = Variable<String>(syncStatus);
+    map['sync_error'] = Variable<String>(syncError);
+    map['sync_intentos'] = Variable<int>(syncIntentos);
+    map['device_id'] = Variable<String>(deviceId);
+    map['created_at_local'] = Variable<DateTime>(createdAtLocal);
+    map['updated_at_local'] = Variable<DateTime>(updatedAtLocal);
+    if (!nullToAbsent || syncedAt != null) {
+      map['synced_at'] = Variable<DateTime>(syncedAt);
+    }
+    map['rondin_local_id'] = Variable<String>(rondinLocalId);
+    map['punto_id'] = Variable<String>(puntoId);
+    map['secuencia'] = Variable<int>(secuencia);
+    map['capturado_at_dispositivo'] = Variable<DateTime>(
+      capturadoAtDispositivo,
+    );
+    map['monotonic_ms'] = Variable<int>(monotonicMs);
+    map['boot_count'] = Variable<int>(bootCount);
+    if (!nullToAbsent || lat != null) {
+      map['lat'] = Variable<double>(lat);
+    }
+    if (!nullToAbsent || lng != null) {
+      map['lng'] = Variable<double>(lng);
+    }
+    if (!nullToAbsent || gpsAccuracyM != null) {
+      map['gps_accuracy_m'] = Variable<double>(gpsAccuracyM);
+    }
+    if (!nullToAbsent || gpsAgeMs != null) {
+      map['gps_age_ms'] = Variable<int>(gpsAgeMs);
+    }
+    map['ubicacion_simulada'] = Variable<bool>(ubicacionSimulada);
+    if (!nullToAbsent || wifiBssid != null) {
+      map['wifi_bssid'] = Variable<String>(wifiBssid);
+    }
+    if (!nullToAbsent || wifiSsid != null) {
+      map['wifi_ssid'] = Variable<String>(wifiSsid);
+    }
+    map['token_version'] = Variable<int>(tokenVersion);
+    map['qr_payload_raw'] = Variable<String>(qrPayloadRaw);
+    map['qr_payload_hash'] = Variable<String>(qrPayloadHash);
+    map['liveness_passed'] = Variable<bool>(livenessPassed);
+    map['hora_automatica'] = Variable<bool>(horaAutomatica);
+    map['opciones_desarrollador'] = Variable<bool>(opcionesDesarrollador);
+    map['adb_activo'] = Variable<bool>(adbActivo);
+    if (!nullToAbsent || hashAnterior != null) {
+      map['hash_anterior'] = Variable<String>(hashAnterior);
+    }
+    map['hash_evento'] = Variable<String>(hashEvento);
+    map['validacion_local'] = Variable<String>(validacionLocal);
+    map['codigos_riesgo_local_json'] = Variable<String>(codigosRiesgoLocalJson);
+    if (!nullToAbsent || estadoValidacionServidor != null) {
+      map['estado_validacion_servidor'] = Variable<String>(
+        estadoValidacionServidor,
+      );
+    }
+    if (!nullToAbsent || puntajeRiesgoServidor != null) {
+      map['puntaje_riesgo_servidor'] = Variable<int>(puntajeRiesgoServidor);
+    }
+    if (!nullToAbsent || codigosRiesgoServidorJson != null) {
+      map['codigos_riesgo_servidor_json'] = Variable<String>(
+        codigosRiesgoServidorJson,
+      );
+    }
+    return map;
+  }
+
+  LocalRondinLecturasCompanion toCompanion(bool nullToAbsent) {
+    return LocalRondinLecturasCompanion(
+      localId: Value(localId),
+      remoteId: remoteId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(remoteId),
+      syncStatus: Value(syncStatus),
+      syncError: Value(syncError),
+      syncIntentos: Value(syncIntentos),
+      deviceId: Value(deviceId),
+      createdAtLocal: Value(createdAtLocal),
+      updatedAtLocal: Value(updatedAtLocal),
+      syncedAt: syncedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(syncedAt),
+      rondinLocalId: Value(rondinLocalId),
+      puntoId: Value(puntoId),
+      secuencia: Value(secuencia),
+      capturadoAtDispositivo: Value(capturadoAtDispositivo),
+      monotonicMs: Value(monotonicMs),
+      bootCount: Value(bootCount),
+      lat: lat == null && nullToAbsent ? const Value.absent() : Value(lat),
+      lng: lng == null && nullToAbsent ? const Value.absent() : Value(lng),
+      gpsAccuracyM: gpsAccuracyM == null && nullToAbsent
+          ? const Value.absent()
+          : Value(gpsAccuracyM),
+      gpsAgeMs: gpsAgeMs == null && nullToAbsent
+          ? const Value.absent()
+          : Value(gpsAgeMs),
+      ubicacionSimulada: Value(ubicacionSimulada),
+      wifiBssid: wifiBssid == null && nullToAbsent
+          ? const Value.absent()
+          : Value(wifiBssid),
+      wifiSsid: wifiSsid == null && nullToAbsent
+          ? const Value.absent()
+          : Value(wifiSsid),
+      tokenVersion: Value(tokenVersion),
+      qrPayloadRaw: Value(qrPayloadRaw),
+      qrPayloadHash: Value(qrPayloadHash),
+      livenessPassed: Value(livenessPassed),
+      horaAutomatica: Value(horaAutomatica),
+      opcionesDesarrollador: Value(opcionesDesarrollador),
+      adbActivo: Value(adbActivo),
+      hashAnterior: hashAnterior == null && nullToAbsent
+          ? const Value.absent()
+          : Value(hashAnterior),
+      hashEvento: Value(hashEvento),
+      validacionLocal: Value(validacionLocal),
+      codigosRiesgoLocalJson: Value(codigosRiesgoLocalJson),
+      estadoValidacionServidor: estadoValidacionServidor == null && nullToAbsent
+          ? const Value.absent()
+          : Value(estadoValidacionServidor),
+      puntajeRiesgoServidor: puntajeRiesgoServidor == null && nullToAbsent
+          ? const Value.absent()
+          : Value(puntajeRiesgoServidor),
+      codigosRiesgoServidorJson:
+          codigosRiesgoServidorJson == null && nullToAbsent
+          ? const Value.absent()
+          : Value(codigosRiesgoServidorJson),
+    );
+  }
+
+  factory LocalRondinLectura.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return LocalRondinLectura(
+      localId: serializer.fromJson<String>(json['localId']),
+      remoteId: serializer.fromJson<String?>(json['remoteId']),
+      syncStatus: serializer.fromJson<String>(json['syncStatus']),
+      syncError: serializer.fromJson<String>(json['syncError']),
+      syncIntentos: serializer.fromJson<int>(json['syncIntentos']),
+      deviceId: serializer.fromJson<String>(json['deviceId']),
+      createdAtLocal: serializer.fromJson<DateTime>(json['createdAtLocal']),
+      updatedAtLocal: serializer.fromJson<DateTime>(json['updatedAtLocal']),
+      syncedAt: serializer.fromJson<DateTime?>(json['syncedAt']),
+      rondinLocalId: serializer.fromJson<String>(json['rondinLocalId']),
+      puntoId: serializer.fromJson<String>(json['puntoId']),
+      secuencia: serializer.fromJson<int>(json['secuencia']),
+      capturadoAtDispositivo: serializer.fromJson<DateTime>(
+        json['capturadoAtDispositivo'],
+      ),
+      monotonicMs: serializer.fromJson<int>(json['monotonicMs']),
+      bootCount: serializer.fromJson<int>(json['bootCount']),
+      lat: serializer.fromJson<double?>(json['lat']),
+      lng: serializer.fromJson<double?>(json['lng']),
+      gpsAccuracyM: serializer.fromJson<double?>(json['gpsAccuracyM']),
+      gpsAgeMs: serializer.fromJson<int?>(json['gpsAgeMs']),
+      ubicacionSimulada: serializer.fromJson<bool>(json['ubicacionSimulada']),
+      wifiBssid: serializer.fromJson<String?>(json['wifiBssid']),
+      wifiSsid: serializer.fromJson<String?>(json['wifiSsid']),
+      tokenVersion: serializer.fromJson<int>(json['tokenVersion']),
+      qrPayloadRaw: serializer.fromJson<String>(json['qrPayloadRaw']),
+      qrPayloadHash: serializer.fromJson<String>(json['qrPayloadHash']),
+      livenessPassed: serializer.fromJson<bool>(json['livenessPassed']),
+      horaAutomatica: serializer.fromJson<bool>(json['horaAutomatica']),
+      opcionesDesarrollador: serializer.fromJson<bool>(
+        json['opcionesDesarrollador'],
+      ),
+      adbActivo: serializer.fromJson<bool>(json['adbActivo']),
+      hashAnterior: serializer.fromJson<String?>(json['hashAnterior']),
+      hashEvento: serializer.fromJson<String>(json['hashEvento']),
+      validacionLocal: serializer.fromJson<String>(json['validacionLocal']),
+      codigosRiesgoLocalJson: serializer.fromJson<String>(
+        json['codigosRiesgoLocalJson'],
+      ),
+      estadoValidacionServidor: serializer.fromJson<String?>(
+        json['estadoValidacionServidor'],
+      ),
+      puntajeRiesgoServidor: serializer.fromJson<int?>(
+        json['puntajeRiesgoServidor'],
+      ),
+      codigosRiesgoServidorJson: serializer.fromJson<String?>(
+        json['codigosRiesgoServidorJson'],
+      ),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'localId': serializer.toJson<String>(localId),
+      'remoteId': serializer.toJson<String?>(remoteId),
+      'syncStatus': serializer.toJson<String>(syncStatus),
+      'syncError': serializer.toJson<String>(syncError),
+      'syncIntentos': serializer.toJson<int>(syncIntentos),
+      'deviceId': serializer.toJson<String>(deviceId),
+      'createdAtLocal': serializer.toJson<DateTime>(createdAtLocal),
+      'updatedAtLocal': serializer.toJson<DateTime>(updatedAtLocal),
+      'syncedAt': serializer.toJson<DateTime?>(syncedAt),
+      'rondinLocalId': serializer.toJson<String>(rondinLocalId),
+      'puntoId': serializer.toJson<String>(puntoId),
+      'secuencia': serializer.toJson<int>(secuencia),
+      'capturadoAtDispositivo': serializer.toJson<DateTime>(
+        capturadoAtDispositivo,
+      ),
+      'monotonicMs': serializer.toJson<int>(monotonicMs),
+      'bootCount': serializer.toJson<int>(bootCount),
+      'lat': serializer.toJson<double?>(lat),
+      'lng': serializer.toJson<double?>(lng),
+      'gpsAccuracyM': serializer.toJson<double?>(gpsAccuracyM),
+      'gpsAgeMs': serializer.toJson<int?>(gpsAgeMs),
+      'ubicacionSimulada': serializer.toJson<bool>(ubicacionSimulada),
+      'wifiBssid': serializer.toJson<String?>(wifiBssid),
+      'wifiSsid': serializer.toJson<String?>(wifiSsid),
+      'tokenVersion': serializer.toJson<int>(tokenVersion),
+      'qrPayloadRaw': serializer.toJson<String>(qrPayloadRaw),
+      'qrPayloadHash': serializer.toJson<String>(qrPayloadHash),
+      'livenessPassed': serializer.toJson<bool>(livenessPassed),
+      'horaAutomatica': serializer.toJson<bool>(horaAutomatica),
+      'opcionesDesarrollador': serializer.toJson<bool>(opcionesDesarrollador),
+      'adbActivo': serializer.toJson<bool>(adbActivo),
+      'hashAnterior': serializer.toJson<String?>(hashAnterior),
+      'hashEvento': serializer.toJson<String>(hashEvento),
+      'validacionLocal': serializer.toJson<String>(validacionLocal),
+      'codigosRiesgoLocalJson': serializer.toJson<String>(
+        codigosRiesgoLocalJson,
+      ),
+      'estadoValidacionServidor': serializer.toJson<String?>(
+        estadoValidacionServidor,
+      ),
+      'puntajeRiesgoServidor': serializer.toJson<int?>(puntajeRiesgoServidor),
+      'codigosRiesgoServidorJson': serializer.toJson<String?>(
+        codigosRiesgoServidorJson,
+      ),
+    };
+  }
+
+  LocalRondinLectura copyWith({
+    String? localId,
+    Value<String?> remoteId = const Value.absent(),
+    String? syncStatus,
+    String? syncError,
+    int? syncIntentos,
+    String? deviceId,
+    DateTime? createdAtLocal,
+    DateTime? updatedAtLocal,
+    Value<DateTime?> syncedAt = const Value.absent(),
+    String? rondinLocalId,
+    String? puntoId,
+    int? secuencia,
+    DateTime? capturadoAtDispositivo,
+    int? monotonicMs,
+    int? bootCount,
+    Value<double?> lat = const Value.absent(),
+    Value<double?> lng = const Value.absent(),
+    Value<double?> gpsAccuracyM = const Value.absent(),
+    Value<int?> gpsAgeMs = const Value.absent(),
+    bool? ubicacionSimulada,
+    Value<String?> wifiBssid = const Value.absent(),
+    Value<String?> wifiSsid = const Value.absent(),
+    int? tokenVersion,
+    String? qrPayloadRaw,
+    String? qrPayloadHash,
+    bool? livenessPassed,
+    bool? horaAutomatica,
+    bool? opcionesDesarrollador,
+    bool? adbActivo,
+    Value<String?> hashAnterior = const Value.absent(),
+    String? hashEvento,
+    String? validacionLocal,
+    String? codigosRiesgoLocalJson,
+    Value<String?> estadoValidacionServidor = const Value.absent(),
+    Value<int?> puntajeRiesgoServidor = const Value.absent(),
+    Value<String?> codigosRiesgoServidorJson = const Value.absent(),
+  }) => LocalRondinLectura(
+    localId: localId ?? this.localId,
+    remoteId: remoteId.present ? remoteId.value : this.remoteId,
+    syncStatus: syncStatus ?? this.syncStatus,
+    syncError: syncError ?? this.syncError,
+    syncIntentos: syncIntentos ?? this.syncIntentos,
+    deviceId: deviceId ?? this.deviceId,
+    createdAtLocal: createdAtLocal ?? this.createdAtLocal,
+    updatedAtLocal: updatedAtLocal ?? this.updatedAtLocal,
+    syncedAt: syncedAt.present ? syncedAt.value : this.syncedAt,
+    rondinLocalId: rondinLocalId ?? this.rondinLocalId,
+    puntoId: puntoId ?? this.puntoId,
+    secuencia: secuencia ?? this.secuencia,
+    capturadoAtDispositivo:
+        capturadoAtDispositivo ?? this.capturadoAtDispositivo,
+    monotonicMs: monotonicMs ?? this.monotonicMs,
+    bootCount: bootCount ?? this.bootCount,
+    lat: lat.present ? lat.value : this.lat,
+    lng: lng.present ? lng.value : this.lng,
+    gpsAccuracyM: gpsAccuracyM.present ? gpsAccuracyM.value : this.gpsAccuracyM,
+    gpsAgeMs: gpsAgeMs.present ? gpsAgeMs.value : this.gpsAgeMs,
+    ubicacionSimulada: ubicacionSimulada ?? this.ubicacionSimulada,
+    wifiBssid: wifiBssid.present ? wifiBssid.value : this.wifiBssid,
+    wifiSsid: wifiSsid.present ? wifiSsid.value : this.wifiSsid,
+    tokenVersion: tokenVersion ?? this.tokenVersion,
+    qrPayloadRaw: qrPayloadRaw ?? this.qrPayloadRaw,
+    qrPayloadHash: qrPayloadHash ?? this.qrPayloadHash,
+    livenessPassed: livenessPassed ?? this.livenessPassed,
+    horaAutomatica: horaAutomatica ?? this.horaAutomatica,
+    opcionesDesarrollador: opcionesDesarrollador ?? this.opcionesDesarrollador,
+    adbActivo: adbActivo ?? this.adbActivo,
+    hashAnterior: hashAnterior.present ? hashAnterior.value : this.hashAnterior,
+    hashEvento: hashEvento ?? this.hashEvento,
+    validacionLocal: validacionLocal ?? this.validacionLocal,
+    codigosRiesgoLocalJson:
+        codigosRiesgoLocalJson ?? this.codigosRiesgoLocalJson,
+    estadoValidacionServidor: estadoValidacionServidor.present
+        ? estadoValidacionServidor.value
+        : this.estadoValidacionServidor,
+    puntajeRiesgoServidor: puntajeRiesgoServidor.present
+        ? puntajeRiesgoServidor.value
+        : this.puntajeRiesgoServidor,
+    codigosRiesgoServidorJson: codigosRiesgoServidorJson.present
+        ? codigosRiesgoServidorJson.value
+        : this.codigosRiesgoServidorJson,
+  );
+  LocalRondinLectura copyWithCompanion(LocalRondinLecturasCompanion data) {
+    return LocalRondinLectura(
+      localId: data.localId.present ? data.localId.value : this.localId,
+      remoteId: data.remoteId.present ? data.remoteId.value : this.remoteId,
+      syncStatus: data.syncStatus.present
+          ? data.syncStatus.value
+          : this.syncStatus,
+      syncError: data.syncError.present ? data.syncError.value : this.syncError,
+      syncIntentos: data.syncIntentos.present
+          ? data.syncIntentos.value
+          : this.syncIntentos,
+      deviceId: data.deviceId.present ? data.deviceId.value : this.deviceId,
+      createdAtLocal: data.createdAtLocal.present
+          ? data.createdAtLocal.value
+          : this.createdAtLocal,
+      updatedAtLocal: data.updatedAtLocal.present
+          ? data.updatedAtLocal.value
+          : this.updatedAtLocal,
+      syncedAt: data.syncedAt.present ? data.syncedAt.value : this.syncedAt,
+      rondinLocalId: data.rondinLocalId.present
+          ? data.rondinLocalId.value
+          : this.rondinLocalId,
+      puntoId: data.puntoId.present ? data.puntoId.value : this.puntoId,
+      secuencia: data.secuencia.present ? data.secuencia.value : this.secuencia,
+      capturadoAtDispositivo: data.capturadoAtDispositivo.present
+          ? data.capturadoAtDispositivo.value
+          : this.capturadoAtDispositivo,
+      monotonicMs: data.monotonicMs.present
+          ? data.monotonicMs.value
+          : this.monotonicMs,
+      bootCount: data.bootCount.present ? data.bootCount.value : this.bootCount,
+      lat: data.lat.present ? data.lat.value : this.lat,
+      lng: data.lng.present ? data.lng.value : this.lng,
+      gpsAccuracyM: data.gpsAccuracyM.present
+          ? data.gpsAccuracyM.value
+          : this.gpsAccuracyM,
+      gpsAgeMs: data.gpsAgeMs.present ? data.gpsAgeMs.value : this.gpsAgeMs,
+      ubicacionSimulada: data.ubicacionSimulada.present
+          ? data.ubicacionSimulada.value
+          : this.ubicacionSimulada,
+      wifiBssid: data.wifiBssid.present ? data.wifiBssid.value : this.wifiBssid,
+      wifiSsid: data.wifiSsid.present ? data.wifiSsid.value : this.wifiSsid,
+      tokenVersion: data.tokenVersion.present
+          ? data.tokenVersion.value
+          : this.tokenVersion,
+      qrPayloadRaw: data.qrPayloadRaw.present
+          ? data.qrPayloadRaw.value
+          : this.qrPayloadRaw,
+      qrPayloadHash: data.qrPayloadHash.present
+          ? data.qrPayloadHash.value
+          : this.qrPayloadHash,
+      livenessPassed: data.livenessPassed.present
+          ? data.livenessPassed.value
+          : this.livenessPassed,
+      horaAutomatica: data.horaAutomatica.present
+          ? data.horaAutomatica.value
+          : this.horaAutomatica,
+      opcionesDesarrollador: data.opcionesDesarrollador.present
+          ? data.opcionesDesarrollador.value
+          : this.opcionesDesarrollador,
+      adbActivo: data.adbActivo.present ? data.adbActivo.value : this.adbActivo,
+      hashAnterior: data.hashAnterior.present
+          ? data.hashAnterior.value
+          : this.hashAnterior,
+      hashEvento: data.hashEvento.present
+          ? data.hashEvento.value
+          : this.hashEvento,
+      validacionLocal: data.validacionLocal.present
+          ? data.validacionLocal.value
+          : this.validacionLocal,
+      codigosRiesgoLocalJson: data.codigosRiesgoLocalJson.present
+          ? data.codigosRiesgoLocalJson.value
+          : this.codigosRiesgoLocalJson,
+      estadoValidacionServidor: data.estadoValidacionServidor.present
+          ? data.estadoValidacionServidor.value
+          : this.estadoValidacionServidor,
+      puntajeRiesgoServidor: data.puntajeRiesgoServidor.present
+          ? data.puntajeRiesgoServidor.value
+          : this.puntajeRiesgoServidor,
+      codigosRiesgoServidorJson: data.codigosRiesgoServidorJson.present
+          ? data.codigosRiesgoServidorJson.value
+          : this.codigosRiesgoServidorJson,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('LocalRondinLectura(')
+          ..write('localId: $localId, ')
+          ..write('remoteId: $remoteId, ')
+          ..write('syncStatus: $syncStatus, ')
+          ..write('syncError: $syncError, ')
+          ..write('syncIntentos: $syncIntentos, ')
+          ..write('deviceId: $deviceId, ')
+          ..write('createdAtLocal: $createdAtLocal, ')
+          ..write('updatedAtLocal: $updatedAtLocal, ')
+          ..write('syncedAt: $syncedAt, ')
+          ..write('rondinLocalId: $rondinLocalId, ')
+          ..write('puntoId: $puntoId, ')
+          ..write('secuencia: $secuencia, ')
+          ..write('capturadoAtDispositivo: $capturadoAtDispositivo, ')
+          ..write('monotonicMs: $monotonicMs, ')
+          ..write('bootCount: $bootCount, ')
+          ..write('lat: $lat, ')
+          ..write('lng: $lng, ')
+          ..write('gpsAccuracyM: $gpsAccuracyM, ')
+          ..write('gpsAgeMs: $gpsAgeMs, ')
+          ..write('ubicacionSimulada: $ubicacionSimulada, ')
+          ..write('wifiBssid: $wifiBssid, ')
+          ..write('wifiSsid: $wifiSsid, ')
+          ..write('tokenVersion: $tokenVersion, ')
+          ..write('qrPayloadRaw: $qrPayloadRaw, ')
+          ..write('qrPayloadHash: $qrPayloadHash, ')
+          ..write('livenessPassed: $livenessPassed, ')
+          ..write('horaAutomatica: $horaAutomatica, ')
+          ..write('opcionesDesarrollador: $opcionesDesarrollador, ')
+          ..write('adbActivo: $adbActivo, ')
+          ..write('hashAnterior: $hashAnterior, ')
+          ..write('hashEvento: $hashEvento, ')
+          ..write('validacionLocal: $validacionLocal, ')
+          ..write('codigosRiesgoLocalJson: $codigosRiesgoLocalJson, ')
+          ..write('estadoValidacionServidor: $estadoValidacionServidor, ')
+          ..write('puntajeRiesgoServidor: $puntajeRiesgoServidor, ')
+          ..write('codigosRiesgoServidorJson: $codigosRiesgoServidorJson')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hashAll([
+    localId,
+    remoteId,
+    syncStatus,
+    syncError,
+    syncIntentos,
+    deviceId,
+    createdAtLocal,
+    updatedAtLocal,
+    syncedAt,
+    rondinLocalId,
+    puntoId,
+    secuencia,
+    capturadoAtDispositivo,
+    monotonicMs,
+    bootCount,
+    lat,
+    lng,
+    gpsAccuracyM,
+    gpsAgeMs,
+    ubicacionSimulada,
+    wifiBssid,
+    wifiSsid,
+    tokenVersion,
+    qrPayloadRaw,
+    qrPayloadHash,
+    livenessPassed,
+    horaAutomatica,
+    opcionesDesarrollador,
+    adbActivo,
+    hashAnterior,
+    hashEvento,
+    validacionLocal,
+    codigosRiesgoLocalJson,
+    estadoValidacionServidor,
+    puntajeRiesgoServidor,
+    codigosRiesgoServidorJson,
+  ]);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is LocalRondinLectura &&
+          other.localId == this.localId &&
+          other.remoteId == this.remoteId &&
+          other.syncStatus == this.syncStatus &&
+          other.syncError == this.syncError &&
+          other.syncIntentos == this.syncIntentos &&
+          other.deviceId == this.deviceId &&
+          other.createdAtLocal == this.createdAtLocal &&
+          other.updatedAtLocal == this.updatedAtLocal &&
+          other.syncedAt == this.syncedAt &&
+          other.rondinLocalId == this.rondinLocalId &&
+          other.puntoId == this.puntoId &&
+          other.secuencia == this.secuencia &&
+          other.capturadoAtDispositivo == this.capturadoAtDispositivo &&
+          other.monotonicMs == this.monotonicMs &&
+          other.bootCount == this.bootCount &&
+          other.lat == this.lat &&
+          other.lng == this.lng &&
+          other.gpsAccuracyM == this.gpsAccuracyM &&
+          other.gpsAgeMs == this.gpsAgeMs &&
+          other.ubicacionSimulada == this.ubicacionSimulada &&
+          other.wifiBssid == this.wifiBssid &&
+          other.wifiSsid == this.wifiSsid &&
+          other.tokenVersion == this.tokenVersion &&
+          other.qrPayloadRaw == this.qrPayloadRaw &&
+          other.qrPayloadHash == this.qrPayloadHash &&
+          other.livenessPassed == this.livenessPassed &&
+          other.horaAutomatica == this.horaAutomatica &&
+          other.opcionesDesarrollador == this.opcionesDesarrollador &&
+          other.adbActivo == this.adbActivo &&
+          other.hashAnterior == this.hashAnterior &&
+          other.hashEvento == this.hashEvento &&
+          other.validacionLocal == this.validacionLocal &&
+          other.codigosRiesgoLocalJson == this.codigosRiesgoLocalJson &&
+          other.estadoValidacionServidor == this.estadoValidacionServidor &&
+          other.puntajeRiesgoServidor == this.puntajeRiesgoServidor &&
+          other.codigosRiesgoServidorJson == this.codigosRiesgoServidorJson);
+}
+
+class LocalRondinLecturasCompanion extends UpdateCompanion<LocalRondinLectura> {
+  final Value<String> localId;
+  final Value<String?> remoteId;
+  final Value<String> syncStatus;
+  final Value<String> syncError;
+  final Value<int> syncIntentos;
+  final Value<String> deviceId;
+  final Value<DateTime> createdAtLocal;
+  final Value<DateTime> updatedAtLocal;
+  final Value<DateTime?> syncedAt;
+  final Value<String> rondinLocalId;
+  final Value<String> puntoId;
+  final Value<int> secuencia;
+  final Value<DateTime> capturadoAtDispositivo;
+  final Value<int> monotonicMs;
+  final Value<int> bootCount;
+  final Value<double?> lat;
+  final Value<double?> lng;
+  final Value<double?> gpsAccuracyM;
+  final Value<int?> gpsAgeMs;
+  final Value<bool> ubicacionSimulada;
+  final Value<String?> wifiBssid;
+  final Value<String?> wifiSsid;
+  final Value<int> tokenVersion;
+  final Value<String> qrPayloadRaw;
+  final Value<String> qrPayloadHash;
+  final Value<bool> livenessPassed;
+  final Value<bool> horaAutomatica;
+  final Value<bool> opcionesDesarrollador;
+  final Value<bool> adbActivo;
+  final Value<String?> hashAnterior;
+  final Value<String> hashEvento;
+  final Value<String> validacionLocal;
+  final Value<String> codigosRiesgoLocalJson;
+  final Value<String?> estadoValidacionServidor;
+  final Value<int?> puntajeRiesgoServidor;
+  final Value<String?> codigosRiesgoServidorJson;
+  final Value<int> rowid;
+  const LocalRondinLecturasCompanion({
+    this.localId = const Value.absent(),
+    this.remoteId = const Value.absent(),
+    this.syncStatus = const Value.absent(),
+    this.syncError = const Value.absent(),
+    this.syncIntentos = const Value.absent(),
+    this.deviceId = const Value.absent(),
+    this.createdAtLocal = const Value.absent(),
+    this.updatedAtLocal = const Value.absent(),
+    this.syncedAt = const Value.absent(),
+    this.rondinLocalId = const Value.absent(),
+    this.puntoId = const Value.absent(),
+    this.secuencia = const Value.absent(),
+    this.capturadoAtDispositivo = const Value.absent(),
+    this.monotonicMs = const Value.absent(),
+    this.bootCount = const Value.absent(),
+    this.lat = const Value.absent(),
+    this.lng = const Value.absent(),
+    this.gpsAccuracyM = const Value.absent(),
+    this.gpsAgeMs = const Value.absent(),
+    this.ubicacionSimulada = const Value.absent(),
+    this.wifiBssid = const Value.absent(),
+    this.wifiSsid = const Value.absent(),
+    this.tokenVersion = const Value.absent(),
+    this.qrPayloadRaw = const Value.absent(),
+    this.qrPayloadHash = const Value.absent(),
+    this.livenessPassed = const Value.absent(),
+    this.horaAutomatica = const Value.absent(),
+    this.opcionesDesarrollador = const Value.absent(),
+    this.adbActivo = const Value.absent(),
+    this.hashAnterior = const Value.absent(),
+    this.hashEvento = const Value.absent(),
+    this.validacionLocal = const Value.absent(),
+    this.codigosRiesgoLocalJson = const Value.absent(),
+    this.estadoValidacionServidor = const Value.absent(),
+    this.puntajeRiesgoServidor = const Value.absent(),
+    this.codigosRiesgoServidorJson = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  LocalRondinLecturasCompanion.insert({
+    this.localId = const Value.absent(),
+    this.remoteId = const Value.absent(),
+    this.syncStatus = const Value.absent(),
+    this.syncError = const Value.absent(),
+    this.syncIntentos = const Value.absent(),
+    this.deviceId = const Value.absent(),
+    this.createdAtLocal = const Value.absent(),
+    this.updatedAtLocal = const Value.absent(),
+    this.syncedAt = const Value.absent(),
+    required String rondinLocalId,
+    required String puntoId,
+    required int secuencia,
+    required DateTime capturadoAtDispositivo,
+    required int monotonicMs,
+    this.bootCount = const Value.absent(),
+    this.lat = const Value.absent(),
+    this.lng = const Value.absent(),
+    this.gpsAccuracyM = const Value.absent(),
+    this.gpsAgeMs = const Value.absent(),
+    this.ubicacionSimulada = const Value.absent(),
+    this.wifiBssid = const Value.absent(),
+    this.wifiSsid = const Value.absent(),
+    required int tokenVersion,
+    this.qrPayloadRaw = const Value.absent(),
+    required String qrPayloadHash,
+    this.livenessPassed = const Value.absent(),
+    this.horaAutomatica = const Value.absent(),
+    this.opcionesDesarrollador = const Value.absent(),
+    this.adbActivo = const Value.absent(),
+    this.hashAnterior = const Value.absent(),
+    required String hashEvento,
+    this.validacionLocal = const Value.absent(),
+    this.codigosRiesgoLocalJson = const Value.absent(),
+    this.estadoValidacionServidor = const Value.absent(),
+    this.puntajeRiesgoServidor = const Value.absent(),
+    this.codigosRiesgoServidorJson = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : rondinLocalId = Value(rondinLocalId),
+       puntoId = Value(puntoId),
+       secuencia = Value(secuencia),
+       capturadoAtDispositivo = Value(capturadoAtDispositivo),
+       monotonicMs = Value(monotonicMs),
+       tokenVersion = Value(tokenVersion),
+       qrPayloadHash = Value(qrPayloadHash),
+       hashEvento = Value(hashEvento);
+  static Insertable<LocalRondinLectura> custom({
+    Expression<String>? localId,
+    Expression<String>? remoteId,
+    Expression<String>? syncStatus,
+    Expression<String>? syncError,
+    Expression<int>? syncIntentos,
+    Expression<String>? deviceId,
+    Expression<DateTime>? createdAtLocal,
+    Expression<DateTime>? updatedAtLocal,
+    Expression<DateTime>? syncedAt,
+    Expression<String>? rondinLocalId,
+    Expression<String>? puntoId,
+    Expression<int>? secuencia,
+    Expression<DateTime>? capturadoAtDispositivo,
+    Expression<int>? monotonicMs,
+    Expression<int>? bootCount,
+    Expression<double>? lat,
+    Expression<double>? lng,
+    Expression<double>? gpsAccuracyM,
+    Expression<int>? gpsAgeMs,
+    Expression<bool>? ubicacionSimulada,
+    Expression<String>? wifiBssid,
+    Expression<String>? wifiSsid,
+    Expression<int>? tokenVersion,
+    Expression<String>? qrPayloadRaw,
+    Expression<String>? qrPayloadHash,
+    Expression<bool>? livenessPassed,
+    Expression<bool>? horaAutomatica,
+    Expression<bool>? opcionesDesarrollador,
+    Expression<bool>? adbActivo,
+    Expression<String>? hashAnterior,
+    Expression<String>? hashEvento,
+    Expression<String>? validacionLocal,
+    Expression<String>? codigosRiesgoLocalJson,
+    Expression<String>? estadoValidacionServidor,
+    Expression<int>? puntajeRiesgoServidor,
+    Expression<String>? codigosRiesgoServidorJson,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (localId != null) 'local_id': localId,
+      if (remoteId != null) 'remote_id': remoteId,
+      if (syncStatus != null) 'sync_status': syncStatus,
+      if (syncError != null) 'sync_error': syncError,
+      if (syncIntentos != null) 'sync_intentos': syncIntentos,
+      if (deviceId != null) 'device_id': deviceId,
+      if (createdAtLocal != null) 'created_at_local': createdAtLocal,
+      if (updatedAtLocal != null) 'updated_at_local': updatedAtLocal,
+      if (syncedAt != null) 'synced_at': syncedAt,
+      if (rondinLocalId != null) 'rondin_local_id': rondinLocalId,
+      if (puntoId != null) 'punto_id': puntoId,
+      if (secuencia != null) 'secuencia': secuencia,
+      if (capturadoAtDispositivo != null)
+        'capturado_at_dispositivo': capturadoAtDispositivo,
+      if (monotonicMs != null) 'monotonic_ms': monotonicMs,
+      if (bootCount != null) 'boot_count': bootCount,
+      if (lat != null) 'lat': lat,
+      if (lng != null) 'lng': lng,
+      if (gpsAccuracyM != null) 'gps_accuracy_m': gpsAccuracyM,
+      if (gpsAgeMs != null) 'gps_age_ms': gpsAgeMs,
+      if (ubicacionSimulada != null) 'ubicacion_simulada': ubicacionSimulada,
+      if (wifiBssid != null) 'wifi_bssid': wifiBssid,
+      if (wifiSsid != null) 'wifi_ssid': wifiSsid,
+      if (tokenVersion != null) 'token_version': tokenVersion,
+      if (qrPayloadRaw != null) 'qr_payload_raw': qrPayloadRaw,
+      if (qrPayloadHash != null) 'qr_payload_hash': qrPayloadHash,
+      if (livenessPassed != null) 'liveness_passed': livenessPassed,
+      if (horaAutomatica != null) 'hora_automatica': horaAutomatica,
+      if (opcionesDesarrollador != null)
+        'opciones_desarrollador': opcionesDesarrollador,
+      if (adbActivo != null) 'adb_activo': adbActivo,
+      if (hashAnterior != null) 'hash_anterior': hashAnterior,
+      if (hashEvento != null) 'hash_evento': hashEvento,
+      if (validacionLocal != null) 'validacion_local': validacionLocal,
+      if (codigosRiesgoLocalJson != null)
+        'codigos_riesgo_local_json': codigosRiesgoLocalJson,
+      if (estadoValidacionServidor != null)
+        'estado_validacion_servidor': estadoValidacionServidor,
+      if (puntajeRiesgoServidor != null)
+        'puntaje_riesgo_servidor': puntajeRiesgoServidor,
+      if (codigosRiesgoServidorJson != null)
+        'codigos_riesgo_servidor_json': codigosRiesgoServidorJson,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  LocalRondinLecturasCompanion copyWith({
+    Value<String>? localId,
+    Value<String?>? remoteId,
+    Value<String>? syncStatus,
+    Value<String>? syncError,
+    Value<int>? syncIntentos,
+    Value<String>? deviceId,
+    Value<DateTime>? createdAtLocal,
+    Value<DateTime>? updatedAtLocal,
+    Value<DateTime?>? syncedAt,
+    Value<String>? rondinLocalId,
+    Value<String>? puntoId,
+    Value<int>? secuencia,
+    Value<DateTime>? capturadoAtDispositivo,
+    Value<int>? monotonicMs,
+    Value<int>? bootCount,
+    Value<double?>? lat,
+    Value<double?>? lng,
+    Value<double?>? gpsAccuracyM,
+    Value<int?>? gpsAgeMs,
+    Value<bool>? ubicacionSimulada,
+    Value<String?>? wifiBssid,
+    Value<String?>? wifiSsid,
+    Value<int>? tokenVersion,
+    Value<String>? qrPayloadRaw,
+    Value<String>? qrPayloadHash,
+    Value<bool>? livenessPassed,
+    Value<bool>? horaAutomatica,
+    Value<bool>? opcionesDesarrollador,
+    Value<bool>? adbActivo,
+    Value<String?>? hashAnterior,
+    Value<String>? hashEvento,
+    Value<String>? validacionLocal,
+    Value<String>? codigosRiesgoLocalJson,
+    Value<String?>? estadoValidacionServidor,
+    Value<int?>? puntajeRiesgoServidor,
+    Value<String?>? codigosRiesgoServidorJson,
+    Value<int>? rowid,
+  }) {
+    return LocalRondinLecturasCompanion(
+      localId: localId ?? this.localId,
+      remoteId: remoteId ?? this.remoteId,
+      syncStatus: syncStatus ?? this.syncStatus,
+      syncError: syncError ?? this.syncError,
+      syncIntentos: syncIntentos ?? this.syncIntentos,
+      deviceId: deviceId ?? this.deviceId,
+      createdAtLocal: createdAtLocal ?? this.createdAtLocal,
+      updatedAtLocal: updatedAtLocal ?? this.updatedAtLocal,
+      syncedAt: syncedAt ?? this.syncedAt,
+      rondinLocalId: rondinLocalId ?? this.rondinLocalId,
+      puntoId: puntoId ?? this.puntoId,
+      secuencia: secuencia ?? this.secuencia,
+      capturadoAtDispositivo:
+          capturadoAtDispositivo ?? this.capturadoAtDispositivo,
+      monotonicMs: monotonicMs ?? this.monotonicMs,
+      bootCount: bootCount ?? this.bootCount,
+      lat: lat ?? this.lat,
+      lng: lng ?? this.lng,
+      gpsAccuracyM: gpsAccuracyM ?? this.gpsAccuracyM,
+      gpsAgeMs: gpsAgeMs ?? this.gpsAgeMs,
+      ubicacionSimulada: ubicacionSimulada ?? this.ubicacionSimulada,
+      wifiBssid: wifiBssid ?? this.wifiBssid,
+      wifiSsid: wifiSsid ?? this.wifiSsid,
+      tokenVersion: tokenVersion ?? this.tokenVersion,
+      qrPayloadRaw: qrPayloadRaw ?? this.qrPayloadRaw,
+      qrPayloadHash: qrPayloadHash ?? this.qrPayloadHash,
+      livenessPassed: livenessPassed ?? this.livenessPassed,
+      horaAutomatica: horaAutomatica ?? this.horaAutomatica,
+      opcionesDesarrollador:
+          opcionesDesarrollador ?? this.opcionesDesarrollador,
+      adbActivo: adbActivo ?? this.adbActivo,
+      hashAnterior: hashAnterior ?? this.hashAnterior,
+      hashEvento: hashEvento ?? this.hashEvento,
+      validacionLocal: validacionLocal ?? this.validacionLocal,
+      codigosRiesgoLocalJson:
+          codigosRiesgoLocalJson ?? this.codigosRiesgoLocalJson,
+      estadoValidacionServidor:
+          estadoValidacionServidor ?? this.estadoValidacionServidor,
+      puntajeRiesgoServidor:
+          puntajeRiesgoServidor ?? this.puntajeRiesgoServidor,
+      codigosRiesgoServidorJson:
+          codigosRiesgoServidorJson ?? this.codigosRiesgoServidorJson,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (localId.present) {
+      map['local_id'] = Variable<String>(localId.value);
+    }
+    if (remoteId.present) {
+      map['remote_id'] = Variable<String>(remoteId.value);
+    }
+    if (syncStatus.present) {
+      map['sync_status'] = Variable<String>(syncStatus.value);
+    }
+    if (syncError.present) {
+      map['sync_error'] = Variable<String>(syncError.value);
+    }
+    if (syncIntentos.present) {
+      map['sync_intentos'] = Variable<int>(syncIntentos.value);
+    }
+    if (deviceId.present) {
+      map['device_id'] = Variable<String>(deviceId.value);
+    }
+    if (createdAtLocal.present) {
+      map['created_at_local'] = Variable<DateTime>(createdAtLocal.value);
+    }
+    if (updatedAtLocal.present) {
+      map['updated_at_local'] = Variable<DateTime>(updatedAtLocal.value);
+    }
+    if (syncedAt.present) {
+      map['synced_at'] = Variable<DateTime>(syncedAt.value);
+    }
+    if (rondinLocalId.present) {
+      map['rondin_local_id'] = Variable<String>(rondinLocalId.value);
+    }
+    if (puntoId.present) {
+      map['punto_id'] = Variable<String>(puntoId.value);
+    }
+    if (secuencia.present) {
+      map['secuencia'] = Variable<int>(secuencia.value);
+    }
+    if (capturadoAtDispositivo.present) {
+      map['capturado_at_dispositivo'] = Variable<DateTime>(
+        capturadoAtDispositivo.value,
+      );
+    }
+    if (monotonicMs.present) {
+      map['monotonic_ms'] = Variable<int>(monotonicMs.value);
+    }
+    if (bootCount.present) {
+      map['boot_count'] = Variable<int>(bootCount.value);
+    }
+    if (lat.present) {
+      map['lat'] = Variable<double>(lat.value);
+    }
+    if (lng.present) {
+      map['lng'] = Variable<double>(lng.value);
+    }
+    if (gpsAccuracyM.present) {
+      map['gps_accuracy_m'] = Variable<double>(gpsAccuracyM.value);
+    }
+    if (gpsAgeMs.present) {
+      map['gps_age_ms'] = Variable<int>(gpsAgeMs.value);
+    }
+    if (ubicacionSimulada.present) {
+      map['ubicacion_simulada'] = Variable<bool>(ubicacionSimulada.value);
+    }
+    if (wifiBssid.present) {
+      map['wifi_bssid'] = Variable<String>(wifiBssid.value);
+    }
+    if (wifiSsid.present) {
+      map['wifi_ssid'] = Variable<String>(wifiSsid.value);
+    }
+    if (tokenVersion.present) {
+      map['token_version'] = Variable<int>(tokenVersion.value);
+    }
+    if (qrPayloadRaw.present) {
+      map['qr_payload_raw'] = Variable<String>(qrPayloadRaw.value);
+    }
+    if (qrPayloadHash.present) {
+      map['qr_payload_hash'] = Variable<String>(qrPayloadHash.value);
+    }
+    if (livenessPassed.present) {
+      map['liveness_passed'] = Variable<bool>(livenessPassed.value);
+    }
+    if (horaAutomatica.present) {
+      map['hora_automatica'] = Variable<bool>(horaAutomatica.value);
+    }
+    if (opcionesDesarrollador.present) {
+      map['opciones_desarrollador'] = Variable<bool>(
+        opcionesDesarrollador.value,
+      );
+    }
+    if (adbActivo.present) {
+      map['adb_activo'] = Variable<bool>(adbActivo.value);
+    }
+    if (hashAnterior.present) {
+      map['hash_anterior'] = Variable<String>(hashAnterior.value);
+    }
+    if (hashEvento.present) {
+      map['hash_evento'] = Variable<String>(hashEvento.value);
+    }
+    if (validacionLocal.present) {
+      map['validacion_local'] = Variable<String>(validacionLocal.value);
+    }
+    if (codigosRiesgoLocalJson.present) {
+      map['codigos_riesgo_local_json'] = Variable<String>(
+        codigosRiesgoLocalJson.value,
+      );
+    }
+    if (estadoValidacionServidor.present) {
+      map['estado_validacion_servidor'] = Variable<String>(
+        estadoValidacionServidor.value,
+      );
+    }
+    if (puntajeRiesgoServidor.present) {
+      map['puntaje_riesgo_servidor'] = Variable<int>(
+        puntajeRiesgoServidor.value,
+      );
+    }
+    if (codigosRiesgoServidorJson.present) {
+      map['codigos_riesgo_servidor_json'] = Variable<String>(
+        codigosRiesgoServidorJson.value,
+      );
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('LocalRondinLecturasCompanion(')
+          ..write('localId: $localId, ')
+          ..write('remoteId: $remoteId, ')
+          ..write('syncStatus: $syncStatus, ')
+          ..write('syncError: $syncError, ')
+          ..write('syncIntentos: $syncIntentos, ')
+          ..write('deviceId: $deviceId, ')
+          ..write('createdAtLocal: $createdAtLocal, ')
+          ..write('updatedAtLocal: $updatedAtLocal, ')
+          ..write('syncedAt: $syncedAt, ')
+          ..write('rondinLocalId: $rondinLocalId, ')
+          ..write('puntoId: $puntoId, ')
+          ..write('secuencia: $secuencia, ')
+          ..write('capturadoAtDispositivo: $capturadoAtDispositivo, ')
+          ..write('monotonicMs: $monotonicMs, ')
+          ..write('bootCount: $bootCount, ')
+          ..write('lat: $lat, ')
+          ..write('lng: $lng, ')
+          ..write('gpsAccuracyM: $gpsAccuracyM, ')
+          ..write('gpsAgeMs: $gpsAgeMs, ')
+          ..write('ubicacionSimulada: $ubicacionSimulada, ')
+          ..write('wifiBssid: $wifiBssid, ')
+          ..write('wifiSsid: $wifiSsid, ')
+          ..write('tokenVersion: $tokenVersion, ')
+          ..write('qrPayloadRaw: $qrPayloadRaw, ')
+          ..write('qrPayloadHash: $qrPayloadHash, ')
+          ..write('livenessPassed: $livenessPassed, ')
+          ..write('horaAutomatica: $horaAutomatica, ')
+          ..write('opcionesDesarrollador: $opcionesDesarrollador, ')
+          ..write('adbActivo: $adbActivo, ')
+          ..write('hashAnterior: $hashAnterior, ')
+          ..write('hashEvento: $hashEvento, ')
+          ..write('validacionLocal: $validacionLocal, ')
+          ..write('codigosRiesgoLocalJson: $codigosRiesgoLocalJson, ')
+          ..write('estadoValidacionServidor: $estadoValidacionServidor, ')
+          ..write('puntajeRiesgoServidor: $puntajeRiesgoServidor, ')
+          ..write('codigosRiesgoServidorJson: $codigosRiesgoServidorJson, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 class $LocalSitiosTable extends LocalSitios
     with TableInfo<$LocalSitiosTable, LocalSitio> {
   @override
@@ -12180,6 +15452,1770 @@ class LocalTurnosCompanion extends UpdateCompanion<LocalTurno> {
   }
 }
 
+class $LocalPuntosRondinTable extends LocalPuntosRondin
+    with TableInfo<$LocalPuntosRondinTable, LocalPuntosRondinData> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $LocalPuntosRondinTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _sitioIdMeta = const VerificationMeta(
+    'sitioId',
+  );
+  @override
+  late final GeneratedColumn<String> sitioId = GeneratedColumn<String>(
+    'sitio_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _seccionIdMeta = const VerificationMeta(
+    'seccionId',
+  );
+  @override
+  late final GeneratedColumn<String> seccionId = GeneratedColumn<String>(
+    'seccion_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _seccionNombreMeta = const VerificationMeta(
+    'seccionNombre',
+  );
+  @override
+  late final GeneratedColumn<String> seccionNombre = GeneratedColumn<String>(
+    'seccion_nombre',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(''),
+  );
+  static const VerificationMeta _nombreMeta = const VerificationMeta('nombre');
+  @override
+  late final GeneratedColumn<String> nombre = GeneratedColumn<String>(
+    'nombre',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _descripcionMeta = const VerificationMeta(
+    'descripcion',
+  );
+  @override
+  late final GeneratedColumn<String> descripcion = GeneratedColumn<String>(
+    'descripcion',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(''),
+  );
+  static const VerificationMeta _tokenVersionMeta = const VerificationMeta(
+    'tokenVersion',
+  );
+  @override
+  late final GeneratedColumn<int> tokenVersion = GeneratedColumn<int>(
+    'token_version',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(1),
+  );
+  static const VerificationMeta _latMeta = const VerificationMeta('lat');
+  @override
+  late final GeneratedColumn<double> lat = GeneratedColumn<double>(
+    'lat',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _lngMeta = const VerificationMeta('lng');
+  @override
+  late final GeneratedColumn<double> lng = GeneratedColumn<double>(
+    'lng',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _radioMetrosMeta = const VerificationMeta(
+    'radioMetros',
+  );
+  @override
+  late final GeneratedColumn<int> radioMetros = GeneratedColumn<int>(
+    'radio_metros',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(35),
+  );
+  static const VerificationMeta _bssidRequeridoMeta = const VerificationMeta(
+    'bssidRequerido',
+  );
+  @override
+  late final GeneratedColumn<String> bssidRequerido = GeneratedColumn<String>(
+    'bssid_requerido',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _requiereLivenessMeta = const VerificationMeta(
+    'requiereLiveness',
+  );
+  @override
+  late final GeneratedColumn<bool> requiereLiveness = GeneratedColumn<bool>(
+    'requiere_liveness',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("requiere_liveness" IN (0, 1))',
+    ),
+    defaultValue: const Constant(false),
+  );
+  static const VerificationMeta _activoMeta = const VerificationMeta('activo');
+  @override
+  late final GeneratedColumn<bool> activo = GeneratedColumn<bool>(
+    'activo',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("activo" IN (0, 1))',
+    ),
+    defaultValue: const Constant(true),
+  );
+  static const VerificationMeta _updatedAtRemoteMeta = const VerificationMeta(
+    'updatedAtRemote',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAtRemote =
+      GeneratedColumn<DateTime>(
+        'updated_at_remote',
+        aliasedName,
+        true,
+        type: DriftSqlType.dateTime,
+        requiredDuringInsert: false,
+      );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    sitioId,
+    seccionId,
+    seccionNombre,
+    nombre,
+    descripcion,
+    tokenVersion,
+    lat,
+    lng,
+    radioMetros,
+    bssidRequerido,
+    requiereLiveness,
+    activo,
+    updatedAtRemote,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'local_puntos_rondin';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<LocalPuntosRondinData> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('sitio_id')) {
+      context.handle(
+        _sitioIdMeta,
+        sitioId.isAcceptableOrUnknown(data['sitio_id']!, _sitioIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_sitioIdMeta);
+    }
+    if (data.containsKey('seccion_id')) {
+      context.handle(
+        _seccionIdMeta,
+        seccionId.isAcceptableOrUnknown(data['seccion_id']!, _seccionIdMeta),
+      );
+    }
+    if (data.containsKey('seccion_nombre')) {
+      context.handle(
+        _seccionNombreMeta,
+        seccionNombre.isAcceptableOrUnknown(
+          data['seccion_nombre']!,
+          _seccionNombreMeta,
+        ),
+      );
+    }
+    if (data.containsKey('nombre')) {
+      context.handle(
+        _nombreMeta,
+        nombre.isAcceptableOrUnknown(data['nombre']!, _nombreMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_nombreMeta);
+    }
+    if (data.containsKey('descripcion')) {
+      context.handle(
+        _descripcionMeta,
+        descripcion.isAcceptableOrUnknown(
+          data['descripcion']!,
+          _descripcionMeta,
+        ),
+      );
+    }
+    if (data.containsKey('token_version')) {
+      context.handle(
+        _tokenVersionMeta,
+        tokenVersion.isAcceptableOrUnknown(
+          data['token_version']!,
+          _tokenVersionMeta,
+        ),
+      );
+    }
+    if (data.containsKey('lat')) {
+      context.handle(
+        _latMeta,
+        lat.isAcceptableOrUnknown(data['lat']!, _latMeta),
+      );
+    }
+    if (data.containsKey('lng')) {
+      context.handle(
+        _lngMeta,
+        lng.isAcceptableOrUnknown(data['lng']!, _lngMeta),
+      );
+    }
+    if (data.containsKey('radio_metros')) {
+      context.handle(
+        _radioMetrosMeta,
+        radioMetros.isAcceptableOrUnknown(
+          data['radio_metros']!,
+          _radioMetrosMeta,
+        ),
+      );
+    }
+    if (data.containsKey('bssid_requerido')) {
+      context.handle(
+        _bssidRequeridoMeta,
+        bssidRequerido.isAcceptableOrUnknown(
+          data['bssid_requerido']!,
+          _bssidRequeridoMeta,
+        ),
+      );
+    }
+    if (data.containsKey('requiere_liveness')) {
+      context.handle(
+        _requiereLivenessMeta,
+        requiereLiveness.isAcceptableOrUnknown(
+          data['requiere_liveness']!,
+          _requiereLivenessMeta,
+        ),
+      );
+    }
+    if (data.containsKey('activo')) {
+      context.handle(
+        _activoMeta,
+        activo.isAcceptableOrUnknown(data['activo']!, _activoMeta),
+      );
+    }
+    if (data.containsKey('updated_at_remote')) {
+      context.handle(
+        _updatedAtRemoteMeta,
+        updatedAtRemote.isAcceptableOrUnknown(
+          data['updated_at_remote']!,
+          _updatedAtRemoteMeta,
+        ),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  LocalPuntosRondinData map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return LocalPuntosRondinData(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      sitioId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}sitio_id'],
+      )!,
+      seccionId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}seccion_id'],
+      ),
+      seccionNombre: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}seccion_nombre'],
+      )!,
+      nombre: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}nombre'],
+      )!,
+      descripcion: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}descripcion'],
+      )!,
+      tokenVersion: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}token_version'],
+      )!,
+      lat: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}lat'],
+      ),
+      lng: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}lng'],
+      ),
+      radioMetros: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}radio_metros'],
+      )!,
+      bssidRequerido: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}bssid_requerido'],
+      ),
+      requiereLiveness: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}requiere_liveness'],
+      )!,
+      activo: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}activo'],
+      )!,
+      updatedAtRemote: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at_remote'],
+      ),
+    );
+  }
+
+  @override
+  $LocalPuntosRondinTable createAlias(String alias) {
+    return $LocalPuntosRondinTable(attachedDatabase, alias);
+  }
+}
+
+class LocalPuntosRondinData extends DataClass
+    implements Insertable<LocalPuntosRondinData> {
+  final String id;
+  final String sitioId;
+  final String? seccionId;
+  final String seccionNombre;
+  final String nombre;
+  final String descripcion;
+  final int tokenVersion;
+  final double? lat;
+  final double? lng;
+  final int radioMetros;
+  final String? bssidRequerido;
+  final bool requiereLiveness;
+  final bool activo;
+  final DateTime? updatedAtRemote;
+  const LocalPuntosRondinData({
+    required this.id,
+    required this.sitioId,
+    this.seccionId,
+    required this.seccionNombre,
+    required this.nombre,
+    required this.descripcion,
+    required this.tokenVersion,
+    this.lat,
+    this.lng,
+    required this.radioMetros,
+    this.bssidRequerido,
+    required this.requiereLiveness,
+    required this.activo,
+    this.updatedAtRemote,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['sitio_id'] = Variable<String>(sitioId);
+    if (!nullToAbsent || seccionId != null) {
+      map['seccion_id'] = Variable<String>(seccionId);
+    }
+    map['seccion_nombre'] = Variable<String>(seccionNombre);
+    map['nombre'] = Variable<String>(nombre);
+    map['descripcion'] = Variable<String>(descripcion);
+    map['token_version'] = Variable<int>(tokenVersion);
+    if (!nullToAbsent || lat != null) {
+      map['lat'] = Variable<double>(lat);
+    }
+    if (!nullToAbsent || lng != null) {
+      map['lng'] = Variable<double>(lng);
+    }
+    map['radio_metros'] = Variable<int>(radioMetros);
+    if (!nullToAbsent || bssidRequerido != null) {
+      map['bssid_requerido'] = Variable<String>(bssidRequerido);
+    }
+    map['requiere_liveness'] = Variable<bool>(requiereLiveness);
+    map['activo'] = Variable<bool>(activo);
+    if (!nullToAbsent || updatedAtRemote != null) {
+      map['updated_at_remote'] = Variable<DateTime>(updatedAtRemote);
+    }
+    return map;
+  }
+
+  LocalPuntosRondinCompanion toCompanion(bool nullToAbsent) {
+    return LocalPuntosRondinCompanion(
+      id: Value(id),
+      sitioId: Value(sitioId),
+      seccionId: seccionId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(seccionId),
+      seccionNombre: Value(seccionNombre),
+      nombre: Value(nombre),
+      descripcion: Value(descripcion),
+      tokenVersion: Value(tokenVersion),
+      lat: lat == null && nullToAbsent ? const Value.absent() : Value(lat),
+      lng: lng == null && nullToAbsent ? const Value.absent() : Value(lng),
+      radioMetros: Value(radioMetros),
+      bssidRequerido: bssidRequerido == null && nullToAbsent
+          ? const Value.absent()
+          : Value(bssidRequerido),
+      requiereLiveness: Value(requiereLiveness),
+      activo: Value(activo),
+      updatedAtRemote: updatedAtRemote == null && nullToAbsent
+          ? const Value.absent()
+          : Value(updatedAtRemote),
+    );
+  }
+
+  factory LocalPuntosRondinData.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return LocalPuntosRondinData(
+      id: serializer.fromJson<String>(json['id']),
+      sitioId: serializer.fromJson<String>(json['sitioId']),
+      seccionId: serializer.fromJson<String?>(json['seccionId']),
+      seccionNombre: serializer.fromJson<String>(json['seccionNombre']),
+      nombre: serializer.fromJson<String>(json['nombre']),
+      descripcion: serializer.fromJson<String>(json['descripcion']),
+      tokenVersion: serializer.fromJson<int>(json['tokenVersion']),
+      lat: serializer.fromJson<double?>(json['lat']),
+      lng: serializer.fromJson<double?>(json['lng']),
+      radioMetros: serializer.fromJson<int>(json['radioMetros']),
+      bssidRequerido: serializer.fromJson<String?>(json['bssidRequerido']),
+      requiereLiveness: serializer.fromJson<bool>(json['requiereLiveness']),
+      activo: serializer.fromJson<bool>(json['activo']),
+      updatedAtRemote: serializer.fromJson<DateTime?>(json['updatedAtRemote']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'sitioId': serializer.toJson<String>(sitioId),
+      'seccionId': serializer.toJson<String?>(seccionId),
+      'seccionNombre': serializer.toJson<String>(seccionNombre),
+      'nombre': serializer.toJson<String>(nombre),
+      'descripcion': serializer.toJson<String>(descripcion),
+      'tokenVersion': serializer.toJson<int>(tokenVersion),
+      'lat': serializer.toJson<double?>(lat),
+      'lng': serializer.toJson<double?>(lng),
+      'radioMetros': serializer.toJson<int>(radioMetros),
+      'bssidRequerido': serializer.toJson<String?>(bssidRequerido),
+      'requiereLiveness': serializer.toJson<bool>(requiereLiveness),
+      'activo': serializer.toJson<bool>(activo),
+      'updatedAtRemote': serializer.toJson<DateTime?>(updatedAtRemote),
+    };
+  }
+
+  LocalPuntosRondinData copyWith({
+    String? id,
+    String? sitioId,
+    Value<String?> seccionId = const Value.absent(),
+    String? seccionNombre,
+    String? nombre,
+    String? descripcion,
+    int? tokenVersion,
+    Value<double?> lat = const Value.absent(),
+    Value<double?> lng = const Value.absent(),
+    int? radioMetros,
+    Value<String?> bssidRequerido = const Value.absent(),
+    bool? requiereLiveness,
+    bool? activo,
+    Value<DateTime?> updatedAtRemote = const Value.absent(),
+  }) => LocalPuntosRondinData(
+    id: id ?? this.id,
+    sitioId: sitioId ?? this.sitioId,
+    seccionId: seccionId.present ? seccionId.value : this.seccionId,
+    seccionNombre: seccionNombre ?? this.seccionNombre,
+    nombre: nombre ?? this.nombre,
+    descripcion: descripcion ?? this.descripcion,
+    tokenVersion: tokenVersion ?? this.tokenVersion,
+    lat: lat.present ? lat.value : this.lat,
+    lng: lng.present ? lng.value : this.lng,
+    radioMetros: radioMetros ?? this.radioMetros,
+    bssidRequerido: bssidRequerido.present
+        ? bssidRequerido.value
+        : this.bssidRequerido,
+    requiereLiveness: requiereLiveness ?? this.requiereLiveness,
+    activo: activo ?? this.activo,
+    updatedAtRemote: updatedAtRemote.present
+        ? updatedAtRemote.value
+        : this.updatedAtRemote,
+  );
+  LocalPuntosRondinData copyWithCompanion(LocalPuntosRondinCompanion data) {
+    return LocalPuntosRondinData(
+      id: data.id.present ? data.id.value : this.id,
+      sitioId: data.sitioId.present ? data.sitioId.value : this.sitioId,
+      seccionId: data.seccionId.present ? data.seccionId.value : this.seccionId,
+      seccionNombre: data.seccionNombre.present
+          ? data.seccionNombre.value
+          : this.seccionNombre,
+      nombre: data.nombre.present ? data.nombre.value : this.nombre,
+      descripcion: data.descripcion.present
+          ? data.descripcion.value
+          : this.descripcion,
+      tokenVersion: data.tokenVersion.present
+          ? data.tokenVersion.value
+          : this.tokenVersion,
+      lat: data.lat.present ? data.lat.value : this.lat,
+      lng: data.lng.present ? data.lng.value : this.lng,
+      radioMetros: data.radioMetros.present
+          ? data.radioMetros.value
+          : this.radioMetros,
+      bssidRequerido: data.bssidRequerido.present
+          ? data.bssidRequerido.value
+          : this.bssidRequerido,
+      requiereLiveness: data.requiereLiveness.present
+          ? data.requiereLiveness.value
+          : this.requiereLiveness,
+      activo: data.activo.present ? data.activo.value : this.activo,
+      updatedAtRemote: data.updatedAtRemote.present
+          ? data.updatedAtRemote.value
+          : this.updatedAtRemote,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('LocalPuntosRondinData(')
+          ..write('id: $id, ')
+          ..write('sitioId: $sitioId, ')
+          ..write('seccionId: $seccionId, ')
+          ..write('seccionNombre: $seccionNombre, ')
+          ..write('nombre: $nombre, ')
+          ..write('descripcion: $descripcion, ')
+          ..write('tokenVersion: $tokenVersion, ')
+          ..write('lat: $lat, ')
+          ..write('lng: $lng, ')
+          ..write('radioMetros: $radioMetros, ')
+          ..write('bssidRequerido: $bssidRequerido, ')
+          ..write('requiereLiveness: $requiereLiveness, ')
+          ..write('activo: $activo, ')
+          ..write('updatedAtRemote: $updatedAtRemote')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    sitioId,
+    seccionId,
+    seccionNombre,
+    nombre,
+    descripcion,
+    tokenVersion,
+    lat,
+    lng,
+    radioMetros,
+    bssidRequerido,
+    requiereLiveness,
+    activo,
+    updatedAtRemote,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is LocalPuntosRondinData &&
+          other.id == this.id &&
+          other.sitioId == this.sitioId &&
+          other.seccionId == this.seccionId &&
+          other.seccionNombre == this.seccionNombre &&
+          other.nombre == this.nombre &&
+          other.descripcion == this.descripcion &&
+          other.tokenVersion == this.tokenVersion &&
+          other.lat == this.lat &&
+          other.lng == this.lng &&
+          other.radioMetros == this.radioMetros &&
+          other.bssidRequerido == this.bssidRequerido &&
+          other.requiereLiveness == this.requiereLiveness &&
+          other.activo == this.activo &&
+          other.updatedAtRemote == this.updatedAtRemote);
+}
+
+class LocalPuntosRondinCompanion
+    extends UpdateCompanion<LocalPuntosRondinData> {
+  final Value<String> id;
+  final Value<String> sitioId;
+  final Value<String?> seccionId;
+  final Value<String> seccionNombre;
+  final Value<String> nombre;
+  final Value<String> descripcion;
+  final Value<int> tokenVersion;
+  final Value<double?> lat;
+  final Value<double?> lng;
+  final Value<int> radioMetros;
+  final Value<String?> bssidRequerido;
+  final Value<bool> requiereLiveness;
+  final Value<bool> activo;
+  final Value<DateTime?> updatedAtRemote;
+  final Value<int> rowid;
+  const LocalPuntosRondinCompanion({
+    this.id = const Value.absent(),
+    this.sitioId = const Value.absent(),
+    this.seccionId = const Value.absent(),
+    this.seccionNombre = const Value.absent(),
+    this.nombre = const Value.absent(),
+    this.descripcion = const Value.absent(),
+    this.tokenVersion = const Value.absent(),
+    this.lat = const Value.absent(),
+    this.lng = const Value.absent(),
+    this.radioMetros = const Value.absent(),
+    this.bssidRequerido = const Value.absent(),
+    this.requiereLiveness = const Value.absent(),
+    this.activo = const Value.absent(),
+    this.updatedAtRemote = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  LocalPuntosRondinCompanion.insert({
+    required String id,
+    required String sitioId,
+    this.seccionId = const Value.absent(),
+    this.seccionNombre = const Value.absent(),
+    required String nombre,
+    this.descripcion = const Value.absent(),
+    this.tokenVersion = const Value.absent(),
+    this.lat = const Value.absent(),
+    this.lng = const Value.absent(),
+    this.radioMetros = const Value.absent(),
+    this.bssidRequerido = const Value.absent(),
+    this.requiereLiveness = const Value.absent(),
+    this.activo = const Value.absent(),
+    this.updatedAtRemote = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       sitioId = Value(sitioId),
+       nombre = Value(nombre);
+  static Insertable<LocalPuntosRondinData> custom({
+    Expression<String>? id,
+    Expression<String>? sitioId,
+    Expression<String>? seccionId,
+    Expression<String>? seccionNombre,
+    Expression<String>? nombre,
+    Expression<String>? descripcion,
+    Expression<int>? tokenVersion,
+    Expression<double>? lat,
+    Expression<double>? lng,
+    Expression<int>? radioMetros,
+    Expression<String>? bssidRequerido,
+    Expression<bool>? requiereLiveness,
+    Expression<bool>? activo,
+    Expression<DateTime>? updatedAtRemote,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (sitioId != null) 'sitio_id': sitioId,
+      if (seccionId != null) 'seccion_id': seccionId,
+      if (seccionNombre != null) 'seccion_nombre': seccionNombre,
+      if (nombre != null) 'nombre': nombre,
+      if (descripcion != null) 'descripcion': descripcion,
+      if (tokenVersion != null) 'token_version': tokenVersion,
+      if (lat != null) 'lat': lat,
+      if (lng != null) 'lng': lng,
+      if (radioMetros != null) 'radio_metros': radioMetros,
+      if (bssidRequerido != null) 'bssid_requerido': bssidRequerido,
+      if (requiereLiveness != null) 'requiere_liveness': requiereLiveness,
+      if (activo != null) 'activo': activo,
+      if (updatedAtRemote != null) 'updated_at_remote': updatedAtRemote,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  LocalPuntosRondinCompanion copyWith({
+    Value<String>? id,
+    Value<String>? sitioId,
+    Value<String?>? seccionId,
+    Value<String>? seccionNombre,
+    Value<String>? nombre,
+    Value<String>? descripcion,
+    Value<int>? tokenVersion,
+    Value<double?>? lat,
+    Value<double?>? lng,
+    Value<int>? radioMetros,
+    Value<String?>? bssidRequerido,
+    Value<bool>? requiereLiveness,
+    Value<bool>? activo,
+    Value<DateTime?>? updatedAtRemote,
+    Value<int>? rowid,
+  }) {
+    return LocalPuntosRondinCompanion(
+      id: id ?? this.id,
+      sitioId: sitioId ?? this.sitioId,
+      seccionId: seccionId ?? this.seccionId,
+      seccionNombre: seccionNombre ?? this.seccionNombre,
+      nombre: nombre ?? this.nombre,
+      descripcion: descripcion ?? this.descripcion,
+      tokenVersion: tokenVersion ?? this.tokenVersion,
+      lat: lat ?? this.lat,
+      lng: lng ?? this.lng,
+      radioMetros: radioMetros ?? this.radioMetros,
+      bssidRequerido: bssidRequerido ?? this.bssidRequerido,
+      requiereLiveness: requiereLiveness ?? this.requiereLiveness,
+      activo: activo ?? this.activo,
+      updatedAtRemote: updatedAtRemote ?? this.updatedAtRemote,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (sitioId.present) {
+      map['sitio_id'] = Variable<String>(sitioId.value);
+    }
+    if (seccionId.present) {
+      map['seccion_id'] = Variable<String>(seccionId.value);
+    }
+    if (seccionNombre.present) {
+      map['seccion_nombre'] = Variable<String>(seccionNombre.value);
+    }
+    if (nombre.present) {
+      map['nombre'] = Variable<String>(nombre.value);
+    }
+    if (descripcion.present) {
+      map['descripcion'] = Variable<String>(descripcion.value);
+    }
+    if (tokenVersion.present) {
+      map['token_version'] = Variable<int>(tokenVersion.value);
+    }
+    if (lat.present) {
+      map['lat'] = Variable<double>(lat.value);
+    }
+    if (lng.present) {
+      map['lng'] = Variable<double>(lng.value);
+    }
+    if (radioMetros.present) {
+      map['radio_metros'] = Variable<int>(radioMetros.value);
+    }
+    if (bssidRequerido.present) {
+      map['bssid_requerido'] = Variable<String>(bssidRequerido.value);
+    }
+    if (requiereLiveness.present) {
+      map['requiere_liveness'] = Variable<bool>(requiereLiveness.value);
+    }
+    if (activo.present) {
+      map['activo'] = Variable<bool>(activo.value);
+    }
+    if (updatedAtRemote.present) {
+      map['updated_at_remote'] = Variable<DateTime>(updatedAtRemote.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('LocalPuntosRondinCompanion(')
+          ..write('id: $id, ')
+          ..write('sitioId: $sitioId, ')
+          ..write('seccionId: $seccionId, ')
+          ..write('seccionNombre: $seccionNombre, ')
+          ..write('nombre: $nombre, ')
+          ..write('descripcion: $descripcion, ')
+          ..write('tokenVersion: $tokenVersion, ')
+          ..write('lat: $lat, ')
+          ..write('lng: $lng, ')
+          ..write('radioMetros: $radioMetros, ')
+          ..write('bssidRequerido: $bssidRequerido, ')
+          ..write('requiereLiveness: $requiereLiveness, ')
+          ..write('activo: $activo, ')
+          ..write('updatedAtRemote: $updatedAtRemote, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $LocalRutasRondinTable extends LocalRutasRondin
+    with TableInfo<$LocalRutasRondinTable, LocalRutasRondinData> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $LocalRutasRondinTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _sitioIdMeta = const VerificationMeta(
+    'sitioId',
+  );
+  @override
+  late final GeneratedColumn<String> sitioId = GeneratedColumn<String>(
+    'sitio_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _nombreMeta = const VerificationMeta('nombre');
+  @override
+  late final GeneratedColumn<String> nombre = GeneratedColumn<String>(
+    'nombre',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _ordenAleatorioMeta = const VerificationMeta(
+    'ordenAleatorio',
+  );
+  @override
+  late final GeneratedColumn<bool> ordenAleatorio = GeneratedColumn<bool>(
+    'orden_aleatorio',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("orden_aleatorio" IN (0, 1))',
+    ),
+    defaultValue: const Constant(false),
+  );
+  static const VerificationMeta _minutosMinimosMeta = const VerificationMeta(
+    'minutosMinimos',
+  );
+  @override
+  late final GeneratedColumn<int> minutosMinimos = GeneratedColumn<int>(
+    'minutos_minimos',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _minutosMaximosMeta = const VerificationMeta(
+    'minutosMaximos',
+  );
+  @override
+  late final GeneratedColumn<int> minutosMaximos = GeneratedColumn<int>(
+    'minutos_maximos',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(180),
+  );
+  static const VerificationMeta _activoMeta = const VerificationMeta('activo');
+  @override
+  late final GeneratedColumn<bool> activo = GeneratedColumn<bool>(
+    'activo',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("activo" IN (0, 1))',
+    ),
+    defaultValue: const Constant(true),
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    sitioId,
+    nombre,
+    ordenAleatorio,
+    minutosMinimos,
+    minutosMaximos,
+    activo,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'local_rutas_rondin';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<LocalRutasRondinData> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('sitio_id')) {
+      context.handle(
+        _sitioIdMeta,
+        sitioId.isAcceptableOrUnknown(data['sitio_id']!, _sitioIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_sitioIdMeta);
+    }
+    if (data.containsKey('nombre')) {
+      context.handle(
+        _nombreMeta,
+        nombre.isAcceptableOrUnknown(data['nombre']!, _nombreMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_nombreMeta);
+    }
+    if (data.containsKey('orden_aleatorio')) {
+      context.handle(
+        _ordenAleatorioMeta,
+        ordenAleatorio.isAcceptableOrUnknown(
+          data['orden_aleatorio']!,
+          _ordenAleatorioMeta,
+        ),
+      );
+    }
+    if (data.containsKey('minutos_minimos')) {
+      context.handle(
+        _minutosMinimosMeta,
+        minutosMinimos.isAcceptableOrUnknown(
+          data['minutos_minimos']!,
+          _minutosMinimosMeta,
+        ),
+      );
+    }
+    if (data.containsKey('minutos_maximos')) {
+      context.handle(
+        _minutosMaximosMeta,
+        minutosMaximos.isAcceptableOrUnknown(
+          data['minutos_maximos']!,
+          _minutosMaximosMeta,
+        ),
+      );
+    }
+    if (data.containsKey('activo')) {
+      context.handle(
+        _activoMeta,
+        activo.isAcceptableOrUnknown(data['activo']!, _activoMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  LocalRutasRondinData map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return LocalRutasRondinData(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      sitioId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}sitio_id'],
+      )!,
+      nombre: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}nombre'],
+      )!,
+      ordenAleatorio: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}orden_aleatorio'],
+      )!,
+      minutosMinimos: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}minutos_minimos'],
+      )!,
+      minutosMaximos: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}minutos_maximos'],
+      )!,
+      activo: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}activo'],
+      )!,
+    );
+  }
+
+  @override
+  $LocalRutasRondinTable createAlias(String alias) {
+    return $LocalRutasRondinTable(attachedDatabase, alias);
+  }
+}
+
+class LocalRutasRondinData extends DataClass
+    implements Insertable<LocalRutasRondinData> {
+  final String id;
+  final String sitioId;
+  final String nombre;
+  final bool ordenAleatorio;
+  final int minutosMinimos;
+  final int minutosMaximos;
+  final bool activo;
+  const LocalRutasRondinData({
+    required this.id,
+    required this.sitioId,
+    required this.nombre,
+    required this.ordenAleatorio,
+    required this.minutosMinimos,
+    required this.minutosMaximos,
+    required this.activo,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['sitio_id'] = Variable<String>(sitioId);
+    map['nombre'] = Variable<String>(nombre);
+    map['orden_aleatorio'] = Variable<bool>(ordenAleatorio);
+    map['minutos_minimos'] = Variable<int>(minutosMinimos);
+    map['minutos_maximos'] = Variable<int>(minutosMaximos);
+    map['activo'] = Variable<bool>(activo);
+    return map;
+  }
+
+  LocalRutasRondinCompanion toCompanion(bool nullToAbsent) {
+    return LocalRutasRondinCompanion(
+      id: Value(id),
+      sitioId: Value(sitioId),
+      nombre: Value(nombre),
+      ordenAleatorio: Value(ordenAleatorio),
+      minutosMinimos: Value(minutosMinimos),
+      minutosMaximos: Value(minutosMaximos),
+      activo: Value(activo),
+    );
+  }
+
+  factory LocalRutasRondinData.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return LocalRutasRondinData(
+      id: serializer.fromJson<String>(json['id']),
+      sitioId: serializer.fromJson<String>(json['sitioId']),
+      nombre: serializer.fromJson<String>(json['nombre']),
+      ordenAleatorio: serializer.fromJson<bool>(json['ordenAleatorio']),
+      minutosMinimos: serializer.fromJson<int>(json['minutosMinimos']),
+      minutosMaximos: serializer.fromJson<int>(json['minutosMaximos']),
+      activo: serializer.fromJson<bool>(json['activo']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'sitioId': serializer.toJson<String>(sitioId),
+      'nombre': serializer.toJson<String>(nombre),
+      'ordenAleatorio': serializer.toJson<bool>(ordenAleatorio),
+      'minutosMinimos': serializer.toJson<int>(minutosMinimos),
+      'minutosMaximos': serializer.toJson<int>(minutosMaximos),
+      'activo': serializer.toJson<bool>(activo),
+    };
+  }
+
+  LocalRutasRondinData copyWith({
+    String? id,
+    String? sitioId,
+    String? nombre,
+    bool? ordenAleatorio,
+    int? minutosMinimos,
+    int? minutosMaximos,
+    bool? activo,
+  }) => LocalRutasRondinData(
+    id: id ?? this.id,
+    sitioId: sitioId ?? this.sitioId,
+    nombre: nombre ?? this.nombre,
+    ordenAleatorio: ordenAleatorio ?? this.ordenAleatorio,
+    minutosMinimos: minutosMinimos ?? this.minutosMinimos,
+    minutosMaximos: minutosMaximos ?? this.minutosMaximos,
+    activo: activo ?? this.activo,
+  );
+  LocalRutasRondinData copyWithCompanion(LocalRutasRondinCompanion data) {
+    return LocalRutasRondinData(
+      id: data.id.present ? data.id.value : this.id,
+      sitioId: data.sitioId.present ? data.sitioId.value : this.sitioId,
+      nombre: data.nombre.present ? data.nombre.value : this.nombre,
+      ordenAleatorio: data.ordenAleatorio.present
+          ? data.ordenAleatorio.value
+          : this.ordenAleatorio,
+      minutosMinimos: data.minutosMinimos.present
+          ? data.minutosMinimos.value
+          : this.minutosMinimos,
+      minutosMaximos: data.minutosMaximos.present
+          ? data.minutosMaximos.value
+          : this.minutosMaximos,
+      activo: data.activo.present ? data.activo.value : this.activo,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('LocalRutasRondinData(')
+          ..write('id: $id, ')
+          ..write('sitioId: $sitioId, ')
+          ..write('nombre: $nombre, ')
+          ..write('ordenAleatorio: $ordenAleatorio, ')
+          ..write('minutosMinimos: $minutosMinimos, ')
+          ..write('minutosMaximos: $minutosMaximos, ')
+          ..write('activo: $activo')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    sitioId,
+    nombre,
+    ordenAleatorio,
+    minutosMinimos,
+    minutosMaximos,
+    activo,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is LocalRutasRondinData &&
+          other.id == this.id &&
+          other.sitioId == this.sitioId &&
+          other.nombre == this.nombre &&
+          other.ordenAleatorio == this.ordenAleatorio &&
+          other.minutosMinimos == this.minutosMinimos &&
+          other.minutosMaximos == this.minutosMaximos &&
+          other.activo == this.activo);
+}
+
+class LocalRutasRondinCompanion extends UpdateCompanion<LocalRutasRondinData> {
+  final Value<String> id;
+  final Value<String> sitioId;
+  final Value<String> nombre;
+  final Value<bool> ordenAleatorio;
+  final Value<int> minutosMinimos;
+  final Value<int> minutosMaximos;
+  final Value<bool> activo;
+  final Value<int> rowid;
+  const LocalRutasRondinCompanion({
+    this.id = const Value.absent(),
+    this.sitioId = const Value.absent(),
+    this.nombre = const Value.absent(),
+    this.ordenAleatorio = const Value.absent(),
+    this.minutosMinimos = const Value.absent(),
+    this.minutosMaximos = const Value.absent(),
+    this.activo = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  LocalRutasRondinCompanion.insert({
+    required String id,
+    required String sitioId,
+    required String nombre,
+    this.ordenAleatorio = const Value.absent(),
+    this.minutosMinimos = const Value.absent(),
+    this.minutosMaximos = const Value.absent(),
+    this.activo = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       sitioId = Value(sitioId),
+       nombre = Value(nombre);
+  static Insertable<LocalRutasRondinData> custom({
+    Expression<String>? id,
+    Expression<String>? sitioId,
+    Expression<String>? nombre,
+    Expression<bool>? ordenAleatorio,
+    Expression<int>? minutosMinimos,
+    Expression<int>? minutosMaximos,
+    Expression<bool>? activo,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (sitioId != null) 'sitio_id': sitioId,
+      if (nombre != null) 'nombre': nombre,
+      if (ordenAleatorio != null) 'orden_aleatorio': ordenAleatorio,
+      if (minutosMinimos != null) 'minutos_minimos': minutosMinimos,
+      if (minutosMaximos != null) 'minutos_maximos': minutosMaximos,
+      if (activo != null) 'activo': activo,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  LocalRutasRondinCompanion copyWith({
+    Value<String>? id,
+    Value<String>? sitioId,
+    Value<String>? nombre,
+    Value<bool>? ordenAleatorio,
+    Value<int>? minutosMinimos,
+    Value<int>? minutosMaximos,
+    Value<bool>? activo,
+    Value<int>? rowid,
+  }) {
+    return LocalRutasRondinCompanion(
+      id: id ?? this.id,
+      sitioId: sitioId ?? this.sitioId,
+      nombre: nombre ?? this.nombre,
+      ordenAleatorio: ordenAleatorio ?? this.ordenAleatorio,
+      minutosMinimos: minutosMinimos ?? this.minutosMinimos,
+      minutosMaximos: minutosMaximos ?? this.minutosMaximos,
+      activo: activo ?? this.activo,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (sitioId.present) {
+      map['sitio_id'] = Variable<String>(sitioId.value);
+    }
+    if (nombre.present) {
+      map['nombre'] = Variable<String>(nombre.value);
+    }
+    if (ordenAleatorio.present) {
+      map['orden_aleatorio'] = Variable<bool>(ordenAleatorio.value);
+    }
+    if (minutosMinimos.present) {
+      map['minutos_minimos'] = Variable<int>(minutosMinimos.value);
+    }
+    if (minutosMaximos.present) {
+      map['minutos_maximos'] = Variable<int>(minutosMaximos.value);
+    }
+    if (activo.present) {
+      map['activo'] = Variable<bool>(activo.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('LocalRutasRondinCompanion(')
+          ..write('id: $id, ')
+          ..write('sitioId: $sitioId, ')
+          ..write('nombre: $nombre, ')
+          ..write('ordenAleatorio: $ordenAleatorio, ')
+          ..write('minutosMinimos: $minutosMinimos, ')
+          ..write('minutosMaximos: $minutosMaximos, ')
+          ..write('activo: $activo, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $LocalRutaRondinPuntosTable extends LocalRutaRondinPuntos
+    with TableInfo<$LocalRutaRondinPuntosTable, LocalRutaRondinPunto> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $LocalRutaRondinPuntosTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _rutaIdMeta = const VerificationMeta('rutaId');
+  @override
+  late final GeneratedColumn<String> rutaId = GeneratedColumn<String>(
+    'ruta_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _puntoIdMeta = const VerificationMeta(
+    'puntoId',
+  );
+  @override
+  late final GeneratedColumn<String> puntoId = GeneratedColumn<String>(
+    'punto_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _ordenMeta = const VerificationMeta('orden');
+  @override
+  late final GeneratedColumn<int> orden = GeneratedColumn<int>(
+    'orden',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _obligatorioMeta = const VerificationMeta(
+    'obligatorio',
+  );
+  @override
+  late final GeneratedColumn<bool> obligatorio = GeneratedColumn<bool>(
+    'obligatorio',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("obligatorio" IN (0, 1))',
+    ),
+    defaultValue: const Constant(true),
+  );
+  static const VerificationMeta _segundosMinimosDesdeAnteriorMeta =
+      const VerificationMeta('segundosMinimosDesdeAnterior');
+  @override
+  late final GeneratedColumn<int> segundosMinimosDesdeAnterior =
+      GeneratedColumn<int>(
+        'segundos_minimos_desde_anterior',
+        aliasedName,
+        false,
+        type: DriftSqlType.int,
+        requiredDuringInsert: false,
+        defaultValue: const Constant(0),
+      );
+  static const VerificationMeta _segundosMaximosDesdeAnteriorMeta =
+      const VerificationMeta('segundosMaximosDesdeAnterior');
+  @override
+  late final GeneratedColumn<int> segundosMaximosDesdeAnterior =
+      GeneratedColumn<int>(
+        'segundos_maximos_desde_anterior',
+        aliasedName,
+        false,
+        type: DriftSqlType.int,
+        requiredDuringInsert: false,
+        defaultValue: const Constant(3600),
+      );
+  @override
+  List<GeneratedColumn> get $columns => [
+    rutaId,
+    puntoId,
+    orden,
+    obligatorio,
+    segundosMinimosDesdeAnterior,
+    segundosMaximosDesdeAnterior,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'local_ruta_rondin_puntos';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<LocalRutaRondinPunto> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('ruta_id')) {
+      context.handle(
+        _rutaIdMeta,
+        rutaId.isAcceptableOrUnknown(data['ruta_id']!, _rutaIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_rutaIdMeta);
+    }
+    if (data.containsKey('punto_id')) {
+      context.handle(
+        _puntoIdMeta,
+        puntoId.isAcceptableOrUnknown(data['punto_id']!, _puntoIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_puntoIdMeta);
+    }
+    if (data.containsKey('orden')) {
+      context.handle(
+        _ordenMeta,
+        orden.isAcceptableOrUnknown(data['orden']!, _ordenMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_ordenMeta);
+    }
+    if (data.containsKey('obligatorio')) {
+      context.handle(
+        _obligatorioMeta,
+        obligatorio.isAcceptableOrUnknown(
+          data['obligatorio']!,
+          _obligatorioMeta,
+        ),
+      );
+    }
+    if (data.containsKey('segundos_minimos_desde_anterior')) {
+      context.handle(
+        _segundosMinimosDesdeAnteriorMeta,
+        segundosMinimosDesdeAnterior.isAcceptableOrUnknown(
+          data['segundos_minimos_desde_anterior']!,
+          _segundosMinimosDesdeAnteriorMeta,
+        ),
+      );
+    }
+    if (data.containsKey('segundos_maximos_desde_anterior')) {
+      context.handle(
+        _segundosMaximosDesdeAnteriorMeta,
+        segundosMaximosDesdeAnterior.isAcceptableOrUnknown(
+          data['segundos_maximos_desde_anterior']!,
+          _segundosMaximosDesdeAnteriorMeta,
+        ),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {rutaId, puntoId};
+  @override
+  LocalRutaRondinPunto map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return LocalRutaRondinPunto(
+      rutaId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}ruta_id'],
+      )!,
+      puntoId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}punto_id'],
+      )!,
+      orden: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}orden'],
+      )!,
+      obligatorio: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}obligatorio'],
+      )!,
+      segundosMinimosDesdeAnterior: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}segundos_minimos_desde_anterior'],
+      )!,
+      segundosMaximosDesdeAnterior: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}segundos_maximos_desde_anterior'],
+      )!,
+    );
+  }
+
+  @override
+  $LocalRutaRondinPuntosTable createAlias(String alias) {
+    return $LocalRutaRondinPuntosTable(attachedDatabase, alias);
+  }
+}
+
+class LocalRutaRondinPunto extends DataClass
+    implements Insertable<LocalRutaRondinPunto> {
+  final String rutaId;
+  final String puntoId;
+  final int orden;
+  final bool obligatorio;
+  final int segundosMinimosDesdeAnterior;
+  final int segundosMaximosDesdeAnterior;
+  const LocalRutaRondinPunto({
+    required this.rutaId,
+    required this.puntoId,
+    required this.orden,
+    required this.obligatorio,
+    required this.segundosMinimosDesdeAnterior,
+    required this.segundosMaximosDesdeAnterior,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['ruta_id'] = Variable<String>(rutaId);
+    map['punto_id'] = Variable<String>(puntoId);
+    map['orden'] = Variable<int>(orden);
+    map['obligatorio'] = Variable<bool>(obligatorio);
+    map['segundos_minimos_desde_anterior'] = Variable<int>(
+      segundosMinimosDesdeAnterior,
+    );
+    map['segundos_maximos_desde_anterior'] = Variable<int>(
+      segundosMaximosDesdeAnterior,
+    );
+    return map;
+  }
+
+  LocalRutaRondinPuntosCompanion toCompanion(bool nullToAbsent) {
+    return LocalRutaRondinPuntosCompanion(
+      rutaId: Value(rutaId),
+      puntoId: Value(puntoId),
+      orden: Value(orden),
+      obligatorio: Value(obligatorio),
+      segundosMinimosDesdeAnterior: Value(segundosMinimosDesdeAnterior),
+      segundosMaximosDesdeAnterior: Value(segundosMaximosDesdeAnterior),
+    );
+  }
+
+  factory LocalRutaRondinPunto.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return LocalRutaRondinPunto(
+      rutaId: serializer.fromJson<String>(json['rutaId']),
+      puntoId: serializer.fromJson<String>(json['puntoId']),
+      orden: serializer.fromJson<int>(json['orden']),
+      obligatorio: serializer.fromJson<bool>(json['obligatorio']),
+      segundosMinimosDesdeAnterior: serializer.fromJson<int>(
+        json['segundosMinimosDesdeAnterior'],
+      ),
+      segundosMaximosDesdeAnterior: serializer.fromJson<int>(
+        json['segundosMaximosDesdeAnterior'],
+      ),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'rutaId': serializer.toJson<String>(rutaId),
+      'puntoId': serializer.toJson<String>(puntoId),
+      'orden': serializer.toJson<int>(orden),
+      'obligatorio': serializer.toJson<bool>(obligatorio),
+      'segundosMinimosDesdeAnterior': serializer.toJson<int>(
+        segundosMinimosDesdeAnterior,
+      ),
+      'segundosMaximosDesdeAnterior': serializer.toJson<int>(
+        segundosMaximosDesdeAnterior,
+      ),
+    };
+  }
+
+  LocalRutaRondinPunto copyWith({
+    String? rutaId,
+    String? puntoId,
+    int? orden,
+    bool? obligatorio,
+    int? segundosMinimosDesdeAnterior,
+    int? segundosMaximosDesdeAnterior,
+  }) => LocalRutaRondinPunto(
+    rutaId: rutaId ?? this.rutaId,
+    puntoId: puntoId ?? this.puntoId,
+    orden: orden ?? this.orden,
+    obligatorio: obligatorio ?? this.obligatorio,
+    segundosMinimosDesdeAnterior:
+        segundosMinimosDesdeAnterior ?? this.segundosMinimosDesdeAnterior,
+    segundosMaximosDesdeAnterior:
+        segundosMaximosDesdeAnterior ?? this.segundosMaximosDesdeAnterior,
+  );
+  LocalRutaRondinPunto copyWithCompanion(LocalRutaRondinPuntosCompanion data) {
+    return LocalRutaRondinPunto(
+      rutaId: data.rutaId.present ? data.rutaId.value : this.rutaId,
+      puntoId: data.puntoId.present ? data.puntoId.value : this.puntoId,
+      orden: data.orden.present ? data.orden.value : this.orden,
+      obligatorio: data.obligatorio.present
+          ? data.obligatorio.value
+          : this.obligatorio,
+      segundosMinimosDesdeAnterior: data.segundosMinimosDesdeAnterior.present
+          ? data.segundosMinimosDesdeAnterior.value
+          : this.segundosMinimosDesdeAnterior,
+      segundosMaximosDesdeAnterior: data.segundosMaximosDesdeAnterior.present
+          ? data.segundosMaximosDesdeAnterior.value
+          : this.segundosMaximosDesdeAnterior,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('LocalRutaRondinPunto(')
+          ..write('rutaId: $rutaId, ')
+          ..write('puntoId: $puntoId, ')
+          ..write('orden: $orden, ')
+          ..write('obligatorio: $obligatorio, ')
+          ..write(
+            'segundosMinimosDesdeAnterior: $segundosMinimosDesdeAnterior, ',
+          )
+          ..write('segundosMaximosDesdeAnterior: $segundosMaximosDesdeAnterior')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    rutaId,
+    puntoId,
+    orden,
+    obligatorio,
+    segundosMinimosDesdeAnterior,
+    segundosMaximosDesdeAnterior,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is LocalRutaRondinPunto &&
+          other.rutaId == this.rutaId &&
+          other.puntoId == this.puntoId &&
+          other.orden == this.orden &&
+          other.obligatorio == this.obligatorio &&
+          other.segundosMinimosDesdeAnterior ==
+              this.segundosMinimosDesdeAnterior &&
+          other.segundosMaximosDesdeAnterior ==
+              this.segundosMaximosDesdeAnterior);
+}
+
+class LocalRutaRondinPuntosCompanion
+    extends UpdateCompanion<LocalRutaRondinPunto> {
+  final Value<String> rutaId;
+  final Value<String> puntoId;
+  final Value<int> orden;
+  final Value<bool> obligatorio;
+  final Value<int> segundosMinimosDesdeAnterior;
+  final Value<int> segundosMaximosDesdeAnterior;
+  final Value<int> rowid;
+  const LocalRutaRondinPuntosCompanion({
+    this.rutaId = const Value.absent(),
+    this.puntoId = const Value.absent(),
+    this.orden = const Value.absent(),
+    this.obligatorio = const Value.absent(),
+    this.segundosMinimosDesdeAnterior = const Value.absent(),
+    this.segundosMaximosDesdeAnterior = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  LocalRutaRondinPuntosCompanion.insert({
+    required String rutaId,
+    required String puntoId,
+    required int orden,
+    this.obligatorio = const Value.absent(),
+    this.segundosMinimosDesdeAnterior = const Value.absent(),
+    this.segundosMaximosDesdeAnterior = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : rutaId = Value(rutaId),
+       puntoId = Value(puntoId),
+       orden = Value(orden);
+  static Insertable<LocalRutaRondinPunto> custom({
+    Expression<String>? rutaId,
+    Expression<String>? puntoId,
+    Expression<int>? orden,
+    Expression<bool>? obligatorio,
+    Expression<int>? segundosMinimosDesdeAnterior,
+    Expression<int>? segundosMaximosDesdeAnterior,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (rutaId != null) 'ruta_id': rutaId,
+      if (puntoId != null) 'punto_id': puntoId,
+      if (orden != null) 'orden': orden,
+      if (obligatorio != null) 'obligatorio': obligatorio,
+      if (segundosMinimosDesdeAnterior != null)
+        'segundos_minimos_desde_anterior': segundosMinimosDesdeAnterior,
+      if (segundosMaximosDesdeAnterior != null)
+        'segundos_maximos_desde_anterior': segundosMaximosDesdeAnterior,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  LocalRutaRondinPuntosCompanion copyWith({
+    Value<String>? rutaId,
+    Value<String>? puntoId,
+    Value<int>? orden,
+    Value<bool>? obligatorio,
+    Value<int>? segundosMinimosDesdeAnterior,
+    Value<int>? segundosMaximosDesdeAnterior,
+    Value<int>? rowid,
+  }) {
+    return LocalRutaRondinPuntosCompanion(
+      rutaId: rutaId ?? this.rutaId,
+      puntoId: puntoId ?? this.puntoId,
+      orden: orden ?? this.orden,
+      obligatorio: obligatorio ?? this.obligatorio,
+      segundosMinimosDesdeAnterior:
+          segundosMinimosDesdeAnterior ?? this.segundosMinimosDesdeAnterior,
+      segundosMaximosDesdeAnterior:
+          segundosMaximosDesdeAnterior ?? this.segundosMaximosDesdeAnterior,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (rutaId.present) {
+      map['ruta_id'] = Variable<String>(rutaId.value);
+    }
+    if (puntoId.present) {
+      map['punto_id'] = Variable<String>(puntoId.value);
+    }
+    if (orden.present) {
+      map['orden'] = Variable<int>(orden.value);
+    }
+    if (obligatorio.present) {
+      map['obligatorio'] = Variable<bool>(obligatorio.value);
+    }
+    if (segundosMinimosDesdeAnterior.present) {
+      map['segundos_minimos_desde_anterior'] = Variable<int>(
+        segundosMinimosDesdeAnterior.value,
+      );
+    }
+    if (segundosMaximosDesdeAnterior.present) {
+      map['segundos_maximos_desde_anterior'] = Variable<int>(
+        segundosMaximosDesdeAnterior.value,
+      );
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('LocalRutaRondinPuntosCompanion(')
+          ..write('rutaId: $rutaId, ')
+          ..write('puntoId: $puntoId, ')
+          ..write('orden: $orden, ')
+          ..write('obligatorio: $obligatorio, ')
+          ..write(
+            'segundosMinimosDesdeAnterior: $segundosMinimosDesdeAnterior, ',
+          )
+          ..write(
+            'segundosMaximosDesdeAnterior: $segundosMaximosDesdeAnterior, ',
+          )
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
@@ -12199,6 +17235,9 @@ abstract class _$AppDatabase extends GeneratedDatabase {
       $LocalRecepcionesTurnoTable(this);
   late final $LocalRecepcionItemsTable localRecepcionItems =
       $LocalRecepcionItemsTable(this);
+  late final $LocalRondinesTable localRondines = $LocalRondinesTable(this);
+  late final $LocalRondinLecturasTable localRondinLecturas =
+      $LocalRondinLecturasTable(this);
   late final $LocalSitiosTable localSitios = $LocalSitiosTable(this);
   late final $LocalWifiApsTable localWifiAps = $LocalWifiApsTable(this);
   late final $LocalCatalogoEquipoTable localCatalogoEquipo =
@@ -12209,6 +17248,13 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final $LocalAvisosPrivacidadTable localAvisosPrivacidad =
       $LocalAvisosPrivacidadTable(this);
   late final $LocalTurnosTable localTurnos = $LocalTurnosTable(this);
+  late final $LocalPuntosRondinTable localPuntosRondin =
+      $LocalPuntosRondinTable(this);
+  late final $LocalRutasRondinTable localRutasRondin = $LocalRutasRondinTable(
+    this,
+  );
+  late final $LocalRutaRondinPuntosTable localRutaRondinPuntos =
+      $LocalRutaRondinPuntosTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -12221,6 +17267,8 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     localBitacoraFotos,
     localRecepcionesTurno,
     localRecepcionItems,
+    localRondines,
+    localRondinLecturas,
     localSitios,
     localWifiAps,
     localCatalogoEquipo,
@@ -12228,6 +17276,9 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     localProfiles,
     localAvisosPrivacidad,
     localTurnos,
+    localPuntosRondin,
+    localRutasRondin,
+    localRutaRondinPuntos,
   ];
 }
 
@@ -16038,6 +21089,1383 @@ typedef $$LocalRecepcionItemsTableProcessedTableManager =
       LocalRecepcionItem,
       PrefetchHooks Function()
     >;
+typedef $$LocalRondinesTableCreateCompanionBuilder =
+    LocalRondinesCompanion Function({
+      Value<String> localId,
+      Value<String?> remoteId,
+      Value<String> syncStatus,
+      Value<String> syncError,
+      Value<int> syncIntentos,
+      Value<String> deviceId,
+      Value<DateTime> createdAtLocal,
+      Value<DateTime> updatedAtLocal,
+      Value<DateTime?> syncedAt,
+      required String usuarioId,
+      required String sitioId,
+      required String rutaId,
+      Value<String?> turnoId,
+      required DateTime turnoFecha,
+      required DateTime iniciadoAtDispositivo,
+      required int iniciadoMonotonicMs,
+      Value<DateTime?> finalizadoAtDispositivo,
+      Value<String> estadoLocal,
+      Value<String?> estadoValidacionServidor,
+      Value<int?> puntajeRiesgoServidor,
+      Value<String?> codigosRiesgoServidorJson,
+      Value<int> rowid,
+    });
+typedef $$LocalRondinesTableUpdateCompanionBuilder =
+    LocalRondinesCompanion Function({
+      Value<String> localId,
+      Value<String?> remoteId,
+      Value<String> syncStatus,
+      Value<String> syncError,
+      Value<int> syncIntentos,
+      Value<String> deviceId,
+      Value<DateTime> createdAtLocal,
+      Value<DateTime> updatedAtLocal,
+      Value<DateTime?> syncedAt,
+      Value<String> usuarioId,
+      Value<String> sitioId,
+      Value<String> rutaId,
+      Value<String?> turnoId,
+      Value<DateTime> turnoFecha,
+      Value<DateTime> iniciadoAtDispositivo,
+      Value<int> iniciadoMonotonicMs,
+      Value<DateTime?> finalizadoAtDispositivo,
+      Value<String> estadoLocal,
+      Value<String?> estadoValidacionServidor,
+      Value<int?> puntajeRiesgoServidor,
+      Value<String?> codigosRiesgoServidorJson,
+      Value<int> rowid,
+    });
+
+class $$LocalRondinesTableFilterComposer
+    extends Composer<_$AppDatabase, $LocalRondinesTable> {
+  $$LocalRondinesTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get localId => $composableBuilder(
+    column: $table.localId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get remoteId => $composableBuilder(
+    column: $table.remoteId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get syncStatus => $composableBuilder(
+    column: $table.syncStatus,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get syncError => $composableBuilder(
+    column: $table.syncError,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get syncIntentos => $composableBuilder(
+    column: $table.syncIntentos,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get deviceId => $composableBuilder(
+    column: $table.deviceId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAtLocal => $composableBuilder(
+    column: $table.createdAtLocal,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAtLocal => $composableBuilder(
+    column: $table.updatedAtLocal,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get syncedAt => $composableBuilder(
+    column: $table.syncedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get usuarioId => $composableBuilder(
+    column: $table.usuarioId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get sitioId => $composableBuilder(
+    column: $table.sitioId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get rutaId => $composableBuilder(
+    column: $table.rutaId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get turnoId => $composableBuilder(
+    column: $table.turnoId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get turnoFecha => $composableBuilder(
+    column: $table.turnoFecha,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get iniciadoAtDispositivo => $composableBuilder(
+    column: $table.iniciadoAtDispositivo,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get iniciadoMonotonicMs => $composableBuilder(
+    column: $table.iniciadoMonotonicMs,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get finalizadoAtDispositivo => $composableBuilder(
+    column: $table.finalizadoAtDispositivo,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get estadoLocal => $composableBuilder(
+    column: $table.estadoLocal,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get estadoValidacionServidor => $composableBuilder(
+    column: $table.estadoValidacionServidor,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get puntajeRiesgoServidor => $composableBuilder(
+    column: $table.puntajeRiesgoServidor,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get codigosRiesgoServidorJson => $composableBuilder(
+    column: $table.codigosRiesgoServidorJson,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$LocalRondinesTableOrderingComposer
+    extends Composer<_$AppDatabase, $LocalRondinesTable> {
+  $$LocalRondinesTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get localId => $composableBuilder(
+    column: $table.localId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get remoteId => $composableBuilder(
+    column: $table.remoteId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get syncStatus => $composableBuilder(
+    column: $table.syncStatus,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get syncError => $composableBuilder(
+    column: $table.syncError,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get syncIntentos => $composableBuilder(
+    column: $table.syncIntentos,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get deviceId => $composableBuilder(
+    column: $table.deviceId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAtLocal => $composableBuilder(
+    column: $table.createdAtLocal,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAtLocal => $composableBuilder(
+    column: $table.updatedAtLocal,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get syncedAt => $composableBuilder(
+    column: $table.syncedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get usuarioId => $composableBuilder(
+    column: $table.usuarioId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get sitioId => $composableBuilder(
+    column: $table.sitioId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get rutaId => $composableBuilder(
+    column: $table.rutaId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get turnoId => $composableBuilder(
+    column: $table.turnoId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get turnoFecha => $composableBuilder(
+    column: $table.turnoFecha,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get iniciadoAtDispositivo => $composableBuilder(
+    column: $table.iniciadoAtDispositivo,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get iniciadoMonotonicMs => $composableBuilder(
+    column: $table.iniciadoMonotonicMs,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get finalizadoAtDispositivo => $composableBuilder(
+    column: $table.finalizadoAtDispositivo,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get estadoLocal => $composableBuilder(
+    column: $table.estadoLocal,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get estadoValidacionServidor => $composableBuilder(
+    column: $table.estadoValidacionServidor,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get puntajeRiesgoServidor => $composableBuilder(
+    column: $table.puntajeRiesgoServidor,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get codigosRiesgoServidorJson => $composableBuilder(
+    column: $table.codigosRiesgoServidorJson,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$LocalRondinesTableAnnotationComposer
+    extends Composer<_$AppDatabase, $LocalRondinesTable> {
+  $$LocalRondinesTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get localId =>
+      $composableBuilder(column: $table.localId, builder: (column) => column);
+
+  GeneratedColumn<String> get remoteId =>
+      $composableBuilder(column: $table.remoteId, builder: (column) => column);
+
+  GeneratedColumn<String> get syncStatus => $composableBuilder(
+    column: $table.syncStatus,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get syncError =>
+      $composableBuilder(column: $table.syncError, builder: (column) => column);
+
+  GeneratedColumn<int> get syncIntentos => $composableBuilder(
+    column: $table.syncIntentos,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get deviceId =>
+      $composableBuilder(column: $table.deviceId, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAtLocal => $composableBuilder(
+    column: $table.createdAtLocal,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get updatedAtLocal => $composableBuilder(
+    column: $table.updatedAtLocal,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get syncedAt =>
+      $composableBuilder(column: $table.syncedAt, builder: (column) => column);
+
+  GeneratedColumn<String> get usuarioId =>
+      $composableBuilder(column: $table.usuarioId, builder: (column) => column);
+
+  GeneratedColumn<String> get sitioId =>
+      $composableBuilder(column: $table.sitioId, builder: (column) => column);
+
+  GeneratedColumn<String> get rutaId =>
+      $composableBuilder(column: $table.rutaId, builder: (column) => column);
+
+  GeneratedColumn<String> get turnoId =>
+      $composableBuilder(column: $table.turnoId, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get turnoFecha => $composableBuilder(
+    column: $table.turnoFecha,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get iniciadoAtDispositivo => $composableBuilder(
+    column: $table.iniciadoAtDispositivo,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get iniciadoMonotonicMs => $composableBuilder(
+    column: $table.iniciadoMonotonicMs,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get finalizadoAtDispositivo => $composableBuilder(
+    column: $table.finalizadoAtDispositivo,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get estadoLocal => $composableBuilder(
+    column: $table.estadoLocal,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get estadoValidacionServidor => $composableBuilder(
+    column: $table.estadoValidacionServidor,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get puntajeRiesgoServidor => $composableBuilder(
+    column: $table.puntajeRiesgoServidor,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get codigosRiesgoServidorJson => $composableBuilder(
+    column: $table.codigosRiesgoServidorJson,
+    builder: (column) => column,
+  );
+}
+
+class $$LocalRondinesTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $LocalRondinesTable,
+          LocalRondine,
+          $$LocalRondinesTableFilterComposer,
+          $$LocalRondinesTableOrderingComposer,
+          $$LocalRondinesTableAnnotationComposer,
+          $$LocalRondinesTableCreateCompanionBuilder,
+          $$LocalRondinesTableUpdateCompanionBuilder,
+          (
+            LocalRondine,
+            BaseReferences<_$AppDatabase, $LocalRondinesTable, LocalRondine>,
+          ),
+          LocalRondine,
+          PrefetchHooks Function()
+        > {
+  $$LocalRondinesTableTableManager(_$AppDatabase db, $LocalRondinesTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$LocalRondinesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$LocalRondinesTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$LocalRondinesTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> localId = const Value.absent(),
+                Value<String?> remoteId = const Value.absent(),
+                Value<String> syncStatus = const Value.absent(),
+                Value<String> syncError = const Value.absent(),
+                Value<int> syncIntentos = const Value.absent(),
+                Value<String> deviceId = const Value.absent(),
+                Value<DateTime> createdAtLocal = const Value.absent(),
+                Value<DateTime> updatedAtLocal = const Value.absent(),
+                Value<DateTime?> syncedAt = const Value.absent(),
+                Value<String> usuarioId = const Value.absent(),
+                Value<String> sitioId = const Value.absent(),
+                Value<String> rutaId = const Value.absent(),
+                Value<String?> turnoId = const Value.absent(),
+                Value<DateTime> turnoFecha = const Value.absent(),
+                Value<DateTime> iniciadoAtDispositivo = const Value.absent(),
+                Value<int> iniciadoMonotonicMs = const Value.absent(),
+                Value<DateTime?> finalizadoAtDispositivo = const Value.absent(),
+                Value<String> estadoLocal = const Value.absent(),
+                Value<String?> estadoValidacionServidor = const Value.absent(),
+                Value<int?> puntajeRiesgoServidor = const Value.absent(),
+                Value<String?> codigosRiesgoServidorJson = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => LocalRondinesCompanion(
+                localId: localId,
+                remoteId: remoteId,
+                syncStatus: syncStatus,
+                syncError: syncError,
+                syncIntentos: syncIntentos,
+                deviceId: deviceId,
+                createdAtLocal: createdAtLocal,
+                updatedAtLocal: updatedAtLocal,
+                syncedAt: syncedAt,
+                usuarioId: usuarioId,
+                sitioId: sitioId,
+                rutaId: rutaId,
+                turnoId: turnoId,
+                turnoFecha: turnoFecha,
+                iniciadoAtDispositivo: iniciadoAtDispositivo,
+                iniciadoMonotonicMs: iniciadoMonotonicMs,
+                finalizadoAtDispositivo: finalizadoAtDispositivo,
+                estadoLocal: estadoLocal,
+                estadoValidacionServidor: estadoValidacionServidor,
+                puntajeRiesgoServidor: puntajeRiesgoServidor,
+                codigosRiesgoServidorJson: codigosRiesgoServidorJson,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                Value<String> localId = const Value.absent(),
+                Value<String?> remoteId = const Value.absent(),
+                Value<String> syncStatus = const Value.absent(),
+                Value<String> syncError = const Value.absent(),
+                Value<int> syncIntentos = const Value.absent(),
+                Value<String> deviceId = const Value.absent(),
+                Value<DateTime> createdAtLocal = const Value.absent(),
+                Value<DateTime> updatedAtLocal = const Value.absent(),
+                Value<DateTime?> syncedAt = const Value.absent(),
+                required String usuarioId,
+                required String sitioId,
+                required String rutaId,
+                Value<String?> turnoId = const Value.absent(),
+                required DateTime turnoFecha,
+                required DateTime iniciadoAtDispositivo,
+                required int iniciadoMonotonicMs,
+                Value<DateTime?> finalizadoAtDispositivo = const Value.absent(),
+                Value<String> estadoLocal = const Value.absent(),
+                Value<String?> estadoValidacionServidor = const Value.absent(),
+                Value<int?> puntajeRiesgoServidor = const Value.absent(),
+                Value<String?> codigosRiesgoServidorJson = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => LocalRondinesCompanion.insert(
+                localId: localId,
+                remoteId: remoteId,
+                syncStatus: syncStatus,
+                syncError: syncError,
+                syncIntentos: syncIntentos,
+                deviceId: deviceId,
+                createdAtLocal: createdAtLocal,
+                updatedAtLocal: updatedAtLocal,
+                syncedAt: syncedAt,
+                usuarioId: usuarioId,
+                sitioId: sitioId,
+                rutaId: rutaId,
+                turnoId: turnoId,
+                turnoFecha: turnoFecha,
+                iniciadoAtDispositivo: iniciadoAtDispositivo,
+                iniciadoMonotonicMs: iniciadoMonotonicMs,
+                finalizadoAtDispositivo: finalizadoAtDispositivo,
+                estadoLocal: estadoLocal,
+                estadoValidacionServidor: estadoValidacionServidor,
+                puntajeRiesgoServidor: puntajeRiesgoServidor,
+                codigosRiesgoServidorJson: codigosRiesgoServidorJson,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$LocalRondinesTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $LocalRondinesTable,
+      LocalRondine,
+      $$LocalRondinesTableFilterComposer,
+      $$LocalRondinesTableOrderingComposer,
+      $$LocalRondinesTableAnnotationComposer,
+      $$LocalRondinesTableCreateCompanionBuilder,
+      $$LocalRondinesTableUpdateCompanionBuilder,
+      (
+        LocalRondine,
+        BaseReferences<_$AppDatabase, $LocalRondinesTable, LocalRondine>,
+      ),
+      LocalRondine,
+      PrefetchHooks Function()
+    >;
+typedef $$LocalRondinLecturasTableCreateCompanionBuilder =
+    LocalRondinLecturasCompanion Function({
+      Value<String> localId,
+      Value<String?> remoteId,
+      Value<String> syncStatus,
+      Value<String> syncError,
+      Value<int> syncIntentos,
+      Value<String> deviceId,
+      Value<DateTime> createdAtLocal,
+      Value<DateTime> updatedAtLocal,
+      Value<DateTime?> syncedAt,
+      required String rondinLocalId,
+      required String puntoId,
+      required int secuencia,
+      required DateTime capturadoAtDispositivo,
+      required int monotonicMs,
+      Value<int> bootCount,
+      Value<double?> lat,
+      Value<double?> lng,
+      Value<double?> gpsAccuracyM,
+      Value<int?> gpsAgeMs,
+      Value<bool> ubicacionSimulada,
+      Value<String?> wifiBssid,
+      Value<String?> wifiSsid,
+      required int tokenVersion,
+      Value<String> qrPayloadRaw,
+      required String qrPayloadHash,
+      Value<bool> livenessPassed,
+      Value<bool> horaAutomatica,
+      Value<bool> opcionesDesarrollador,
+      Value<bool> adbActivo,
+      Value<String?> hashAnterior,
+      required String hashEvento,
+      Value<String> validacionLocal,
+      Value<String> codigosRiesgoLocalJson,
+      Value<String?> estadoValidacionServidor,
+      Value<int?> puntajeRiesgoServidor,
+      Value<String?> codigosRiesgoServidorJson,
+      Value<int> rowid,
+    });
+typedef $$LocalRondinLecturasTableUpdateCompanionBuilder =
+    LocalRondinLecturasCompanion Function({
+      Value<String> localId,
+      Value<String?> remoteId,
+      Value<String> syncStatus,
+      Value<String> syncError,
+      Value<int> syncIntentos,
+      Value<String> deviceId,
+      Value<DateTime> createdAtLocal,
+      Value<DateTime> updatedAtLocal,
+      Value<DateTime?> syncedAt,
+      Value<String> rondinLocalId,
+      Value<String> puntoId,
+      Value<int> secuencia,
+      Value<DateTime> capturadoAtDispositivo,
+      Value<int> monotonicMs,
+      Value<int> bootCount,
+      Value<double?> lat,
+      Value<double?> lng,
+      Value<double?> gpsAccuracyM,
+      Value<int?> gpsAgeMs,
+      Value<bool> ubicacionSimulada,
+      Value<String?> wifiBssid,
+      Value<String?> wifiSsid,
+      Value<int> tokenVersion,
+      Value<String> qrPayloadRaw,
+      Value<String> qrPayloadHash,
+      Value<bool> livenessPassed,
+      Value<bool> horaAutomatica,
+      Value<bool> opcionesDesarrollador,
+      Value<bool> adbActivo,
+      Value<String?> hashAnterior,
+      Value<String> hashEvento,
+      Value<String> validacionLocal,
+      Value<String> codigosRiesgoLocalJson,
+      Value<String?> estadoValidacionServidor,
+      Value<int?> puntajeRiesgoServidor,
+      Value<String?> codigosRiesgoServidorJson,
+      Value<int> rowid,
+    });
+
+class $$LocalRondinLecturasTableFilterComposer
+    extends Composer<_$AppDatabase, $LocalRondinLecturasTable> {
+  $$LocalRondinLecturasTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get localId => $composableBuilder(
+    column: $table.localId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get remoteId => $composableBuilder(
+    column: $table.remoteId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get syncStatus => $composableBuilder(
+    column: $table.syncStatus,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get syncError => $composableBuilder(
+    column: $table.syncError,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get syncIntentos => $composableBuilder(
+    column: $table.syncIntentos,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get deviceId => $composableBuilder(
+    column: $table.deviceId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAtLocal => $composableBuilder(
+    column: $table.createdAtLocal,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAtLocal => $composableBuilder(
+    column: $table.updatedAtLocal,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get syncedAt => $composableBuilder(
+    column: $table.syncedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get rondinLocalId => $composableBuilder(
+    column: $table.rondinLocalId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get puntoId => $composableBuilder(
+    column: $table.puntoId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get secuencia => $composableBuilder(
+    column: $table.secuencia,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get capturadoAtDispositivo => $composableBuilder(
+    column: $table.capturadoAtDispositivo,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get monotonicMs => $composableBuilder(
+    column: $table.monotonicMs,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get bootCount => $composableBuilder(
+    column: $table.bootCount,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get lat => $composableBuilder(
+    column: $table.lat,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get lng => $composableBuilder(
+    column: $table.lng,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get gpsAccuracyM => $composableBuilder(
+    column: $table.gpsAccuracyM,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get gpsAgeMs => $composableBuilder(
+    column: $table.gpsAgeMs,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get ubicacionSimulada => $composableBuilder(
+    column: $table.ubicacionSimulada,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get wifiBssid => $composableBuilder(
+    column: $table.wifiBssid,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get wifiSsid => $composableBuilder(
+    column: $table.wifiSsid,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get tokenVersion => $composableBuilder(
+    column: $table.tokenVersion,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get qrPayloadRaw => $composableBuilder(
+    column: $table.qrPayloadRaw,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get qrPayloadHash => $composableBuilder(
+    column: $table.qrPayloadHash,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get livenessPassed => $composableBuilder(
+    column: $table.livenessPassed,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get horaAutomatica => $composableBuilder(
+    column: $table.horaAutomatica,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get opcionesDesarrollador => $composableBuilder(
+    column: $table.opcionesDesarrollador,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get adbActivo => $composableBuilder(
+    column: $table.adbActivo,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get hashAnterior => $composableBuilder(
+    column: $table.hashAnterior,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get hashEvento => $composableBuilder(
+    column: $table.hashEvento,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get validacionLocal => $composableBuilder(
+    column: $table.validacionLocal,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get codigosRiesgoLocalJson => $composableBuilder(
+    column: $table.codigosRiesgoLocalJson,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get estadoValidacionServidor => $composableBuilder(
+    column: $table.estadoValidacionServidor,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get puntajeRiesgoServidor => $composableBuilder(
+    column: $table.puntajeRiesgoServidor,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get codigosRiesgoServidorJson => $composableBuilder(
+    column: $table.codigosRiesgoServidorJson,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$LocalRondinLecturasTableOrderingComposer
+    extends Composer<_$AppDatabase, $LocalRondinLecturasTable> {
+  $$LocalRondinLecturasTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get localId => $composableBuilder(
+    column: $table.localId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get remoteId => $composableBuilder(
+    column: $table.remoteId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get syncStatus => $composableBuilder(
+    column: $table.syncStatus,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get syncError => $composableBuilder(
+    column: $table.syncError,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get syncIntentos => $composableBuilder(
+    column: $table.syncIntentos,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get deviceId => $composableBuilder(
+    column: $table.deviceId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAtLocal => $composableBuilder(
+    column: $table.createdAtLocal,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAtLocal => $composableBuilder(
+    column: $table.updatedAtLocal,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get syncedAt => $composableBuilder(
+    column: $table.syncedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get rondinLocalId => $composableBuilder(
+    column: $table.rondinLocalId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get puntoId => $composableBuilder(
+    column: $table.puntoId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get secuencia => $composableBuilder(
+    column: $table.secuencia,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get capturadoAtDispositivo => $composableBuilder(
+    column: $table.capturadoAtDispositivo,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get monotonicMs => $composableBuilder(
+    column: $table.monotonicMs,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get bootCount => $composableBuilder(
+    column: $table.bootCount,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get lat => $composableBuilder(
+    column: $table.lat,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get lng => $composableBuilder(
+    column: $table.lng,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get gpsAccuracyM => $composableBuilder(
+    column: $table.gpsAccuracyM,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get gpsAgeMs => $composableBuilder(
+    column: $table.gpsAgeMs,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get ubicacionSimulada => $composableBuilder(
+    column: $table.ubicacionSimulada,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get wifiBssid => $composableBuilder(
+    column: $table.wifiBssid,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get wifiSsid => $composableBuilder(
+    column: $table.wifiSsid,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get tokenVersion => $composableBuilder(
+    column: $table.tokenVersion,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get qrPayloadRaw => $composableBuilder(
+    column: $table.qrPayloadRaw,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get qrPayloadHash => $composableBuilder(
+    column: $table.qrPayloadHash,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get livenessPassed => $composableBuilder(
+    column: $table.livenessPassed,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get horaAutomatica => $composableBuilder(
+    column: $table.horaAutomatica,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get opcionesDesarrollador => $composableBuilder(
+    column: $table.opcionesDesarrollador,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get adbActivo => $composableBuilder(
+    column: $table.adbActivo,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get hashAnterior => $composableBuilder(
+    column: $table.hashAnterior,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get hashEvento => $composableBuilder(
+    column: $table.hashEvento,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get validacionLocal => $composableBuilder(
+    column: $table.validacionLocal,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get codigosRiesgoLocalJson => $composableBuilder(
+    column: $table.codigosRiesgoLocalJson,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get estadoValidacionServidor => $composableBuilder(
+    column: $table.estadoValidacionServidor,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get puntajeRiesgoServidor => $composableBuilder(
+    column: $table.puntajeRiesgoServidor,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get codigosRiesgoServidorJson => $composableBuilder(
+    column: $table.codigosRiesgoServidorJson,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$LocalRondinLecturasTableAnnotationComposer
+    extends Composer<_$AppDatabase, $LocalRondinLecturasTable> {
+  $$LocalRondinLecturasTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get localId =>
+      $composableBuilder(column: $table.localId, builder: (column) => column);
+
+  GeneratedColumn<String> get remoteId =>
+      $composableBuilder(column: $table.remoteId, builder: (column) => column);
+
+  GeneratedColumn<String> get syncStatus => $composableBuilder(
+    column: $table.syncStatus,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get syncError =>
+      $composableBuilder(column: $table.syncError, builder: (column) => column);
+
+  GeneratedColumn<int> get syncIntentos => $composableBuilder(
+    column: $table.syncIntentos,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get deviceId =>
+      $composableBuilder(column: $table.deviceId, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAtLocal => $composableBuilder(
+    column: $table.createdAtLocal,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get updatedAtLocal => $composableBuilder(
+    column: $table.updatedAtLocal,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get syncedAt =>
+      $composableBuilder(column: $table.syncedAt, builder: (column) => column);
+
+  GeneratedColumn<String> get rondinLocalId => $composableBuilder(
+    column: $table.rondinLocalId,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get puntoId =>
+      $composableBuilder(column: $table.puntoId, builder: (column) => column);
+
+  GeneratedColumn<int> get secuencia =>
+      $composableBuilder(column: $table.secuencia, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get capturadoAtDispositivo => $composableBuilder(
+    column: $table.capturadoAtDispositivo,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get monotonicMs => $composableBuilder(
+    column: $table.monotonicMs,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get bootCount =>
+      $composableBuilder(column: $table.bootCount, builder: (column) => column);
+
+  GeneratedColumn<double> get lat =>
+      $composableBuilder(column: $table.lat, builder: (column) => column);
+
+  GeneratedColumn<double> get lng =>
+      $composableBuilder(column: $table.lng, builder: (column) => column);
+
+  GeneratedColumn<double> get gpsAccuracyM => $composableBuilder(
+    column: $table.gpsAccuracyM,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get gpsAgeMs =>
+      $composableBuilder(column: $table.gpsAgeMs, builder: (column) => column);
+
+  GeneratedColumn<bool> get ubicacionSimulada => $composableBuilder(
+    column: $table.ubicacionSimulada,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get wifiBssid =>
+      $composableBuilder(column: $table.wifiBssid, builder: (column) => column);
+
+  GeneratedColumn<String> get wifiSsid =>
+      $composableBuilder(column: $table.wifiSsid, builder: (column) => column);
+
+  GeneratedColumn<int> get tokenVersion => $composableBuilder(
+    column: $table.tokenVersion,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get qrPayloadRaw => $composableBuilder(
+    column: $table.qrPayloadRaw,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get qrPayloadHash => $composableBuilder(
+    column: $table.qrPayloadHash,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get livenessPassed => $composableBuilder(
+    column: $table.livenessPassed,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get horaAutomatica => $composableBuilder(
+    column: $table.horaAutomatica,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get opcionesDesarrollador => $composableBuilder(
+    column: $table.opcionesDesarrollador,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get adbActivo =>
+      $composableBuilder(column: $table.adbActivo, builder: (column) => column);
+
+  GeneratedColumn<String> get hashAnterior => $composableBuilder(
+    column: $table.hashAnterior,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get hashEvento => $composableBuilder(
+    column: $table.hashEvento,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get validacionLocal => $composableBuilder(
+    column: $table.validacionLocal,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get codigosRiesgoLocalJson => $composableBuilder(
+    column: $table.codigosRiesgoLocalJson,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get estadoValidacionServidor => $composableBuilder(
+    column: $table.estadoValidacionServidor,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get puntajeRiesgoServidor => $composableBuilder(
+    column: $table.puntajeRiesgoServidor,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get codigosRiesgoServidorJson => $composableBuilder(
+    column: $table.codigosRiesgoServidorJson,
+    builder: (column) => column,
+  );
+}
+
+class $$LocalRondinLecturasTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $LocalRondinLecturasTable,
+          LocalRondinLectura,
+          $$LocalRondinLecturasTableFilterComposer,
+          $$LocalRondinLecturasTableOrderingComposer,
+          $$LocalRondinLecturasTableAnnotationComposer,
+          $$LocalRondinLecturasTableCreateCompanionBuilder,
+          $$LocalRondinLecturasTableUpdateCompanionBuilder,
+          (
+            LocalRondinLectura,
+            BaseReferences<
+              _$AppDatabase,
+              $LocalRondinLecturasTable,
+              LocalRondinLectura
+            >,
+          ),
+          LocalRondinLectura,
+          PrefetchHooks Function()
+        > {
+  $$LocalRondinLecturasTableTableManager(
+    _$AppDatabase db,
+    $LocalRondinLecturasTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$LocalRondinLecturasTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$LocalRondinLecturasTableOrderingComposer(
+                $db: db,
+                $table: table,
+              ),
+          createComputedFieldComposer: () =>
+              $$LocalRondinLecturasTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
+          updateCompanionCallback:
+              ({
+                Value<String> localId = const Value.absent(),
+                Value<String?> remoteId = const Value.absent(),
+                Value<String> syncStatus = const Value.absent(),
+                Value<String> syncError = const Value.absent(),
+                Value<int> syncIntentos = const Value.absent(),
+                Value<String> deviceId = const Value.absent(),
+                Value<DateTime> createdAtLocal = const Value.absent(),
+                Value<DateTime> updatedAtLocal = const Value.absent(),
+                Value<DateTime?> syncedAt = const Value.absent(),
+                Value<String> rondinLocalId = const Value.absent(),
+                Value<String> puntoId = const Value.absent(),
+                Value<int> secuencia = const Value.absent(),
+                Value<DateTime> capturadoAtDispositivo = const Value.absent(),
+                Value<int> monotonicMs = const Value.absent(),
+                Value<int> bootCount = const Value.absent(),
+                Value<double?> lat = const Value.absent(),
+                Value<double?> lng = const Value.absent(),
+                Value<double?> gpsAccuracyM = const Value.absent(),
+                Value<int?> gpsAgeMs = const Value.absent(),
+                Value<bool> ubicacionSimulada = const Value.absent(),
+                Value<String?> wifiBssid = const Value.absent(),
+                Value<String?> wifiSsid = const Value.absent(),
+                Value<int> tokenVersion = const Value.absent(),
+                Value<String> qrPayloadRaw = const Value.absent(),
+                Value<String> qrPayloadHash = const Value.absent(),
+                Value<bool> livenessPassed = const Value.absent(),
+                Value<bool> horaAutomatica = const Value.absent(),
+                Value<bool> opcionesDesarrollador = const Value.absent(),
+                Value<bool> adbActivo = const Value.absent(),
+                Value<String?> hashAnterior = const Value.absent(),
+                Value<String> hashEvento = const Value.absent(),
+                Value<String> validacionLocal = const Value.absent(),
+                Value<String> codigosRiesgoLocalJson = const Value.absent(),
+                Value<String?> estadoValidacionServidor = const Value.absent(),
+                Value<int?> puntajeRiesgoServidor = const Value.absent(),
+                Value<String?> codigosRiesgoServidorJson = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => LocalRondinLecturasCompanion(
+                localId: localId,
+                remoteId: remoteId,
+                syncStatus: syncStatus,
+                syncError: syncError,
+                syncIntentos: syncIntentos,
+                deviceId: deviceId,
+                createdAtLocal: createdAtLocal,
+                updatedAtLocal: updatedAtLocal,
+                syncedAt: syncedAt,
+                rondinLocalId: rondinLocalId,
+                puntoId: puntoId,
+                secuencia: secuencia,
+                capturadoAtDispositivo: capturadoAtDispositivo,
+                monotonicMs: monotonicMs,
+                bootCount: bootCount,
+                lat: lat,
+                lng: lng,
+                gpsAccuracyM: gpsAccuracyM,
+                gpsAgeMs: gpsAgeMs,
+                ubicacionSimulada: ubicacionSimulada,
+                wifiBssid: wifiBssid,
+                wifiSsid: wifiSsid,
+                tokenVersion: tokenVersion,
+                qrPayloadRaw: qrPayloadRaw,
+                qrPayloadHash: qrPayloadHash,
+                livenessPassed: livenessPassed,
+                horaAutomatica: horaAutomatica,
+                opcionesDesarrollador: opcionesDesarrollador,
+                adbActivo: adbActivo,
+                hashAnterior: hashAnterior,
+                hashEvento: hashEvento,
+                validacionLocal: validacionLocal,
+                codigosRiesgoLocalJson: codigosRiesgoLocalJson,
+                estadoValidacionServidor: estadoValidacionServidor,
+                puntajeRiesgoServidor: puntajeRiesgoServidor,
+                codigosRiesgoServidorJson: codigosRiesgoServidorJson,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                Value<String> localId = const Value.absent(),
+                Value<String?> remoteId = const Value.absent(),
+                Value<String> syncStatus = const Value.absent(),
+                Value<String> syncError = const Value.absent(),
+                Value<int> syncIntentos = const Value.absent(),
+                Value<String> deviceId = const Value.absent(),
+                Value<DateTime> createdAtLocal = const Value.absent(),
+                Value<DateTime> updatedAtLocal = const Value.absent(),
+                Value<DateTime?> syncedAt = const Value.absent(),
+                required String rondinLocalId,
+                required String puntoId,
+                required int secuencia,
+                required DateTime capturadoAtDispositivo,
+                required int monotonicMs,
+                Value<int> bootCount = const Value.absent(),
+                Value<double?> lat = const Value.absent(),
+                Value<double?> lng = const Value.absent(),
+                Value<double?> gpsAccuracyM = const Value.absent(),
+                Value<int?> gpsAgeMs = const Value.absent(),
+                Value<bool> ubicacionSimulada = const Value.absent(),
+                Value<String?> wifiBssid = const Value.absent(),
+                Value<String?> wifiSsid = const Value.absent(),
+                required int tokenVersion,
+                Value<String> qrPayloadRaw = const Value.absent(),
+                required String qrPayloadHash,
+                Value<bool> livenessPassed = const Value.absent(),
+                Value<bool> horaAutomatica = const Value.absent(),
+                Value<bool> opcionesDesarrollador = const Value.absent(),
+                Value<bool> adbActivo = const Value.absent(),
+                Value<String?> hashAnterior = const Value.absent(),
+                required String hashEvento,
+                Value<String> validacionLocal = const Value.absent(),
+                Value<String> codigosRiesgoLocalJson = const Value.absent(),
+                Value<String?> estadoValidacionServidor = const Value.absent(),
+                Value<int?> puntajeRiesgoServidor = const Value.absent(),
+                Value<String?> codigosRiesgoServidorJson = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => LocalRondinLecturasCompanion.insert(
+                localId: localId,
+                remoteId: remoteId,
+                syncStatus: syncStatus,
+                syncError: syncError,
+                syncIntentos: syncIntentos,
+                deviceId: deviceId,
+                createdAtLocal: createdAtLocal,
+                updatedAtLocal: updatedAtLocal,
+                syncedAt: syncedAt,
+                rondinLocalId: rondinLocalId,
+                puntoId: puntoId,
+                secuencia: secuencia,
+                capturadoAtDispositivo: capturadoAtDispositivo,
+                monotonicMs: monotonicMs,
+                bootCount: bootCount,
+                lat: lat,
+                lng: lng,
+                gpsAccuracyM: gpsAccuracyM,
+                gpsAgeMs: gpsAgeMs,
+                ubicacionSimulada: ubicacionSimulada,
+                wifiBssid: wifiBssid,
+                wifiSsid: wifiSsid,
+                tokenVersion: tokenVersion,
+                qrPayloadRaw: qrPayloadRaw,
+                qrPayloadHash: qrPayloadHash,
+                livenessPassed: livenessPassed,
+                horaAutomatica: horaAutomatica,
+                opcionesDesarrollador: opcionesDesarrollador,
+                adbActivo: adbActivo,
+                hashAnterior: hashAnterior,
+                hashEvento: hashEvento,
+                validacionLocal: validacionLocal,
+                codigosRiesgoLocalJson: codigosRiesgoLocalJson,
+                estadoValidacionServidor: estadoValidacionServidor,
+                puntajeRiesgoServidor: puntajeRiesgoServidor,
+                codigosRiesgoServidorJson: codigosRiesgoServidorJson,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$LocalRondinLecturasTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $LocalRondinLecturasTable,
+      LocalRondinLectura,
+      $$LocalRondinLecturasTableFilterComposer,
+      $$LocalRondinLecturasTableOrderingComposer,
+      $$LocalRondinLecturasTableAnnotationComposer,
+      $$LocalRondinLecturasTableCreateCompanionBuilder,
+      $$LocalRondinLecturasTableUpdateCompanionBuilder,
+      (
+        LocalRondinLectura,
+        BaseReferences<
+          _$AppDatabase,
+          $LocalRondinLecturasTable,
+          LocalRondinLectura
+        >,
+      ),
+      LocalRondinLectura,
+      PrefetchHooks Function()
+    >;
 typedef $$LocalSitiosTableCreateCompanionBuilder =
     LocalSitiosCompanion Function({
       required String id,
@@ -17964,6 +24392,902 @@ typedef $$LocalTurnosTableProcessedTableManager =
       LocalTurno,
       PrefetchHooks Function()
     >;
+typedef $$LocalPuntosRondinTableCreateCompanionBuilder =
+    LocalPuntosRondinCompanion Function({
+      required String id,
+      required String sitioId,
+      Value<String?> seccionId,
+      Value<String> seccionNombre,
+      required String nombre,
+      Value<String> descripcion,
+      Value<int> tokenVersion,
+      Value<double?> lat,
+      Value<double?> lng,
+      Value<int> radioMetros,
+      Value<String?> bssidRequerido,
+      Value<bool> requiereLiveness,
+      Value<bool> activo,
+      Value<DateTime?> updatedAtRemote,
+      Value<int> rowid,
+    });
+typedef $$LocalPuntosRondinTableUpdateCompanionBuilder =
+    LocalPuntosRondinCompanion Function({
+      Value<String> id,
+      Value<String> sitioId,
+      Value<String?> seccionId,
+      Value<String> seccionNombre,
+      Value<String> nombre,
+      Value<String> descripcion,
+      Value<int> tokenVersion,
+      Value<double?> lat,
+      Value<double?> lng,
+      Value<int> radioMetros,
+      Value<String?> bssidRequerido,
+      Value<bool> requiereLiveness,
+      Value<bool> activo,
+      Value<DateTime?> updatedAtRemote,
+      Value<int> rowid,
+    });
+
+class $$LocalPuntosRondinTableFilterComposer
+    extends Composer<_$AppDatabase, $LocalPuntosRondinTable> {
+  $$LocalPuntosRondinTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get sitioId => $composableBuilder(
+    column: $table.sitioId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get seccionId => $composableBuilder(
+    column: $table.seccionId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get seccionNombre => $composableBuilder(
+    column: $table.seccionNombre,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get nombre => $composableBuilder(
+    column: $table.nombre,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get descripcion => $composableBuilder(
+    column: $table.descripcion,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get tokenVersion => $composableBuilder(
+    column: $table.tokenVersion,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get lat => $composableBuilder(
+    column: $table.lat,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get lng => $composableBuilder(
+    column: $table.lng,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get radioMetros => $composableBuilder(
+    column: $table.radioMetros,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get bssidRequerido => $composableBuilder(
+    column: $table.bssidRequerido,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get requiereLiveness => $composableBuilder(
+    column: $table.requiereLiveness,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get activo => $composableBuilder(
+    column: $table.activo,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAtRemote => $composableBuilder(
+    column: $table.updatedAtRemote,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$LocalPuntosRondinTableOrderingComposer
+    extends Composer<_$AppDatabase, $LocalPuntosRondinTable> {
+  $$LocalPuntosRondinTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get sitioId => $composableBuilder(
+    column: $table.sitioId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get seccionId => $composableBuilder(
+    column: $table.seccionId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get seccionNombre => $composableBuilder(
+    column: $table.seccionNombre,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get nombre => $composableBuilder(
+    column: $table.nombre,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get descripcion => $composableBuilder(
+    column: $table.descripcion,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get tokenVersion => $composableBuilder(
+    column: $table.tokenVersion,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get lat => $composableBuilder(
+    column: $table.lat,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get lng => $composableBuilder(
+    column: $table.lng,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get radioMetros => $composableBuilder(
+    column: $table.radioMetros,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get bssidRequerido => $composableBuilder(
+    column: $table.bssidRequerido,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get requiereLiveness => $composableBuilder(
+    column: $table.requiereLiveness,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get activo => $composableBuilder(
+    column: $table.activo,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAtRemote => $composableBuilder(
+    column: $table.updatedAtRemote,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$LocalPuntosRondinTableAnnotationComposer
+    extends Composer<_$AppDatabase, $LocalPuntosRondinTable> {
+  $$LocalPuntosRondinTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get sitioId =>
+      $composableBuilder(column: $table.sitioId, builder: (column) => column);
+
+  GeneratedColumn<String> get seccionId =>
+      $composableBuilder(column: $table.seccionId, builder: (column) => column);
+
+  GeneratedColumn<String> get seccionNombre => $composableBuilder(
+    column: $table.seccionNombre,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get nombre =>
+      $composableBuilder(column: $table.nombre, builder: (column) => column);
+
+  GeneratedColumn<String> get descripcion => $composableBuilder(
+    column: $table.descripcion,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get tokenVersion => $composableBuilder(
+    column: $table.tokenVersion,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get lat =>
+      $composableBuilder(column: $table.lat, builder: (column) => column);
+
+  GeneratedColumn<double> get lng =>
+      $composableBuilder(column: $table.lng, builder: (column) => column);
+
+  GeneratedColumn<int> get radioMetros => $composableBuilder(
+    column: $table.radioMetros,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get bssidRequerido => $composableBuilder(
+    column: $table.bssidRequerido,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get requiereLiveness => $composableBuilder(
+    column: $table.requiereLiveness,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get activo =>
+      $composableBuilder(column: $table.activo, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAtRemote => $composableBuilder(
+    column: $table.updatedAtRemote,
+    builder: (column) => column,
+  );
+}
+
+class $$LocalPuntosRondinTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $LocalPuntosRondinTable,
+          LocalPuntosRondinData,
+          $$LocalPuntosRondinTableFilterComposer,
+          $$LocalPuntosRondinTableOrderingComposer,
+          $$LocalPuntosRondinTableAnnotationComposer,
+          $$LocalPuntosRondinTableCreateCompanionBuilder,
+          $$LocalPuntosRondinTableUpdateCompanionBuilder,
+          (
+            LocalPuntosRondinData,
+            BaseReferences<
+              _$AppDatabase,
+              $LocalPuntosRondinTable,
+              LocalPuntosRondinData
+            >,
+          ),
+          LocalPuntosRondinData,
+          PrefetchHooks Function()
+        > {
+  $$LocalPuntosRondinTableTableManager(
+    _$AppDatabase db,
+    $LocalPuntosRondinTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$LocalPuntosRondinTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$LocalPuntosRondinTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$LocalPuntosRondinTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> sitioId = const Value.absent(),
+                Value<String?> seccionId = const Value.absent(),
+                Value<String> seccionNombre = const Value.absent(),
+                Value<String> nombre = const Value.absent(),
+                Value<String> descripcion = const Value.absent(),
+                Value<int> tokenVersion = const Value.absent(),
+                Value<double?> lat = const Value.absent(),
+                Value<double?> lng = const Value.absent(),
+                Value<int> radioMetros = const Value.absent(),
+                Value<String?> bssidRequerido = const Value.absent(),
+                Value<bool> requiereLiveness = const Value.absent(),
+                Value<bool> activo = const Value.absent(),
+                Value<DateTime?> updatedAtRemote = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => LocalPuntosRondinCompanion(
+                id: id,
+                sitioId: sitioId,
+                seccionId: seccionId,
+                seccionNombre: seccionNombre,
+                nombre: nombre,
+                descripcion: descripcion,
+                tokenVersion: tokenVersion,
+                lat: lat,
+                lng: lng,
+                radioMetros: radioMetros,
+                bssidRequerido: bssidRequerido,
+                requiereLiveness: requiereLiveness,
+                activo: activo,
+                updatedAtRemote: updatedAtRemote,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String sitioId,
+                Value<String?> seccionId = const Value.absent(),
+                Value<String> seccionNombre = const Value.absent(),
+                required String nombre,
+                Value<String> descripcion = const Value.absent(),
+                Value<int> tokenVersion = const Value.absent(),
+                Value<double?> lat = const Value.absent(),
+                Value<double?> lng = const Value.absent(),
+                Value<int> radioMetros = const Value.absent(),
+                Value<String?> bssidRequerido = const Value.absent(),
+                Value<bool> requiereLiveness = const Value.absent(),
+                Value<bool> activo = const Value.absent(),
+                Value<DateTime?> updatedAtRemote = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => LocalPuntosRondinCompanion.insert(
+                id: id,
+                sitioId: sitioId,
+                seccionId: seccionId,
+                seccionNombre: seccionNombre,
+                nombre: nombre,
+                descripcion: descripcion,
+                tokenVersion: tokenVersion,
+                lat: lat,
+                lng: lng,
+                radioMetros: radioMetros,
+                bssidRequerido: bssidRequerido,
+                requiereLiveness: requiereLiveness,
+                activo: activo,
+                updatedAtRemote: updatedAtRemote,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$LocalPuntosRondinTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $LocalPuntosRondinTable,
+      LocalPuntosRondinData,
+      $$LocalPuntosRondinTableFilterComposer,
+      $$LocalPuntosRondinTableOrderingComposer,
+      $$LocalPuntosRondinTableAnnotationComposer,
+      $$LocalPuntosRondinTableCreateCompanionBuilder,
+      $$LocalPuntosRondinTableUpdateCompanionBuilder,
+      (
+        LocalPuntosRondinData,
+        BaseReferences<
+          _$AppDatabase,
+          $LocalPuntosRondinTable,
+          LocalPuntosRondinData
+        >,
+      ),
+      LocalPuntosRondinData,
+      PrefetchHooks Function()
+    >;
+typedef $$LocalRutasRondinTableCreateCompanionBuilder =
+    LocalRutasRondinCompanion Function({
+      required String id,
+      required String sitioId,
+      required String nombre,
+      Value<bool> ordenAleatorio,
+      Value<int> minutosMinimos,
+      Value<int> minutosMaximos,
+      Value<bool> activo,
+      Value<int> rowid,
+    });
+typedef $$LocalRutasRondinTableUpdateCompanionBuilder =
+    LocalRutasRondinCompanion Function({
+      Value<String> id,
+      Value<String> sitioId,
+      Value<String> nombre,
+      Value<bool> ordenAleatorio,
+      Value<int> minutosMinimos,
+      Value<int> minutosMaximos,
+      Value<bool> activo,
+      Value<int> rowid,
+    });
+
+class $$LocalRutasRondinTableFilterComposer
+    extends Composer<_$AppDatabase, $LocalRutasRondinTable> {
+  $$LocalRutasRondinTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get sitioId => $composableBuilder(
+    column: $table.sitioId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get nombre => $composableBuilder(
+    column: $table.nombre,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get ordenAleatorio => $composableBuilder(
+    column: $table.ordenAleatorio,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get minutosMinimos => $composableBuilder(
+    column: $table.minutosMinimos,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get minutosMaximos => $composableBuilder(
+    column: $table.minutosMaximos,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get activo => $composableBuilder(
+    column: $table.activo,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$LocalRutasRondinTableOrderingComposer
+    extends Composer<_$AppDatabase, $LocalRutasRondinTable> {
+  $$LocalRutasRondinTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get sitioId => $composableBuilder(
+    column: $table.sitioId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get nombre => $composableBuilder(
+    column: $table.nombre,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get ordenAleatorio => $composableBuilder(
+    column: $table.ordenAleatorio,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get minutosMinimos => $composableBuilder(
+    column: $table.minutosMinimos,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get minutosMaximos => $composableBuilder(
+    column: $table.minutosMaximos,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get activo => $composableBuilder(
+    column: $table.activo,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$LocalRutasRondinTableAnnotationComposer
+    extends Composer<_$AppDatabase, $LocalRutasRondinTable> {
+  $$LocalRutasRondinTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get sitioId =>
+      $composableBuilder(column: $table.sitioId, builder: (column) => column);
+
+  GeneratedColumn<String> get nombre =>
+      $composableBuilder(column: $table.nombre, builder: (column) => column);
+
+  GeneratedColumn<bool> get ordenAleatorio => $composableBuilder(
+    column: $table.ordenAleatorio,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get minutosMinimos => $composableBuilder(
+    column: $table.minutosMinimos,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get minutosMaximos => $composableBuilder(
+    column: $table.minutosMaximos,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get activo =>
+      $composableBuilder(column: $table.activo, builder: (column) => column);
+}
+
+class $$LocalRutasRondinTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $LocalRutasRondinTable,
+          LocalRutasRondinData,
+          $$LocalRutasRondinTableFilterComposer,
+          $$LocalRutasRondinTableOrderingComposer,
+          $$LocalRutasRondinTableAnnotationComposer,
+          $$LocalRutasRondinTableCreateCompanionBuilder,
+          $$LocalRutasRondinTableUpdateCompanionBuilder,
+          (
+            LocalRutasRondinData,
+            BaseReferences<
+              _$AppDatabase,
+              $LocalRutasRondinTable,
+              LocalRutasRondinData
+            >,
+          ),
+          LocalRutasRondinData,
+          PrefetchHooks Function()
+        > {
+  $$LocalRutasRondinTableTableManager(
+    _$AppDatabase db,
+    $LocalRutasRondinTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$LocalRutasRondinTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$LocalRutasRondinTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$LocalRutasRondinTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> sitioId = const Value.absent(),
+                Value<String> nombre = const Value.absent(),
+                Value<bool> ordenAleatorio = const Value.absent(),
+                Value<int> minutosMinimos = const Value.absent(),
+                Value<int> minutosMaximos = const Value.absent(),
+                Value<bool> activo = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => LocalRutasRondinCompanion(
+                id: id,
+                sitioId: sitioId,
+                nombre: nombre,
+                ordenAleatorio: ordenAleatorio,
+                minutosMinimos: minutosMinimos,
+                minutosMaximos: minutosMaximos,
+                activo: activo,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String sitioId,
+                required String nombre,
+                Value<bool> ordenAleatorio = const Value.absent(),
+                Value<int> minutosMinimos = const Value.absent(),
+                Value<int> minutosMaximos = const Value.absent(),
+                Value<bool> activo = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => LocalRutasRondinCompanion.insert(
+                id: id,
+                sitioId: sitioId,
+                nombre: nombre,
+                ordenAleatorio: ordenAleatorio,
+                minutosMinimos: minutosMinimos,
+                minutosMaximos: minutosMaximos,
+                activo: activo,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$LocalRutasRondinTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $LocalRutasRondinTable,
+      LocalRutasRondinData,
+      $$LocalRutasRondinTableFilterComposer,
+      $$LocalRutasRondinTableOrderingComposer,
+      $$LocalRutasRondinTableAnnotationComposer,
+      $$LocalRutasRondinTableCreateCompanionBuilder,
+      $$LocalRutasRondinTableUpdateCompanionBuilder,
+      (
+        LocalRutasRondinData,
+        BaseReferences<
+          _$AppDatabase,
+          $LocalRutasRondinTable,
+          LocalRutasRondinData
+        >,
+      ),
+      LocalRutasRondinData,
+      PrefetchHooks Function()
+    >;
+typedef $$LocalRutaRondinPuntosTableCreateCompanionBuilder =
+    LocalRutaRondinPuntosCompanion Function({
+      required String rutaId,
+      required String puntoId,
+      required int orden,
+      Value<bool> obligatorio,
+      Value<int> segundosMinimosDesdeAnterior,
+      Value<int> segundosMaximosDesdeAnterior,
+      Value<int> rowid,
+    });
+typedef $$LocalRutaRondinPuntosTableUpdateCompanionBuilder =
+    LocalRutaRondinPuntosCompanion Function({
+      Value<String> rutaId,
+      Value<String> puntoId,
+      Value<int> orden,
+      Value<bool> obligatorio,
+      Value<int> segundosMinimosDesdeAnterior,
+      Value<int> segundosMaximosDesdeAnterior,
+      Value<int> rowid,
+    });
+
+class $$LocalRutaRondinPuntosTableFilterComposer
+    extends Composer<_$AppDatabase, $LocalRutaRondinPuntosTable> {
+  $$LocalRutaRondinPuntosTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get rutaId => $composableBuilder(
+    column: $table.rutaId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get puntoId => $composableBuilder(
+    column: $table.puntoId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get orden => $composableBuilder(
+    column: $table.orden,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get obligatorio => $composableBuilder(
+    column: $table.obligatorio,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get segundosMinimosDesdeAnterior => $composableBuilder(
+    column: $table.segundosMinimosDesdeAnterior,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get segundosMaximosDesdeAnterior => $composableBuilder(
+    column: $table.segundosMaximosDesdeAnterior,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$LocalRutaRondinPuntosTableOrderingComposer
+    extends Composer<_$AppDatabase, $LocalRutaRondinPuntosTable> {
+  $$LocalRutaRondinPuntosTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get rutaId => $composableBuilder(
+    column: $table.rutaId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get puntoId => $composableBuilder(
+    column: $table.puntoId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get orden => $composableBuilder(
+    column: $table.orden,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get obligatorio => $composableBuilder(
+    column: $table.obligatorio,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get segundosMinimosDesdeAnterior => $composableBuilder(
+    column: $table.segundosMinimosDesdeAnterior,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get segundosMaximosDesdeAnterior => $composableBuilder(
+    column: $table.segundosMaximosDesdeAnterior,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$LocalRutaRondinPuntosTableAnnotationComposer
+    extends Composer<_$AppDatabase, $LocalRutaRondinPuntosTable> {
+  $$LocalRutaRondinPuntosTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get rutaId =>
+      $composableBuilder(column: $table.rutaId, builder: (column) => column);
+
+  GeneratedColumn<String> get puntoId =>
+      $composableBuilder(column: $table.puntoId, builder: (column) => column);
+
+  GeneratedColumn<int> get orden =>
+      $composableBuilder(column: $table.orden, builder: (column) => column);
+
+  GeneratedColumn<bool> get obligatorio => $composableBuilder(
+    column: $table.obligatorio,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get segundosMinimosDesdeAnterior => $composableBuilder(
+    column: $table.segundosMinimosDesdeAnterior,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get segundosMaximosDesdeAnterior => $composableBuilder(
+    column: $table.segundosMaximosDesdeAnterior,
+    builder: (column) => column,
+  );
+}
+
+class $$LocalRutaRondinPuntosTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $LocalRutaRondinPuntosTable,
+          LocalRutaRondinPunto,
+          $$LocalRutaRondinPuntosTableFilterComposer,
+          $$LocalRutaRondinPuntosTableOrderingComposer,
+          $$LocalRutaRondinPuntosTableAnnotationComposer,
+          $$LocalRutaRondinPuntosTableCreateCompanionBuilder,
+          $$LocalRutaRondinPuntosTableUpdateCompanionBuilder,
+          (
+            LocalRutaRondinPunto,
+            BaseReferences<
+              _$AppDatabase,
+              $LocalRutaRondinPuntosTable,
+              LocalRutaRondinPunto
+            >,
+          ),
+          LocalRutaRondinPunto,
+          PrefetchHooks Function()
+        > {
+  $$LocalRutaRondinPuntosTableTableManager(
+    _$AppDatabase db,
+    $LocalRutaRondinPuntosTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$LocalRutaRondinPuntosTableFilterComposer(
+                $db: db,
+                $table: table,
+              ),
+          createOrderingComposer: () =>
+              $$LocalRutaRondinPuntosTableOrderingComposer(
+                $db: db,
+                $table: table,
+              ),
+          createComputedFieldComposer: () =>
+              $$LocalRutaRondinPuntosTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
+          updateCompanionCallback:
+              ({
+                Value<String> rutaId = const Value.absent(),
+                Value<String> puntoId = const Value.absent(),
+                Value<int> orden = const Value.absent(),
+                Value<bool> obligatorio = const Value.absent(),
+                Value<int> segundosMinimosDesdeAnterior = const Value.absent(),
+                Value<int> segundosMaximosDesdeAnterior = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => LocalRutaRondinPuntosCompanion(
+                rutaId: rutaId,
+                puntoId: puntoId,
+                orden: orden,
+                obligatorio: obligatorio,
+                segundosMinimosDesdeAnterior: segundosMinimosDesdeAnterior,
+                segundosMaximosDesdeAnterior: segundosMaximosDesdeAnterior,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String rutaId,
+                required String puntoId,
+                required int orden,
+                Value<bool> obligatorio = const Value.absent(),
+                Value<int> segundosMinimosDesdeAnterior = const Value.absent(),
+                Value<int> segundosMaximosDesdeAnterior = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => LocalRutaRondinPuntosCompanion.insert(
+                rutaId: rutaId,
+                puntoId: puntoId,
+                orden: orden,
+                obligatorio: obligatorio,
+                segundosMinimosDesdeAnterior: segundosMinimosDesdeAnterior,
+                segundosMaximosDesdeAnterior: segundosMaximosDesdeAnterior,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$LocalRutaRondinPuntosTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $LocalRutaRondinPuntosTable,
+      LocalRutaRondinPunto,
+      $$LocalRutaRondinPuntosTableFilterComposer,
+      $$LocalRutaRondinPuntosTableOrderingComposer,
+      $$LocalRutaRondinPuntosTableAnnotationComposer,
+      $$LocalRutaRondinPuntosTableCreateCompanionBuilder,
+      $$LocalRutaRondinPuntosTableUpdateCompanionBuilder,
+      (
+        LocalRutaRondinPunto,
+        BaseReferences<
+          _$AppDatabase,
+          $LocalRutaRondinPuntosTable,
+          LocalRutaRondinPunto
+        >,
+      ),
+      LocalRutaRondinPunto,
+      PrefetchHooks Function()
+    >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
@@ -17982,6 +25306,10 @@ class $AppDatabaseManager {
       $$LocalRecepcionesTurnoTableTableManager(_db, _db.localRecepcionesTurno);
   $$LocalRecepcionItemsTableTableManager get localRecepcionItems =>
       $$LocalRecepcionItemsTableTableManager(_db, _db.localRecepcionItems);
+  $$LocalRondinesTableTableManager get localRondines =>
+      $$LocalRondinesTableTableManager(_db, _db.localRondines);
+  $$LocalRondinLecturasTableTableManager get localRondinLecturas =>
+      $$LocalRondinLecturasTableTableManager(_db, _db.localRondinLecturas);
   $$LocalSitiosTableTableManager get localSitios =>
       $$LocalSitiosTableTableManager(_db, _db.localSitios);
   $$LocalWifiApsTableTableManager get localWifiAps =>
@@ -17996,4 +25324,10 @@ class $AppDatabaseManager {
       $$LocalAvisosPrivacidadTableTableManager(_db, _db.localAvisosPrivacidad);
   $$LocalTurnosTableTableManager get localTurnos =>
       $$LocalTurnosTableTableManager(_db, _db.localTurnos);
+  $$LocalPuntosRondinTableTableManager get localPuntosRondin =>
+      $$LocalPuntosRondinTableTableManager(_db, _db.localPuntosRondin);
+  $$LocalRutasRondinTableTableManager get localRutasRondin =>
+      $$LocalRutasRondinTableTableManager(_db, _db.localRutasRondin);
+  $$LocalRutaRondinPuntosTableTableManager get localRutaRondinPuntos =>
+      $$LocalRutaRondinPuntosTableTableManager(_db, _db.localRutaRondinPuntos);
 }

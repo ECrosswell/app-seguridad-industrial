@@ -10,6 +10,9 @@ class Presencia {
     this.lat,
     this.lng,
     this.precisionM,
+    this.gpsCapturadoAt,
+    this.gpsAgeMs,
+    this.ubicacionSimulada = false,
     this.bssid,
     this.ssid,
     this.errorUbicacion,
@@ -19,6 +22,9 @@ class Presencia {
   final double? lat;
   final double? lng;
   final double? precisionM;
+  final DateTime? gpsCapturadoAt;
+  final int? gpsAgeMs;
+  final bool ubicacionSimulada;
   final String? bssid;
   final String? ssid;
 
@@ -40,10 +46,9 @@ class Presencia {
 ///
 /// Se recogen **dos** señales independientes:
 ///   · GPS, contra la geocerca del sitio.
-///   · BSSID del WiFi al que está conectado. El BSSID es la MAC del access
-///     point: a diferencia del SSID, no se puede clonar levantando un hotspot
-///     con el mismo nombre. Además funciona bajo techo industrial, donde el GPS
-///     suele fallar.
+///   · BSSID del WiFi al que está conectado. Es más específico que el nombre
+///     de red y funciona bajo techo industrial, aunque se conserva como señal
+///     de riesgo y no como prueba criptográfica porque también puede falsearse.
 ///
 /// El servidor decide con ambas; aquí sólo se recolectan.
 class PresenceService {
@@ -59,18 +64,30 @@ class PresenceService {
       lat: ubicacion.$1,
       lng: ubicacion.$2,
       precisionM: ubicacion.$3,
-      errorUbicacion: ubicacion.$4,
+      gpsCapturadoAt: ubicacion.$4,
+      gpsAgeMs: ubicacion.$5,
+      ubicacionSimulada: ubicacion.$6,
+      errorUbicacion: ubicacion.$7,
       bssid: wifi.$1,
       ssid: wifi.$2,
       errorWifi: wifi.$3,
     );
   }
 
-  /// (lat, lng, precisión, error)
-  static Future<(double?, double?, double?, String?)> _obtenerUbicacion() async {
+  /// (lat, lng, precisión, capturada_en, edad_ms, simulada, error)
+  static Future<(double?, double?, double?, DateTime?, int?, bool, String?)>
+  _obtenerUbicacion() async {
     try {
       if (!await Geolocator.isLocationServiceEnabled()) {
-        return (null, null, null, 'La ubicación del teléfono está apagada.');
+        return (
+          null,
+          null,
+          null,
+          null,
+          null,
+          false,
+          'La ubicación del teléfono está apagada.',
+        );
       }
 
       var permiso = await Geolocator.checkPermission();
@@ -83,12 +100,23 @@ class PresenceService {
           null,
           null,
           null,
+          null,
+          null,
+          false,
           'Negaste el permiso de ubicación de forma permanente. '
-              'Actívalo desde los ajustes del teléfono.'
+              'Actívalo desde los ajustes del teléfono.',
         );
       }
       if (permiso == LocationPermission.denied) {
-        return (null, null, null, 'Se necesita permiso de ubicación.');
+        return (
+          null,
+          null,
+          null,
+          null,
+          null,
+          false,
+          'Se necesita permiso de ubicación.',
+        );
       }
 
       final posicion = await Geolocator.getCurrentPosition(
@@ -98,14 +126,31 @@ class PresenceService {
         ),
       );
 
-      return (posicion.latitude, posicion.longitude, posicion.accuracy, null);
+      final capturadaEn = posicion.timestamp;
+      final edadMs = DateTime.now()
+          .toUtc()
+          .difference(capturadaEn.toUtc())
+          .inMilliseconds
+          .clamp(0, 86400000);
+      return (
+        posicion.latitude,
+        posicion.longitude,
+        posicion.accuracy,
+        capturadaEn,
+        edadMs,
+        posicion.isMocked,
+        null,
+      );
     } catch (e) {
       AppLogger.w('No se pudo obtener ubicación: $e');
       return (
         null,
         null,
         null,
-        'No se pudo obtener la ubicación. Sal a cielo abierto e intenta de nuevo.'
+        null,
+        null,
+        false,
+        'No se pudo obtener la ubicación. Sal a cielo abierto e intenta de nuevo.',
       );
     }
   }
@@ -117,7 +162,11 @@ class PresenceService {
       // porque el BSSID permite inferir la posición del dispositivo.
       final estado = await Permission.locationWhenInUse.status;
       if (!estado.isGranted) {
-        return (null, null, 'Se necesita permiso de ubicación para leer el WiFi.');
+        return (
+          null,
+          null,
+          'Se necesita permiso de ubicación para leer el WiFi.',
+        );
       }
 
       final info = NetworkInfo();
@@ -134,7 +183,7 @@ class PresenceService {
         _normalizarBssid(bssid),
         // El SSID viene entre comillas en varias versiones de Android.
         ssid?.replaceAll('"', ''),
-        null
+        null,
       );
     } catch (e) {
       AppLogger.w('No se pudo leer el WiFi: $e');

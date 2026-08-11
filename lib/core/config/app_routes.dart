@@ -21,6 +21,10 @@ class Rutas {
   static const accesosDentro = '/accesos/dentro';
   static const bitacora = '/bitacora';
   static const bitacoraNueva = '/bitacora/nueva';
+  static const rondines = '/rondines';
+  static const rondinEscaner = '/rondines/:rondinLocalId/escanear';
+  static String rondinEscanear(String rondinLocalId) =>
+      '/rondines/$rondinLocalId/escanear';
   static const supervision = '/supervision';
 
   // Consola web
@@ -32,6 +36,7 @@ class Rutas {
   static const panelEquipo = '/panel/equipo';
   static const panelSolicitudes = '/panel/solicitudes';
   static const panelReportes = '/panel/reportes';
+  static const panelRondines = '/panel/rondines';
   static const panelSitios = '/panel/sitios';
   static const panelUsuarios = '/panel/usuarios';
 }

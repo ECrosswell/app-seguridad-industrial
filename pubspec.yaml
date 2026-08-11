@@ -55,6 +55,14 @@ dependencies:
   image_picker: ^1.2.3
   flutter_image_compress: ^2.5.1
   google_mlkit_face_detection: ^0.14.0
+  # Escaneo exclusivo desde la cámara. El modelo ML Kit incluido funciona
+  # también cuando la planta no tiene internet.
+  mobile_scanner: ^7.4.0
+  # SHA-256 del contenido QR para validarlo contra el catálogo local sin
+  # guardar el token impreso en la base offline.
+  crypto: ^3.0.7
+  # Vista previa de los puntos QR en la consola web antes de imprimirlos.
+  qr_flutter: ^4.1.0
   flutter_local_notifications: ^22.2.0
   package_info_plus: ^10.2.1
   pdf: ^3.13.0

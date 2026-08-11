@@ -10,6 +10,7 @@ import '../../features/panel/presentation/panel_equipo_screen.dart';
 import '../../features/panel/presentation/panel_inicio_screen.dart';
 import '../../features/panel/presentation/panel_personal_screen.dart';
 import '../../features/panel/presentation/panel_reportes_screen.dart';
+import '../../features/panel/presentation/panel_rondines_screen.dart';
 import '../../features/panel/presentation/panel_shell.dart';
 import '../../features/panel/presentation/panel_sitios_screen.dart';
 import '../../features/panel/presentation/panel_solicitudes_screen.dart';
@@ -50,7 +51,9 @@ final routerWebProvider = Provider<GoRouter>((ref) {
         // corte, un cliente que escriba la URL a mano entraría (el RLS lo
         // frenaría al escribir, pero no debe ni ver la pantalla).
         final soloAdmin =
-            ruta == Rutas.panelSitios || ruta == Rutas.panelUsuarios;
+            ruta == Rutas.panelSitios ||
+            ruta == Rutas.panelUsuarios ||
+            ruta == Rutas.panelRondines;
         if (soloAdmin && auth.perfil.rol != RolUsuario.admin) {
           return Rutas.panel;
         }
@@ -120,6 +123,13 @@ final routerWebProvider = Provider<GoRouter>((ref) {
             pageBuilder: (_, e) => NoTransitionPage(
               key: e.pageKey,
               child: const PanelReportesScreen(),
+            ),
+          ),
+          GoRoute(
+            path: Rutas.panelRondines,
+            pageBuilder: (_, e) => NoTransitionPage(
+              key: e.pageKey,
+              child: const PanelRondinesScreen(),
             ),
           ),
           GoRoute(
