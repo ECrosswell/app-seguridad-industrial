@@ -46,8 +46,14 @@ jobs:
       - name: Install Vercel CLI
         run: npm install --global vercel@58.1.0
 
-      - name: Pull Vercel project settings
-        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Link Vercel project
+        run: >-
+          node -e "const fs=require('fs');
+          const org=process.env.VERCEL_ORG_ID;
+          const project=process.env.VERCEL_PROJECT_ID;
+          if(!org || !project) throw new Error('Missing Vercel project identifiers');
+          fs.mkdirSync('.vercel',{recursive:true});
+          fs.writeFileSync('.vercel/project.json',JSON.stringify({orgId:org,projectId:project}));"
 
       - name: Create Vercel build output
         run: node scripts/prepare-vercel-output.mjs
