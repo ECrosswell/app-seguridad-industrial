@@ -1,32 +1,7 @@
-# Qué se sube a Vercel.
-#
-# ESTE ARCHIVO ES OBLIGATORIO, no una optimización. Sin él, el CLI de Vercel
-# usa el .gitignore, que excluye `/build/` — y entonces `build/web` no se sube,
-# el despliegue queda vacío y todo responde 404.
-#
-# Cuando existe .vercelignore, Vercel lo usa EN LUGAR del .gitignore.
-
-# Todo lo que no es la web
-android/
-ios/
-linux/
-macos/
-windows/
-test/
-lib/
-supabase/
-.dart_tool/
-.git/
-.claude/
-*.bat
-*.md
-pubspec.yaml
-pubspec.lock
-analysis_options.yaml
-
-# Del directorio de compilación sólo interesa la web.
-# El orden importa: primero se excluye todo, luego se readmite `build/web`.
-# Se usa `build/**` y no `build/` porque una regla que excluye el directorio
-# completo impide readmitir lo que hay dentro.
-build/**
+# En despliegues directos sólo se envía el artefacto web ya compilado y la
+# configuración de Vercel. Hay que readmitir también los directorios padre.
+/*
+!build/
+!build/web/
 !build/web/**
+!vercel.json
