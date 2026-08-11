@@ -282,10 +282,6 @@ Deno.serve(async (peticion) => {
             nombre_completo: datos.nombreCompleto,
             telefono_whatsapp: datos.telefonoWhatsapp,
           },
-          app_metadata: {
-            rol: datos.rol,
-            provisionado_por_admin: true,
-          },
         });
 
       if (crearError || !usuarioCreado.user) {
@@ -310,7 +306,24 @@ Deno.serve(async (peticion) => {
         .eq("id", usuarioId)
         .maybeSingle();
 
-      const { error: sitioUsuarioError } = perfilError || !perfilCreado
+      const { error: prepararPerfilError } = perfilError || !perfilCreado
+        ? { error: null }
+        : await supabase
+          .from("profiles")
+          .update({
+            nombre_completo: datos.nombreCompleto,
+            correo: datos.correo,
+            telefono_whatsapp: datos.telefonoWhatsapp,
+            rol: datos.rol,
+            estado_laboral: "activo",
+            debe_cambiar_password: true,
+            password_cambio_requerido_at: new Date().toISOString(),
+            activo: false,
+          })
+          .eq("id", usuarioId);
+
+      const { error: sitioUsuarioError } = perfilError || !perfilCreado ||
+          prepararPerfilError
         ? { error: null }
         : await supabase.from("usuario_sitios").upsert({
           usuario_id: usuarioId,
@@ -319,19 +332,27 @@ Deno.serve(async (peticion) => {
         });
 
       const { error: activarError } = perfilError || !perfilCreado ||
-          sitioUsuarioError
+          prepararPerfilError || sitioUsuarioError
         ? { error: null }
         : await supabase
           .from("profiles")
           .update({ activo: true })
           .eq("id", usuarioId);
 
-      if (perfilError || !perfilCreado || sitioUsuarioError || activarError) {
+      if (
+        perfilError ||
+        !perfilCreado ||
+        prepararPerfilError ||
+        sitioUsuarioError ||
+        activarError
+      ) {
         const { error: rollbackError } = await supabase.auth.admin.deleteUser(
           usuarioId,
         );
         const codigoFallo = perfilError || !perfilCreado
           ? "PERFIL_NO_CREADO"
+          : prepararPerfilError
+          ? "PERFIL_NO_PREPARADO"
           : sitioUsuarioError
           ? "SITIO_NO_ASIGNADO"
           : "PERFIL_NO_ACTIVADO";
