@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 
 import '../../../core/config/app_routes.dart';
 import '../../../core/providers/app_providers.dart';
+import '../../../core/services/app_logger.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../data/local/app_database.dart';
 import '../../auth/providers/auth_provider.dart';
@@ -57,7 +58,12 @@ class _PestanaDentro extends ConsumerWidget {
 
     return dentro.when(
       loading: () => const Center(child: CircularProgressIndicator()),
-      error: (e, _) => Center(child: Text('Error: $e')),
+      error: (e, s) {
+        AppLogger.e('No se pudieron cargar los visitantes dentro', e, s);
+        return _ErrorCarga(
+          onReintentar: () => ref.invalidate(visitantesDentroProvider),
+        );
+      },
       data: (lista) {
         if (lista.isEmpty) {
           return const _Vacio(
@@ -111,7 +117,9 @@ class _PestanaDentro extends ConsumerWidget {
 
     if (confirmar != true) return;
 
-    await ref.read(accesosRepositoryProvider).registrarSalida(
+    await ref
+        .read(accesosRepositoryProvider)
+        .registrarSalida(
           localId: registro.localId,
           salidaRegistradaPor: perfil.id,
         );
@@ -138,7 +146,12 @@ class _PestanaHistorial extends ConsumerWidget {
 
     return historial.when(
       loading: () => const Center(child: CircularProgressIndicator()),
-      error: (e, _) => Center(child: Text('Error: $e')),
+      error: (e, s) {
+        AppLogger.e('No se pudo cargar el historial de visitantes', e, s);
+        return _ErrorCarga(
+          onReintentar: () => ref.invalidate(historialAccesosProvider),
+        );
+      },
       data: (lista) {
         if (lista.isEmpty) {
           return const _Vacio(
@@ -191,7 +204,9 @@ class _TarjetaVisitante extends StatelessWidget {
                       : AppTheme.grisNeutro.withValues(alpha: 0.15),
                   child: Icon(
                     dentro ? Icons.person : Icons.person_outline,
-                    color: dentro ? AppTheme.verdeOperativo : AppTheme.grisNeutro,
+                    color: dentro
+                        ? AppTheme.verdeOperativo
+                        : AppTheme.grisNeutro,
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -199,13 +214,21 @@ class _TarjetaVisitante extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(r.nombreCompleto,
-                          style: const TextStyle(
-                              fontWeight: FontWeight.w700, fontSize: 15.5)),
+                      Text(
+                        r.nombreCompleto,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 15.5,
+                        ),
+                      ),
                       if (r.empresaProcedencia.isNotEmpty)
-                        Text(r.empresaProcedencia,
-                            style: const TextStyle(
-                                color: AppTheme.grisNeutro, fontSize: 13)),
+                        Text(
+                          r.empresaProcedencia,
+                          style: const TextStyle(
+                            color: AppTheme.grisNeutro,
+                            fontSize: 13,
+                          ),
+                        ),
                     ],
                   ),
                 ),
@@ -225,13 +248,15 @@ class _TarjetaVisitante extends StatelessWidget {
             _Dato(icono: Icons.assignment_outlined, texto: r.asunto),
             if (r.personaVisitadaTexto.isNotEmpty)
               _Dato(
-                  icono: Icons.person_search_outlined,
-                  texto: 'Visita a ${r.personaVisitadaTexto}'),
+                icono: Icons.person_search_outlined,
+                texto: 'Visita a ${r.personaVisitadaTexto}',
+              ),
             if (r.placas.isNotEmpty)
               _Dato(icono: Icons.directions_car_outlined, texto: r.placas),
             _Dato(
               icono: Icons.login,
-              texto: 'Entrada ${DateFormat('d MMM HH:mm', 'es_MX').format(r.horaEntrada)}'
+              texto:
+                  'Entrada ${DateFormat('d MMM HH:mm', 'es_MX').format(r.horaEntrada)}'
                   '${dentro ? ' · ${horas.toStringAsFixed(1)} h dentro' : ''}',
             ),
             if (r.horaSalida != null)
@@ -278,8 +303,10 @@ class _Dato extends StatelessWidget {
           Icon(icono, size: 16, color: AppTheme.grisNeutro),
           const SizedBox(width: 8),
           Expanded(
-            child: Text(texto,
-                style: const TextStyle(fontSize: 13, height: 1.3)),
+            child: Text(
+              texto,
+              style: const TextStyle(fontSize: 13, height: 1.3),
+            ),
           ),
         ],
       ),
@@ -301,10 +328,48 @@ class _Vacio extends StatelessWidget {
         children: [
           Icon(icono, size: 56, color: AppTheme.grisNeutro),
           const SizedBox(height: 14),
-          Text(texto,
-              textAlign: TextAlign.center,
-              style: const TextStyle(color: AppTheme.grisNeutro)),
+          Text(
+            texto,
+            textAlign: TextAlign.center,
+            style: const TextStyle(color: AppTheme.grisNeutro),
+          ),
         ],
+      ),
+    );
+  }
+}
+
+class _ErrorCarga extends StatelessWidget {
+  const _ErrorCarga({required this.onReintentar});
+
+  final VoidCallback onReintentar;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(32),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(
+              Icons.sync_problem_outlined,
+              size: 52,
+              color: AppTheme.grisNeutro,
+            ),
+            const SizedBox(height: 14),
+            const Text(
+              'No se pudieron cargar los visitantes.',
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 14),
+            OutlinedButton.icon(
+              onPressed: onReintentar,
+              icon: const Icon(Icons.refresh),
+              label: const Text('Reintentar'),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 
 import '../../../core/config/app_routes.dart';
 import '../../../core/constants/enums.dart';
+import '../../../core/services/app_logger.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../data/local/app_database.dart';
 import '../providers/bitacora_provider.dart';
@@ -33,16 +34,21 @@ class BitacoraScreen extends ConsumerWidget {
                       const SizedBox(width: 6),
                       Container(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 7, vertical: 2),
+                          horizontal: 7,
+                          vertical: 2,
+                        ),
                         decoration: BoxDecoration(
                           color: AppTheme.ambarSeguridad,
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: Text('${pendientes.length}',
-                            style: const TextStyle(
-                                fontSize: 11,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white)),
+                        child: Text(
+                          '${pendientes.length}',
+                          style: const TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
                     ],
                   ],
@@ -59,7 +65,10 @@ class BitacoraScreen extends ConsumerWidget {
         ),
         body: TabBarView(
           children: [
-            _Lista(provider: bitacoraDelTurnoProvider, vacio: 'Sin eventos en este turno'),
+            _Lista(
+              provider: bitacoraDelTurnoProvider,
+              vacio: 'Sin eventos en este turno',
+            ),
             _Lista(
               provider: pendientesBitacoraProvider,
               vacio: 'Nada pendiente de resolver',
@@ -90,15 +99,21 @@ class _Lista extends ConsumerWidget {
 
     return datos.when(
       loading: () => const Center(child: CircularProgressIndicator()),
-      error: (e, _) => Center(child: Text('Error: $e')),
+      error: (e, s) {
+        AppLogger.e('No se pudo cargar la bitácora', e, s);
+        return _ErrorCarga(onReintentar: () => ref.invalidate(provider));
+      },
       data: (lista) {
         if (lista.isEmpty) {
           return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(Icons.menu_book_outlined,
-                    size: 56, color: AppTheme.grisNeutro),
+                const Icon(
+                  Icons.menu_book_outlined,
+                  size: 56,
+                  color: AppTheme.grisNeutro,
+                ),
                 const SizedBox(height: 14),
                 Text(vacio, style: const TextStyle(color: AppTheme.grisNeutro)),
               ],
@@ -150,6 +165,42 @@ class _Lista extends ConsumerWidget {
   }
 }
 
+class _ErrorCarga extends StatelessWidget {
+  const _ErrorCarga({required this.onReintentar});
+
+  final VoidCallback onReintentar;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(32),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(
+              Icons.sync_problem_outlined,
+              size: 52,
+              color: AppTheme.grisNeutro,
+            ),
+            const SizedBox(height: 14),
+            const Text(
+              'No se pudo cargar la bitácora.',
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 14),
+            OutlinedButton.icon(
+              onPressed: onReintentar,
+              icon: const Icon(Icons.refresh),
+              label: const Text('Reintentar'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class _TarjetaEvento extends StatelessWidget {
   const _TarjetaEvento({required this.evento, this.onResolver});
 
@@ -184,13 +235,22 @@ class _TarjetaEvento extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(tipo.etiqueta,
-                          style: const TextStyle(
-                              fontWeight: FontWeight.w700, fontSize: 14.5)),
                       Text(
-                        DateFormat('d MMM · HH:mm', 'es_MX').format(e.ocurridoAt),
+                        tipo.etiqueta,
                         style: const TextStyle(
-                            fontSize: 12, color: AppTheme.grisNeutro),
+                          fontWeight: FontWeight.w700,
+                          fontSize: 14.5,
+                        ),
+                      ),
+                      Text(
+                        DateFormat(
+                          'd MMM · HH:mm',
+                          'es_MX',
+                        ).format(e.ocurridoAt),
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: AppTheme.grisNeutro,
+                        ),
                       ),
                     ],
                   ),
@@ -220,21 +280,27 @@ class _TarjetaEvento extends StatelessWidget {
                 runSpacing: 6,
                 children: [
                   if (e.placas.isNotEmpty)
-                    _Chip(icono: Icons.directions_car_outlined, texto: e.placas),
+                    _Chip(
+                      icono: Icons.directions_car_outlined,
+                      texto: e.placas,
+                    ),
                   if (e.destino.isNotEmpty)
                     _Chip(icono: Icons.place_outlined, texto: e.destino),
                   if (e.numDocumento.isNotEmpty)
                     _Chip(
-                        icono: Icons.description_outlined,
-                        texto: e.numDocumento),
+                      icono: Icons.description_outlined,
+                      texto: e.numDocumento,
+                    ),
                   if (e.transportista.isNotEmpty)
                     _Chip(
-                        icono: Icons.local_shipping_outlined,
-                        texto: e.transportista),
+                      icono: Icons.local_shipping_outlined,
+                      texto: e.transportista,
+                    ),
                   if (e.autorizadoPorTexto.isNotEmpty)
                     _Chip(
-                        icono: Icons.how_to_reg_outlined,
-                        texto: 'Autorizó ${e.autorizadoPorTexto}'),
+                      icono: Icons.how_to_reg_outlined,
+                      texto: 'Autorizó ${e.autorizadoPorTexto}',
+                    ),
                 ],
               ),
             ],
@@ -248,7 +314,8 @@ class _TarjetaEvento extends StatelessWidget {
                   icon: const Icon(Icons.check_circle_outline, size: 20),
                   label: const Text('Marcar resuelto'),
                   style: OutlinedButton.styleFrom(
-                      minimumSize: const Size.fromHeight(42)),
+                    minimumSize: const Size.fromHeight(42),
+                  ),
                 ),
               ),
             ],
@@ -259,16 +326,16 @@ class _TarjetaEvento extends StatelessWidget {
   }
 
   static IconData _icono(TipoEventoBitacora tipo) => switch (tipo) {
-        TipoEventoBitacora.salidaMercancia => Icons.output_outlined,
-        TipoEventoBitacora.ingresoMateriaPrima => Icons.input_outlined,
-        TipoEventoBitacora.entradaVehiculo => Icons.login_outlined,
-        TipoEventoBitacora.salidaVehiculo => Icons.logout_outlined,
-        TipoEventoBitacora.fallaInfraestructura => Icons.build_outlined,
-        TipoEventoBitacora.incidenteSeguridad => Icons.warning_amber_outlined,
-        TipoEventoBitacora.ronda => Icons.directions_walk_outlined,
-        TipoEventoBitacora.correspondencia => Icons.mail_outline,
-        TipoEventoBitacora.libre => Icons.notes_outlined,
-      };
+    TipoEventoBitacora.salidaMercancia => Icons.output_outlined,
+    TipoEventoBitacora.ingresoMateriaPrima => Icons.input_outlined,
+    TipoEventoBitacora.entradaVehiculo => Icons.login_outlined,
+    TipoEventoBitacora.salidaVehiculo => Icons.logout_outlined,
+    TipoEventoBitacora.fallaInfraestructura => Icons.build_outlined,
+    TipoEventoBitacora.incidenteSeguridad => Icons.warning_amber_outlined,
+    TipoEventoBitacora.ronda => Icons.directions_walk_outlined,
+    TipoEventoBitacora.correspondencia => Icons.mail_outline,
+    TipoEventoBitacora.libre => Icons.notes_outlined,
+  };
 }
 
 class _Chip extends StatelessWidget {
@@ -284,8 +351,10 @@ class _Chip extends StatelessWidget {
       children: [
         Icon(icono, size: 15, color: AppTheme.grisNeutro),
         const SizedBox(width: 5),
-        Text(texto,
-            style: const TextStyle(fontSize: 12.5, color: AppTheme.grisNeutro)),
+        Text(
+          texto,
+          style: const TextStyle(fontSize: 12.5, color: AppTheme.grisNeutro),
+        ),
       ],
     );
   }
