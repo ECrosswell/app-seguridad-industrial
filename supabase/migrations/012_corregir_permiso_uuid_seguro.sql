@@ -1,0 +1,30 @@
+-- ─────────────────────────────────────────────────────────────────────────────
+-- 012: CORRECCIÓN DE UN BUG EN PRODUCCIÓN.
+--
+-- **Síntoma.** Ninguna imagen se subía nunca a Storage — cero objetos en ambos
+-- buckets. Como la asistencia no puede empujar su fila hasta que la selfie
+-- exista en Storage, las asistencias se quedaban atoradas en el teléfono para
+-- siempre. Bitácora, accesos y recepciones sí subían, porque el elemento las
+-- había capturado sin foto. Desde fuera parecía "la sincronización no sirve",
+-- cuando en realidad fallaba sólo la subida de imágenes.
+--
+-- **Causa.** La migración 009 revocó `EXECUTE` sobre `uuid_seguro` al rol
+-- `authenticated`, como parte del blindaje de las funciones expuestas por REST.
+-- Pero esa función la usa la policy de lectura del bucket `evidencias`:
+--
+--     tiene_acceso_sitio(uuid_seguro((storage.foldername(name))[1]))
+--
+-- Las policies se evalúan **con los privilegios de quien consulta**, no del
+-- dueño de la tabla. Y `upsert: true` hace que Storage evalúe la policy de
+-- SELECT para saber si el objeto ya existe. Sin el permiso, la subida entera
+-- falla con `permission denied for function uuid_seguro`.
+--
+-- **Lección.** Antes de revocar una función hay que revisar si alguna policy la
+-- referencia. Una función usada por RLS tiene que ser ejecutable por los roles
+-- sujetos a esa RLS. Consulta de auditoría en el CLAUDE.md.
+--
+-- `uuid_seguro` es pura: recibe texto y devuelve uuid o null, sin tocar datos.
+-- Exponerla no filtra absolutamente nada.
+-- ─────────────────────────────────────────────────────────────────────────────
+
+grant execute on function public.uuid_seguro(text) to authenticated;

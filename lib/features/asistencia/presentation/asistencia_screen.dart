@@ -46,7 +46,10 @@ class _AsistenciaScreenState extends ConsumerState<AsistenciaScreen> {
         actions: const [_IndicadorSync()],
       ),
       body: RefreshIndicator(
-        onRefresh: () => ref.read(syncEngineProvider).sincronizarAhora(),
+        // `reintentarTodo` y no `sincronizarAhora`: deslizar es el gesto que
+        // hace el elemento cuando algo no sube, así que también reactiva las
+        // filas que ya habían agotado sus reintentos.
+        onRefresh: () => ref.read(syncEngineProvider).reintentarTodo(),
         child: sitiosAsync.when(
           loading: () => const Center(child: CircularProgressIndicator()),
           error: (e, _) => _MensajeVacio(

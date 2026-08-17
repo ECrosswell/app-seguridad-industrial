@@ -284,6 +284,38 @@ Migraciones numeradas en `supabase/migrations/`. **Sin colisiones de número** �
 
 Edge Functions en `supabase/functions/`: `enviar-push` (FCM v1, `verify_jwt = false` con autenticación propia por header).
 
+### Antes de revocar una función, revisa si alguna policy la usa
+
+**Esto ya causó un bug en producción** (migraciones 009 → 012). Las policies de RLS se evalúan **con los privilegios de quien consulta**, no del dueño de la tabla. Si se revoca `EXECUTE` sobre una función que una policy referencia, esa policy revienta con `permission denied for function ...` para todos los usuarios de ese rol.
+
+Pasó con `uuid_seguro`: se revocó al blindar los RPC sin notar que la policy de lectura de `evidencias` la usa. Resultado: **ninguna imagen se subió nunca**, y como la asistencia no puede empujar su fila sin la selfie, las asistencias quedaron atoradas en los teléfonos durante días. Lo demás sí subía, porque iba sin foto — lo que hacía ver el problema como "la sincronización no sirve".
+
+Auditoría para correr después de cualquier cambio de permisos:
+
+```sql
+with funciones_en_policies as (
+  select distinct f.proname
+  from pg_policies pol
+  cross join lateral (
+    select p.proname from pg_proc p
+    join pg_namespace n on n.oid = p.pronamespace
+    where n.nspname = 'public'
+      and (coalesce(pol.qual,'') || ' ' || coalesce(pol.with_check,'')) like '%' || p.proname || '(%'
+  ) f
+  where pol.schemaname in ('public','storage')
+)
+select f.proname,
+       case when has_function_privilege('authenticated', p.oid, 'EXECUTE')
+            then 'OK' else '*** ROMPE LA POLICY ***' end as estado
+from funciones_en_policies f
+join pg_proc p on p.proname = f.proname
+join pg_namespace n on n.oid = p.pronamespace and n.nspname = 'public';
+```
+
+### Storage necesita INSERT **y** UPDATE
+
+`FotoService.subir` usa `upsert: true` para que un reintento sobre la misma ruta no falle. Eso hace UPDATE cuando el objeto ya existe, así que **ambas policies son necesarias**. Con sólo INSERT, el reintento tras una caída de red se rechaza y la fila queda atorada (migración 013).
+
 ### Funciones y RPC — leer antes de agregar una función
 
 Supabase publica **toda** función del esquema `public` como endpoint REST en `/rest/v1/rpc/<nombre>`. Una función `SECURITY DEFINER` recién creada queda invocable por cualquiera, incluso sin sesión.

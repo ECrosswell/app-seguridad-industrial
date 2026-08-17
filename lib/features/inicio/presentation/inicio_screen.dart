@@ -50,7 +50,7 @@ class InicioScreen extends ConsumerWidget {
         ],
       ),
       body: RefreshIndicator(
-        onRefresh: () => ref.read(syncEngineProvider).sincronizarAhora(),
+        onRefresh: () => ref.read(syncEngineProvider).reintentarTodo(),
         child: ListView(
           padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
           children: [

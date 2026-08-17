@@ -43,7 +43,60 @@ class SyncEngine {
     if (_timer != null) return;
     AppLogger.i('Motor de sincronización iniciado');
     _timer = Timer.periodic(_intervalo, (_) => sincronizarAhora());
-    unawaited(sincronizarAhora());
+    // Antes del primer ciclo se les devuelve la oportunidad a las filas que
+    // habían agotado sus reintentos. Ver [reactivarFallidos].
+    unawaited(reactivarFallidos().then((_) => sincronizarAhora()));
+  }
+
+  /// Devuelve a la cola las filas que agotaron sus reintentos.
+  ///
+  /// El tope de [_maxIntentosPorFila] existe para no quemar batería
+  /// reintentando algo que falla siempre. Pero abandonarlas **para siempre**
+  /// significa perder evidencia en silencio, que es inaceptable en un sistema
+  /// cuyo propósito es justamente conservarla.
+  ///
+  /// Al iniciar sesión las condiciones son otras: puede haber otra red, otra
+  /// versión de la app, o un permiso corregido en el servidor. Así que el tope
+  /// se reinicia y vuelven a intentarse.
+  ///
+  /// Esto ocurrió de verdad: un permiso mal revocado impedía subir imágenes, y
+  /// cuando se corrigió en el servidor las asistencias del elemento seguían
+  /// atoradas porque ya habían agotado sus 8 intentos días atrás.
+  Future<void> reactivarFallidos() async {
+    const tablas = [
+      'local_asistencias',
+      'local_registros_acceso',
+      'local_visitantes',
+      'local_bitacora_eventos',
+      'local_bitacora_fotos',
+      'local_recepciones_turno',
+      'local_recepcion_items',
+    ];
+
+    for (final tabla in tablas) {
+      try {
+        await _db.customStatement(
+          'UPDATE $tabla SET sync_status = ?, sync_intentos = 0 '
+          'WHERE sync_status = ?',
+          ['pendiente', 'fallido'],
+        );
+      } catch (e) {
+        // Una tabla que no exista en esta versión del esquema no debe impedir
+        // que las demás se reactiven.
+        AppLogger.w('No se pudo reactivar $tabla: $e');
+      }
+    }
+
+    AppLogger.sync('Reintentos reiniciados para las filas fallidas');
+  }
+
+  /// Reintento manual, para el gesto de "deslizar para actualizar".
+  ///
+  /// Es la salida que le queda al elemento cuando algo no sube: reactiva lo
+  /// abandonado y fuerza un ciclo, sin tener que cerrar y abrir la app.
+  Future<void> reintentarTodo() async {
+    await reactivarFallidos();
+    await sincronizarAhora();
   }
 
   void detener() {
